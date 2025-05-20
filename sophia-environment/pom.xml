@@ -1,0 +1,24 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.andersonfonseka</groupId>
+		<artifactId>sophia</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>sophia-environment</artifactId>
+
+	<properties>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<mysql.driver.version>8.0.20</mysql.driver.version>
+	</properties>
+
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/com.miglayout/miglayout-swing -->
+		<dependency>
+			<groupId>com.miglayout</groupId>
+			<artifactId>miglayout-swing</artifactId>
+			<version>11.4.2</version>
+		</dependency>
+	</dependencies>
+</project>
