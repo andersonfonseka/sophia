@@ -132,6 +132,18 @@ public class FigureRectangle extends java.awt.Rectangle implements Shape {
 
 	public void setVariable(String variable) {
 		this.variable = variable;
+	}
+
+	@Override
+	public String getSource() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getTarget() {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 	
 }

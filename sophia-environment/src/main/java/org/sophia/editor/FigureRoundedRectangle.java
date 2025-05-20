@@ -147,6 +147,18 @@ public class FigureRoundedRectangle extends RoundRectangle2D.Double implements S
 
 	public void setVariable(String variable) {
 		this.variable = variable;
+	}
+
+	@Override
+	public String getSource() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getTarget() {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 	
 }

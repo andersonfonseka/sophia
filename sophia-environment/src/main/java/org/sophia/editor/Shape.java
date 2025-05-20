@@ -50,4 +50,8 @@ public interface Shape {
 	
 	public void setVariable(String variable);
 	
+	public String getSource();
+
+	public String getTarget();
+	
 }

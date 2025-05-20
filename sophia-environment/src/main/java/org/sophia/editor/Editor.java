@@ -63,7 +63,7 @@ public class Editor extends JFrame {
 	
 	private List<FigureLine> lines = new ArrayList<FigureLine>();
 
-	private Map<String, Shape> map = new HashMap();
+	private Map<String, Shape> figureMap = new HashMap();
 	
 	private int selectionNumber;
 	
@@ -93,7 +93,7 @@ public class Editor extends JFrame {
 				if (editorToolBar.getOperation().equals(DRAW) && editorToolBar.getFigureType().equals(ROUNDRECTANGLE) && e.getY() > 100) {
 					FigureRoundedRectangle figRect = new FigureRoundedRectangle((int) e.getX(), (int) e.getY());
 					selectedShape = figRect;
-					map.put(figRect.getId(), figRect);
+					figureMap.put(figRect.getId(), figRect);
 
 					Event event = new Event(figRect.getId());
 					event.setType("FigureRoundedRectangle");
@@ -103,7 +103,7 @@ public class Editor extends JFrame {
 				} else if (editorToolBar.getOperation().equals(DRAW) && editorToolBar.getFigureType().equals(RECTANGLE) && e.getY() > 100) {
 					FigureRectangle figRect = new FigureRectangle((int) e.getX(), (int) e.getY());
 					selectedShape = figRect;
-					map.put(figRect.getId(), figRect);
+					figureMap.put(figRect.getId(), figRect);
 
 					Event event = new Event(figRect.getId());
 					event.setType("FigureRectangle");
@@ -114,7 +114,7 @@ public class Editor extends JFrame {
 					FigureEllipse figRect = new FigureEllipse((int) e.getX(), (int) e.getY());
 					figRect.setType("START");
 					selectedShape = figRect;
-					map.put(figRect.getId(), figRect);
+					figureMap.put(figRect.getId(), figRect);
 
 					Event event = new Event(figRect.getId());
 					event.setType("FigureEllipse");
@@ -125,7 +125,7 @@ public class Editor extends JFrame {
 					FigureEllipse figRect = new FigureEllipse((int) e.getX(), (int) e.getY());
 					figRect.setType("END");
 					selectedShape = figRect;
-					map.put(figRect.getId(), figRect);
+					figureMap.put(figRect.getId(), figRect);
 
 					Event event = new Event(figRect.getId());
 					event.setType("FigureEllipse");
@@ -136,7 +136,7 @@ public class Editor extends JFrame {
 				else if (editorToolBar.getOperation().equals(DRAW) && editorToolBar.getFigureType().equals(DIAMOND) && e.getY() > 100) {
 					FigureDiamond figRect = new FigureDiamond((int) e.getX(), (int) e.getY());
 					selectedShape = figRect;
-					map.put(figRect.getId(), figRect);
+					figureMap.put(figRect.getId(), figRect);
 
 					Event event = new Event(figRect.getId());
 					event.setType("FigureDiamond");
@@ -156,7 +156,7 @@ public class Editor extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 				if (editorToolBar.getOperation().equals(SELECTION)) {
-					for (Shape fg : map.values()) {
+					for (Shape fg : figureMap.values()) {
 						if (fg.isSelected(e.getPoint())) {
 							selectedShape = fg;
 						}
@@ -290,13 +290,14 @@ public class Editor extends JFrame {
 				Shape fig2 = this.selectedRect.get(1);
 				
 				FigureLine figureLine = new FigureLine(fig1, fig2);
-				figureLine.paint(g2);
+				figureLine.draw(g2);
 				
 				Event event1 = flow.getEvent(fig1.getId());
 				Event event2 = flow.getEvent(fig2.getId());
 				event1.addEvent(event2);
 				
-				lines.add(figureLine);
+				//lines.add(figureLine);
+				figureMap.put(figureLine.getId(), figureLine);
 				
 				this.selectedRect.clear();
 				
@@ -318,7 +319,7 @@ public class Editor extends JFrame {
 
 			Graphics2D g2 = (Graphics2D) g;
 
-			this.map.clear();
+			this.figureMap.clear();
 			this.lines.clear();
 
 			if (g2 != null) {
@@ -332,7 +333,7 @@ public class Editor extends JFrame {
 
 			Graphics2D g2 = (Graphics2D) g;
 
-			map.remove(selectedShape);
+			figureMap.remove(selectedShape);
 
 			if (g2 != null) {
 				g2.setColor(Color.WHITE);
@@ -345,12 +346,7 @@ public class Editor extends JFrame {
 	}
 
 	private void redrawComponents(Graphics2D g2) {
-		
-		for (FigureLine figureLine : lines) {
-			figureLine.paint(g2);
-		}
-		
-		for (Shape fg : map.values()) {
+		for (Shape fg : figureMap.values()) {
 			g2.setColor(fg.getFillColor());
 			g2.fill((java.awt.Shape) fg);
 
@@ -359,7 +355,6 @@ public class Editor extends JFrame {
 
 			fg.draw(g2);
 		}
-		
 	}
 
 	private void drawSelectionState(Graphics2D g2) {
@@ -386,6 +381,10 @@ public class Editor extends JFrame {
 
 	public Flow getFlow() {
 		return flow;
+	}
+	
+	public Map<String, Shape> getFigureMap() {
+		return figureMap;
 	}
 	
 }

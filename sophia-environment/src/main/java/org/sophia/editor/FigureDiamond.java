@@ -216,5 +216,17 @@ public class FigureDiamond extends Polygon implements Shape {
 		this.variable = variable;
 	}
 
+	@Override
+	public String getSource() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getTarget() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

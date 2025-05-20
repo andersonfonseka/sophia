@@ -6,10 +6,12 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Ellipse2D;
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
-public class FigureEllipse extends Ellipse2D.Double implements Shape {
+
+public class FigureEllipse extends Ellipse2D.Double implements Shape, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -28,6 +30,8 @@ public class FigureEllipse extends Ellipse2D.Double implements Shape {
 	private String variable = "";
 	
 	private Color borderColor = Color.BLACK;
+	
+	public FigureEllipse() {}
 	
 	public FigureEllipse(int x, int y) {
 		super(x - 20, y - 20, 40, 40);
@@ -153,5 +157,19 @@ public class FigureEllipse extends Ellipse2D.Double implements Shape {
 	public void setVariable(String variable) {
 		this.variable = variable;
 	}
+
+	@Override
+	public String getSource() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getTarget() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 	
 }
