@@ -10,7 +10,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import org.sophia.editor.Editor;
-import org.sophia.editor.Shape;
+import org.sophia.elements.Shape;
 import org.sophia.model.Event;
 
 import net.miginfocom.swing.MigLayout;

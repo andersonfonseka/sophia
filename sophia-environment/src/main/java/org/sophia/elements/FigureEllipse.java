@@ -1,24 +1,27 @@
-package org.sophia.editor;
+package org.sophia.elements;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.RenderingHints;
-import java.awt.geom.RoundRectangle2D;
+import java.awt.geom.Ellipse2D;
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
-public class FigureRoundedRectangle extends RoundRectangle2D.Double implements Shape  {
+
+public class FigureEllipse extends Ellipse2D.Double implements Shape, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private String id = UUID.randomUUID().toString();
 	
-	private Color fillColor = new Color(254, 254, 204);
+	private String type = "START";
 	
-	private String title = "AGENT";
+	private Color fillColor = Color.BLACK;
+	
+	private String title = "Start/End";
 	
 	private String name = "";
 	
@@ -28,8 +31,10 @@ public class FigureRoundedRectangle extends RoundRectangle2D.Double implements S
 	
 	private Color borderColor = Color.BLACK;
 	
-	public FigureRoundedRectangle(int x, int y) {
-		super(x - 37, y - 25, 75, 50, 20, 20);
+	public FigureEllipse() {}
+	
+	public FigureEllipse(int x, int y) {
+		super(x - 20, y - 20, 40, 40);
 	}
 	
 	public String getId() {
@@ -63,34 +68,46 @@ public class FigureRoundedRectangle extends RoundRectangle2D.Double implements S
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+		
+		if (type.equals("END")) {
+			this.fillColor = Color.BLACK;
+		} else if (type.equals("START")){
+			this.fillColor = Color.WHITE;
+		}
+	}
+
+	
+	public boolean isSelected(Point point) {
+		boolean selected = false;
+		if (this.contains(point)) {
+			selected = true;
+		}
+		return selected;
+	}	
 
 	public void draw(Graphics2D g) {
 		
 		g.setColor(this.getFillColor());
-		g.fillRect((int) this.getX(), (int) this.getY(), (int) this.getWidth(), (int) this.getHeight());
+		g.fill(this);
 
 		g.setColor(this.getBorderColor());
-		g.setStroke(new BasicStroke(2));
+		g.setStroke(new BasicStroke(3));
 		
-		RenderingHints rh =
-	            new RenderingHints(RenderingHints.KEY_ANTIALIASING,
-	            RenderingHints.VALUE_ANTIALIAS_ON);
+        Util.drawCenteredString(g, this.name, this, new Font("Arial", Font.BOLD, 10));
 
-	        rh.put(RenderingHints.KEY_RENDERING,
-	               RenderingHints.VALUE_RENDER_QUALITY);
-
-	        g.setRenderingHints(rh);
-
-	        g.setFont(new Font("Purisa", Font.PLAIN, 13));
-	
-	        Util.drawCenteredString(g, this.name, this, new Font("Arial", Font.BOLD, 10));
 
 		g.draw(this);
-	
 	}
 
 	public void move(int x, int y) {
-		setRoundRect((x - (getWidth() / 2)), (y - (getHeight() / 2)), getWidth(), getHeight(), getArcWidth(), getArcHeight());
+		setFrame(x, y, this.width, this.height);
 	}
 
 	@Override
@@ -109,7 +126,7 @@ public class FigureRoundedRectangle extends RoundRectangle2D.Double implements S
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		FigureRoundedRectangle other = (FigureRoundedRectangle) obj;
+		FigureEllipse other = (FigureEllipse) obj;
 		return Objects.equals(id, other.id);
 	}
 
@@ -133,14 +150,6 @@ public class FigureRoundedRectangle extends RoundRectangle2D.Double implements S
 		return this.name;
 	}
 
-	public boolean isSelected(Point point) {
-		boolean selected = false;
-		if (this.contains(point)) {
-			selected = true;
-		}
-		return selected;
-	}
-
 	public String getVariable() {
 		return variable;
 	}
@@ -159,6 +168,8 @@ public class FigureRoundedRectangle extends RoundRectangle2D.Double implements S
 	public String getTarget() {
 		// TODO Auto-generated method stub
 		return null;
-	}	
+	}
+	
+	
 	
 }

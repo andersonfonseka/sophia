@@ -1,4 +1,4 @@
-package org.sophia.editor;
+package org.sophia.elements;
 
 import java.awt.Color;
 import java.awt.Graphics2D;

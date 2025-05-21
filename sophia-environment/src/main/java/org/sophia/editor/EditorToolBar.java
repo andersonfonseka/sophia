@@ -10,6 +10,9 @@ import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 
+import org.sophia.elements.FigureLine;
+import org.sophia.elements.Shape;
+import org.sophia.elements.Util;
 import org.sophia.properties.FigureProperties;
 
 import com.fasterxml.jackson.core.JsonProcessingException;

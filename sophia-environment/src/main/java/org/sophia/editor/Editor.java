@@ -20,6 +20,12 @@ import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import org.sophia.elements.FigureDiamond;
+import org.sophia.elements.FigureEllipse;
+import org.sophia.elements.FigureLine;
+import org.sophia.elements.FigureRectangle;
+import org.sophia.elements.FigureRoundedRectangle;
+import org.sophia.elements.Shape;
 import org.sophia.model.Event;
 import org.sophia.model.Flow;
 
@@ -333,7 +339,7 @@ public class Editor extends JFrame {
 
 			Graphics2D g2 = (Graphics2D) g;
 
-			figureMap.remove(selectedShape);
+			figureMap.remove(selectedShape.getId());
 
 			if (g2 != null) {
 				g2.setColor(Color.WHITE);

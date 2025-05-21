@@ -1,4 +1,4 @@
-package org.sophia.editor;
+package org.sophia.elements;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

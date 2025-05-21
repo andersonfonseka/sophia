@@ -1,4 +1,4 @@
-package org.sophia.editor;
+package org.sophia.elements;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -57,7 +57,7 @@ public class FigureLine extends Line2D.Double implements Shape {
 		x2 = target.getCenterX();
 		y2 = target.getCenterY();
 		
-		g.setStroke(new BasicStroke(1));
+		g.setStroke(new BasicStroke(3));
 		g.setColor(Color.BLACK);
 		g.draw(this);
 		
@@ -111,8 +111,14 @@ public class FigureLine extends Line2D.Double implements Shape {
 	@Override
 	public double getCenterY() {return 0;}
 
-	@Override
-	public boolean isSelected(Point point) {return false;}
+	public boolean isSelected(Point point) {
+		boolean selected = false;
+		if (this.getX1() <= point.getX() && this.getX2() >= point.getX()) {
+			selected = true;
+			System.out.println(this);
+		}
+		return selected;
+	}	
 
 	@Override
 	public void move(int x, int y) {}
