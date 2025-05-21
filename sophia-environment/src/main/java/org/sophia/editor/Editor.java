@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -59,17 +60,13 @@ public class Editor extends JFrame {
 	
 	private Flow flow;
 	
-	private Event sourceEvent;
-	
-	private Event targetEvent;
-	
 	private Shape selectedShape;
 	
 	private List<Shape> selectedRect = new ArrayList<>();
 	
 	private List<FigureLine> lines = new ArrayList<FigureLine>();
 
-	private Map<String, Shape> figureMap = new HashMap();
+	private Map<String, Shape> figureMap = new HashMap<>();
 	
 	private int selectionNumber;
 	
@@ -96,71 +93,28 @@ public class Editor extends JFrame {
 		addMouseListener(new MouseListener() {
 
 			public void mouseReleased(MouseEvent e) {
-				if (editorToolBar.getOperation().equals(DRAW) && editorToolBar.getFigureType().equals(ROUNDRECTANGLE) && e.getY() > 100) {
-					FigureRoundedRectangle figRect = new FigureRoundedRectangle((int) e.getX(), (int) e.getY());
-					selectedShape = figRect;
-					figureMap.put(figRect.getId(), figRect);
-
-					Event event = new Event(figRect.getId());
-					event.setType("FigureRoundedRectangle");
-					flow.addEvent(event);
-					
+				if (editorToolBar.getOperation().equals(DRAW) && editorToolBar.getFigureType().equals(ROUNDRECTANGLE)) {
+					createRoundedRectangle(UUID.randomUUID().toString(), e.getX(), e.getY());
 					repaint();
-				} else if (editorToolBar.getOperation().equals(DRAW) && editorToolBar.getFigureType().equals(RECTANGLE) && e.getY() > 100) {
-					FigureRectangle figRect = new FigureRectangle((int) e.getX(), (int) e.getY());
-					selectedShape = figRect;
-					figureMap.put(figRect.getId(), figRect);
-
-					Event event = new Event(figRect.getId());
-					event.setType("FigureRectangle");
-					flow.addEvent(event);
-										
+				} else if (editorToolBar.getOperation().equals(DRAW) && editorToolBar.getFigureType().equals(RECTANGLE)) {
+					createRectangle(UUID.randomUUID().toString(), e.getX(), e.getY());
 					repaint();
-				} else if (editorToolBar.getOperation().equals(DRAW) && editorToolBar.getFigureType().equals(ELLIPSE_START) && e.getY() > 100) {
-					FigureEllipse figRect = new FigureEllipse((int) e.getX(), (int) e.getY());
-					figRect.setType("START");
-					selectedShape = figRect;
-					figureMap.put(figRect.getId(), figRect);
-
-					Event event = new Event(figRect.getId());
-					event.setType("FigureEllipse");
-					flow.addEvent(event);
-										
+				} else if (editorToolBar.getOperation().equals(DRAW) && editorToolBar.getFigureType().equals(ELLIPSE_START)) {
+					createEllipse(UUID.randomUUID().toString(), e.getX(), e.getY(), "START");
 					repaint();
- 				} else if (editorToolBar.getOperation().equals(DRAW) && editorToolBar.getFigureType().equals(ELLIPSE_END) && e.getY() > 100) {
-					FigureEllipse figRect = new FigureEllipse((int) e.getX(), (int) e.getY());
-					figRect.setType("END");
-					selectedShape = figRect;
-					figureMap.put(figRect.getId(), figRect);
-
-					Event event = new Event(figRect.getId());
-					event.setType("FigureEllipse");
-					flow.addEvent(event);
-										
+ 				} else if (editorToolBar.getOperation().equals(DRAW) && editorToolBar.getFigureType().equals(ELLIPSE_END)) {
+					createEllipse(UUID.randomUUID().toString(), e.getX(), e.getY(), "END");
 					repaint();
- 				} 
-				else if (editorToolBar.getOperation().equals(DRAW) && editorToolBar.getFigureType().equals(DIAMOND) && e.getY() > 100) {
-					FigureDiamond figRect = new FigureDiamond((int) e.getX(), (int) e.getY());
-					selectedShape = figRect;
-					figureMap.put(figRect.getId(), figRect);
-
-					Event event = new Event(figRect.getId());
-					event.setType("FigureDiamond");
-					flow.addEvent(event);
-					
+ 				} else if (editorToolBar.getOperation().equals(DRAW) && editorToolBar.getFigureType().equals(DIAMOND)) {
+					createDiamond(UUID.randomUUID().toString(), e.getX(), e.getY());
 					repaint();
  				}
 			}
 
 			public void mousePressed(MouseEvent e) {}
-
 			public void mouseExited(MouseEvent e) {}
-
-			public void mouseEntered(MouseEvent e) {
-			}
-
+			public void mouseEntered(MouseEvent e) {}
 			public void mouseClicked(MouseEvent e) {
-				
 				if (editorToolBar.getOperation().equals(SELECTION)) {
 					for (Shape fg : figureMap.values()) {
 						if (fg.isSelected(e.getPoint())) {
@@ -194,8 +148,6 @@ public class Editor extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setSize(getToolkit().getScreenSize());
-		
-		//setSize(new Dimension(800, 600));
 		setVisible(true);
 		setResizable(true);
 
@@ -214,11 +166,7 @@ public class Editor extends JFrame {
 			redrawComponents(g2);
 			
 			
-			if (selectedShape instanceof FigureDiamond) {
-				((FigureDiamond) selectedShape).drawSelectionState(g2);
-			} else {
-				drawSelectionState(g2);
-			}
+			selectedShape.drawSelectionState(g2);
 
 			editorToolBar.setOperation(MOVE);
 			editorToolBar.setFigureType("");
@@ -247,11 +195,8 @@ public class Editor extends JFrame {
 
 				redrawComponents(g2);
 
-				if (selectedShape instanceof FigureDiamond) {
-					((FigureDiamond) selectedShape).drawSelectionState(g2);
-				} else {
-					drawSelectionState(g2);
-				}
+				selectedShape.drawSelectionState(g2);
+
 			}
 
 		} else if (editorToolBar.getOperation().equals(SELECTION) && editorToolBar.getFigureType().equals("")) {
@@ -265,11 +210,7 @@ public class Editor extends JFrame {
 
 			redrawComponents(g2);
 	
-			if (selectedShape instanceof FigureDiamond) {
-				((FigureDiamond) selectedShape).drawSelectionState(g2);
-			} else {
-				drawSelectionState(g2);
-			}
+			selectedShape.drawSelectionState(g2);
 			
 			editorToolBar.setOperation(MOVE);
 		
@@ -302,7 +243,6 @@ public class Editor extends JFrame {
 				Event event2 = flow.getEvent(fig2.getId());
 				event1.addEvent(event2);
 				
-				//lines.add(figureLine);
 				figureMap.put(figureLine.getId(), figureLine);
 				
 				this.selectedRect.clear();
@@ -313,20 +253,14 @@ public class Editor extends JFrame {
 
 			redrawComponents(g2);
 
-			if (selectedShape instanceof FigureDiamond) {
-				((FigureDiamond) selectedShape).drawSelectionState(g2);
-			} else {
-				drawSelectionState(g2);
-			}
-
+			selectedShape.drawSelectionState(g2);
 		
 			
 		} else if (editorToolBar.getOperation().equals(CLEAR)) {
 
 			Graphics2D g2 = (Graphics2D) g;
 
-			this.figureMap.clear();
-			this.lines.clear();
+			clear();
 
 			if (g2 != null) {
 				g2.setColor(Color.WHITE);
@@ -363,24 +297,6 @@ public class Editor extends JFrame {
 		}
 	}
 
-	private void drawSelectionState(Graphics2D g2) {
-		if (g2 != null) {
-			g2.setColor(Color.BLACK);
-
-			g2.drawRect((int) selectedShape.getX() - 5, (int) selectedShape.getY() - 5, 5, 5);
-			g2.fillRect((int) selectedShape.getX() - 5, (int) selectedShape.getY() - 5, 5, 5);
-
-			g2.drawRect((int) (selectedShape.getX() + selectedShape.getWidth()), (int) selectedShape.getY() - 5, 5, 5);
-			g2.fillRect((int) (selectedShape.getX() + selectedShape.getWidth()), (int) selectedShape.getY() - 5, 5, 5);
-
-			g2.drawRect((int) selectedShape.getX() - 5, (int) (selectedShape.getY() + selectedShape.getHeight()), 5, 5);
-			g2.fillRect((int) selectedShape.getX() - 5, (int) (selectedShape.getY() + selectedShape.getHeight()), 5, 5);
-
-			g2.drawRect((int) (selectedShape.getX() + selectedShape.getWidth()), (int) (selectedShape.getY() + selectedShape.getHeight()), 5, 5);
-			g2.fillRect((int) (selectedShape.getX() + selectedShape.getWidth()), (int) (selectedShape.getY() + selectedShape.getHeight()), 5, 5);
-		}
-	}
-
 	public Shape getSelectedShape() {
 		return selectedShape;
 	}
@@ -393,4 +309,77 @@ public class Editor extends JFrame {
 		return figureMap;
 	}
 	
+	public FigureRoundedRectangle createRoundedRectangle(String id, int x, int y) {
+		FigureRoundedRectangle figRect = new FigureRoundedRectangle(x, y);
+		figRect.setId(id);
+		
+		selectedShape = figRect;
+
+		addFigure(figRect.getId(), figRect);
+		
+		return figRect;
+	}
+	
+	public FigureRectangle createRectangle(String id, int x, int y) {
+		FigureRectangle figRect = new FigureRectangle(x, y);
+		figRect.setId(id);
+		
+		selectedShape = figRect;
+
+		addFigure(figRect.getId(), figRect);
+		
+		return figRect;
+	}
+	
+	public FigureEllipse createEllipse(String id, int x, int y, String type) {
+		
+		FigureEllipse figRect = new FigureEllipse(x, y);
+		figRect.setId(id);
+		
+		figRect.setType(type);
+		selectedShape = figRect;
+
+		addFigure(figRect.getId(), figRect);
+		
+		return figRect;
+	}
+	
+	public FigureDiamond createDiamond(String id, int x, int y) {
+		FigureDiamond figRect = new FigureDiamond(x, y);
+		figRect.setId(id);
+		
+		selectedShape = figRect;
+		
+		addFigure(figRect.getId(), figRect);
+		
+		return figRect;
+	}
+	
+	public void createLine(String id, String sourceId, String targetId) {
+		
+		Shape shp1 = this.figureMap.get(sourceId);
+		Shape shp2 = this.figureMap.get(targetId);
+		
+		FigureLine figRect = new FigureLine(shp1, shp2);
+		figRect.setId(id);
+		
+		Event event1 = flow.getEvent(shp1.getId());
+		Event event2 = flow.getEvent(shp2.getId());
+		event1.addEvent(event2);
+		
+		addFigure(figRect.getId(), figRect);
+	}
+	
+	public void addFigure(String id, Shape shape) {
+		figureMap.put(id, shape);
+
+		Event event = new Event(id);
+		event.setType(shape.getClass().getSimpleName());
+		flow.addEvent(event);
+	}
+	
+	public void clear() {
+		this.figureMap.clear();
+		this.flow.clear();
+	}
 }

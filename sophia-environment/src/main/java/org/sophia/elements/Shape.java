@@ -53,5 +53,9 @@ public interface Shape {
 	public String getSource();
 
 	public String getTarget();
+
+	public void drawSelectionState(Graphics2D g2);
+
+	public void setTitle(String value);
 	
 }

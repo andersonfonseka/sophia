@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 
+import org.sophia.client.file.FileUtil;
 import org.sophia.elements.FigureLine;
 import org.sophia.elements.Shape;
 import org.sophia.elements.Util;
@@ -52,47 +53,18 @@ public class EditorToolBar extends JToolBar {
 		JButton remove = new JButton(Util.getImageIcon("/img/erase.png"));
 		
 		JButton save = new JButton(Util.getImageIcon("/img/save.png"));
+		JButton open = new JButton(Util.getImageIcon("/img/open.png"));
 		
 
 		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        	
-					StringBuilder sb = new StringBuilder();
-					sb.append("<Nodes>\n");
-				
-		        	Collection<Shape> col = editor.getFigureMap().values();
-		        	XmlMapper mapper = new XmlMapper();
-		        	
-		        	for (Shape shape : col) {
-		        		if (!(shape instanceof FigureLine)) {
-							sb.append("<Node id='" + shape.getId() + "' type='" + shape.getClass().getSimpleName() + "'>\n");
-								sb.append("<title>" + shape.getTitle() + "</title>\n");
-								sb.append("<name>" + shape.getName() + "</name>\n");
-								sb.append("<variable>" + shape.getVariable() + "</variable>\n");
-								sb.append("<description>" + shape.getDescription() + "</description>\n");
-								sb.append("<fillColor>" + shape.getFillColor() + "</fillColor>\n");
-								sb.append("<borderColor>" + shape.getBorderColor() + "</borderColor>\n");
-								sb.append("<position-x>" + shape.getX() + "</position-x>\n");
-								sb.append("<position-y>" + shape.getY() + "</position-y>\n");
-							sb.append("</Node>\n");
-		        		}
-		        	}
-			
-					for (Shape shape : col) {
-						if (shape instanceof FigureLine) {
-							sb.append("<Connection id='" + shape.getId() + "' type='" + shape.getClass().getSimpleName() + "'>\n");
-								sb.append("<source>" + shape.getSource() + "</source>\n");
-								sb.append("<target>" + shape.getTarget() + "</target>\n");
-							sb.append("</Connection>\n");
-						}
-					}
-		        	
-		        	sb.append("</Nodes>");
-		        	
-		        	System.out.println(sb.toString());
-		        	
+		        	FileUtil.saveFile(editor);
 		}});
-
+		
+		open.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		        	FileUtil.openFile(editor);
+		}});
 
 		properties.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -180,6 +152,7 @@ public class EditorToolBar extends JToolBar {
 			}
 		});
 		
+		add(open);
 		add(save);
 		
 		addSeparator();

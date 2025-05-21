@@ -144,6 +144,24 @@ public class FigureRectangle extends java.awt.Rectangle implements Shape {
 	public String getTarget() {
 		// TODO Auto-generated method stub
 		return null;
-	}	
+	}
+	
+	public void drawSelectionState(Graphics2D g2) {
+		if (g2 != null) {
+			g2.setColor(Color.BLACK);
+
+			g2.drawRect((int) this.getX() - 5, (int) this.getY() - 5, 5, 5);
+			g2.fillRect((int) this.getX() - 5, (int) this.getY() - 5, 5, 5);
+
+			g2.drawRect((int) (this.getX() + this.getWidth()), (int) this.getY() - 5, 5, 5);
+			g2.fillRect((int) (this.getX() + this.getWidth()), (int) this.getY() - 5, 5, 5);
+
+			g2.drawRect((int) this.getX() - 5, (int) (this.getY() + this.getHeight()), 5, 5);
+			g2.fillRect((int) this.getX() - 5, (int) (this.getY() + this.getHeight()), 5, 5);
+
+			g2.drawRect((int) (this.getX() + this.getWidth()), (int) (this.getY() + this.getHeight()), 5, 5);
+			g2.fillRect((int) (this.getX() + this.getWidth()), (int) (this.getY() + this.getHeight()), 5, 5);
+		}
+	}
 	
 }

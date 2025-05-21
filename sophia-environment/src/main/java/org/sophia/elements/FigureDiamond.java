@@ -228,5 +228,11 @@ public class FigureDiamond extends Polygon implements Shape {
 		return null;
 	}
 
+	@Override
+	public void setTitle(String value) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

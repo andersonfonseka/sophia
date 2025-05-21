@@ -32,7 +32,7 @@ public class Flow {
 	}
 	
 	public void addVariable(String key, String value) {
-		if (key.trim().length() > 0 && value.trim().length() > 0) {
+		if ((key != null && value != null) && (key.trim().length() > 0 && value.trim().length() > 0)) {
 			this.variables.put(key, value);
 		}
 	}
@@ -53,6 +53,11 @@ public class Flow {
 	public void play() {
 		EventStrategy eventStrategy = new EventStrategy(this);
 		eventStrategy.execute(this.firstEvent);
+	}
+	
+	public void clear() {
+		this.events.clear();
+		this.variables.clear();
 	}
 	
 }

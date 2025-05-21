@@ -52,10 +52,20 @@ public class FigureLine extends Line2D.Double implements Shape {
 	@Override
 	public void draw(Graphics2D g) {
 		
-		x1 = source.getCenterX();
+		if (source instanceof FigureDiamond) {
+			x1 = source.getCenterX()+(source.getWidth()/3);
+		} else {
+			x1 = source.getCenterX()+(source.getWidth()/2);
+		}
+		
 		y1 = source.getCenterY();
-		x2 = target.getCenterX();
 		y2 = target.getCenterY();
+		
+		if (target instanceof FigureDiamond) {
+			x2 = target.getCenterX()-(target.getWidth()/3);
+		} else {
+			x2 = target.getCenterX()-(target.getWidth()/2);
+		}
 		
 		g.setStroke(new BasicStroke(3));
 		g.setColor(Color.BLACK);
@@ -113,7 +123,8 @@ public class FigureLine extends Line2D.Double implements Shape {
 
 	public boolean isSelected(Point point) {
 		boolean selected = false;
-		if (this.getX1() <= point.getX() && this.getX2() >= point.getX()) {
+		if ((this.getX1() <= point.getX() && this.getX2() >= point.getX()) &&
+			(this.getY1() <= point.getY() && this.getY2() >= point.getY())) {
 			selected = true;
 			System.out.println(this);
 		}
@@ -140,5 +151,24 @@ public class FigureLine extends Line2D.Double implements Shape {
 
 	@Override
 	public void setVariable(String variable) {}
+	
+	public void drawSelectionState(Graphics2D g2) {
+		if (g2 != null) {
+			g2.setColor(Color.BLACK);
+
+			g2.drawRect((int) this.getX1() - 5, (int) this.getY1() - 5, 5, 5);
+			g2.fillRect((int) this.getX1() - 5, (int) this.getY1() - 5, 5, 5);
+
+			g2.drawRect((int) (this.getX2()), (int) this.getY2() - 5, 5, 5);
+			g2.fillRect((int) (this.getX2()), (int) this.getY2() - 5, 5, 5);
+			
+		}
+	}
+
+	@Override
+	public void setTitle(String value) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
