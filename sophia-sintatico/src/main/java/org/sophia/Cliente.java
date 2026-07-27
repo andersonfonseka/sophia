@@ -19,8 +19,8 @@ public class Cliente {
 		System.out.println(System.getProperty("native.encoding"));
 		System.out.println(java.nio.charset.Charset.defaultCharset());
 
-		//String[] testes = new String[] {"operadores.sph", "ola.sph", "variavel.sph", "comparadores.sph", "maioridade.sph" "ou.sph"}; 
-		String[] testes = new String[] {"nao.sph"}; 
+		String[] testes = new String[] {"operadores.sph", "ola.sph", "variavel.sph", "comparadores.sph", "maioridade.sph", "ou.sph", "nao.sph", "enquanto.sph","para.sph"}; 
+//		String[] testes = new String[] {"para.sph"}; 
 		
 		for (int i = 0; i < testes.length; i++) {
 

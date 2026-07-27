@@ -1,0 +1,98 @@
+programa "PARA"
+
+inicio
+
+escreva "===== TESTE 1 ====="
+
+para i de 1 ate 5
+
+    escreva i
+
+fim
+
+
+escreva "===== TESTE 2 ====="
+
+para i de 3 ate 3
+
+    escreva i
+
+fim
+
+
+escreva "===== TESTE 3 ====="
+
+para i de 1 ate 10
+
+    se resto de i dividido por 2 igual a 0
+
+        escreva i
+
+    fim
+
+fim
+
+
+escreva "===== TESTE 4 ====="
+
+para i de 1 ate 5
+
+    escreva i vezes 2
+
+fim
+
+
+escreva "===== TESTE 5 ====="
+
+numero soma recebe 0
+
+para i de 1 ate 5
+
+    soma recebe soma mais i
+
+fim
+
+escreva soma
+
+
+escreva "===== TESTE 6 ====="
+
+para i de 1 ate 3
+
+    para j de 1 ate 2
+
+        escreva i
+        escreva j
+
+    fim
+
+fim
+
+
+escreva "===== TESTE 7 ====="
+
+logico ativo recebe verdadeiro
+
+para i de 1 ate 3
+
+    se ativo
+
+        escreva "OK"
+
+    fim
+
+fim
+
+
+escreva "===== TESTE 8 ====="
+
+texto nome recebe "Sophia"
+
+para i de 1 ate 2
+
+    escreva nome
+
+fim
+
+
+fim

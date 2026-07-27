@@ -2,19 +2,25 @@ package org.sophia.runtime;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import org.sophia.compilador.ast.Expressao;
+import org.sophia.compilador.ast.OperacaoBinaria;
 import org.sophia.compilador.ast.Programa;
 import org.sophia.compilador.ast.comando.Atribuicao;
 import org.sophia.compilador.ast.comando.Comando;
 import org.sophia.compilador.ast.comando.Declaracao;
 import org.sophia.compilador.ast.comando.E;
+import org.sophia.compilador.ast.comando.Enquanto;
 import org.sophia.compilador.ast.comando.Escreva;
 import org.sophia.compilador.ast.comando.Nao;
 import org.sophia.compilador.ast.comando.Ou;
+import org.sophia.compilador.ast.comando.Para;
 import org.sophia.compilador.ast.comando.Se;
+import org.sophia.compilador.ast.comando.TipoVariavel;
 import org.sophia.compilador.ast.comparador.Diferente;
 import org.sophia.compilador.ast.comparador.Igual;
 import org.sophia.compilador.ast.comparador.Maior;
@@ -28,6 +34,7 @@ import org.sophia.compilador.ast.expressao.LiteralTexto;
 import org.sophia.compilador.ast.expressao.Resto;
 import org.sophia.compilador.ast.operador.Divisao;
 import org.sophia.compilador.ast.operador.Multiplicacao;
+import org.sophia.compilador.ast.operador.Operador;
 import org.sophia.compilador.ast.operador.Soma;
 import org.sophia.compilador.ast.operador.Subtracao;
 
@@ -71,6 +78,35 @@ public class Interpretador {
 		        executar(se.getComandosVerdadeiros());
 		    } else {
 		        executar(se.getComandosFalsos());
+		    }
+		    return;
+		}
+		
+		if (comando instanceof Enquanto enquanto) {
+		    while ((Boolean) avaliar(enquanto.getCondicao())) {
+		        executar(enquanto.getComandos());
+		    }
+		    return;
+		}
+		
+		if (comando instanceof Para paraComando) {
+
+		    double inicio = ((Number) avaliar(paraComando.getInicio())).doubleValue();
+		    double fim = ((Number) avaliar(paraComando.getFim())).doubleValue();
+
+	    	contexto.declarar(paraComando.getVariavel(), new Variavel(TipoVariavel.NUMERO, inicio));
+	    	
+	    	Variavel variavel = contexto.obter(paraComando.getVariavel());
+		    
+		    for (double i = inicio; i <= fim; i++) {
+		    	
+		    	if (i == Math.floor(i)) {
+		            variavel.setValor((int) i);
+		        } else {
+		            variavel.setValor(i);
+		        }
+		    	
+		        executar(paraComando.getComandos());
 		    }
 		    return;
 		}
@@ -136,40 +172,44 @@ public class Interpretador {
 
 		if (expressao instanceof Soma soma) {
 
-		    Object esquerdo = avaliar(soma.getEsquerda());
-		    Object direito = avaliar(soma.getDireita());
+			Object esquerdo = avaliar(soma.getEsquerda());
+			Object direito = avaliar(soma.getDireita());
 
-		    if (esquerdo instanceof BigDecimal n1 &&
-		        direito instanceof BigDecimal n2) {
+			if (esquerdo instanceof Number && direito instanceof Number) {
 
-		        return n1.add(n2);
-		    }
+			    return numero(esquerdo).add(numero(direito));
 
-		    return texto(esquerdo) + texto(direito);
+			}
+
+			return esquerdo.toString() + direito.toString();
 		}
 
-		if (expressao instanceof Subtracao) {
-			BigDecimal esquerdo = (BigDecimal) avaliar(((Subtracao) expressao).getEsquerda());
-			BigDecimal direito = (BigDecimal) avaliar(((Subtracao) expressao).getDireita());
+		if (expressao instanceof Subtracao subtracao) {
+			
+			BigDecimal esquerdo = numero(subtracao.getEsquerda());
+			BigDecimal direito = numero(subtracao.getDireita());
 
 			return esquerdo.subtract(direito);
 		}
 
-		if (expressao instanceof Multiplicacao) {
-			BigDecimal esquerdo = (BigDecimal) avaliar(((Multiplicacao) expressao).getEsquerda());
-			BigDecimal direito = (BigDecimal) avaliar(((Multiplicacao) expressao).getDireita());
+		if (expressao instanceof Multiplicacao multiplicacao) {
+			
+			BigDecimal esquerdo = numero(multiplicacao.getEsquerda());
+			BigDecimal direito = numero(multiplicacao.getDireita());
 
 			return esquerdo.multiply(direito);
 		}
 
-		if (expressao instanceof Divisao) {
-			BigDecimal esquerdo = (BigDecimal) avaliar(((Divisao) expressao).getEsquerda());
-			BigDecimal direito = (BigDecimal) avaliar(((Divisao) expressao).getDireita());
-
+		if (expressao instanceof Divisao divisao) {
+			
+			BigDecimal esquerdo = numero(divisao.getEsquerda());
+			BigDecimal direito = numero(divisao.getDireita());
+			
 			return esquerdo.divide(direito, 10, RoundingMode.HALF_UP);
 		}
 		
 		if (expressao instanceof Resto resto) {
+			
 		    BigDecimal dividendo = numero(resto.getDividendo());
 		    BigDecimal divisor =  numero(resto.getDivisor());
 
@@ -246,22 +286,26 @@ public class Interpretador {
 		    Boolean valor = (Boolean) avaliar(nao.getExpressao());
 		    return !valor;
 		}
-
+		
 		throw new RuntimeException("Expressão desconhecida.");
 
 	}
 	
 	private BigDecimal numero(Expressao expressao) {
+	    return numero(avaliar(expressao));
+	}
 
-	    Object valor = avaliar(expressao);
+	private BigDecimal numero(Object valor) {
 
-	    if (!(valor instanceof BigDecimal)) {
-	        throw new RuntimeException(
-	            "A expressão não resulta em um número.");
+	    if (!(valor instanceof Number)) {
+	        throw new RuntimeException("A expressão não resulta em um número.");
 	    }
 
-	    return (BigDecimal) valor;
+	    if (valor instanceof BigDecimal bd) {
+	        return bd;
+	    }
 
+	    return new BigDecimal(valor.toString());
 	}
 	
 	private String texto(Object valor) {

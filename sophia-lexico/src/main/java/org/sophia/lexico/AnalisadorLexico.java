@@ -192,6 +192,7 @@ public class AnalisadorLexico {
 				&& !(simbolo.getTexto().trim().equalsIgnoreCase("MENOR"))
 				&& !(simbolo.getTexto().trim().equalsIgnoreCase("POR"))
 				&& !(simbolo.getTexto().trim().equalsIgnoreCase("DE"))
+				&& !(simbolo.getTexto().trim().equalsIgnoreCase("ATE"))
 				&& !(simbolo.getTexto().trim().equalsIgnoreCase("A"))) {
 			
 			this.simbolos.add(simbolo);

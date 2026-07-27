@@ -10,9 +10,11 @@ import org.sophia.compilador.ast.comando.Atribuicao;
 import org.sophia.compilador.ast.comando.Comando;
 import org.sophia.compilador.ast.comando.Declaracao;
 import org.sophia.compilador.ast.comando.E;
+import org.sophia.compilador.ast.comando.Enquanto;
 import org.sophia.compilador.ast.comando.Escreva;
 import org.sophia.compilador.ast.comando.Nao;
 import org.sophia.compilador.ast.comando.Ou;
+import org.sophia.compilador.ast.comando.Para;
 import org.sophia.compilador.ast.comando.Se;
 import org.sophia.compilador.ast.comparador.Diferente;
 import org.sophia.compilador.ast.comparador.Igual;
@@ -76,6 +78,14 @@ public class AnalisadorSintatico {
 	}
 
 	private Comando comando() {
+		
+		if (proximoEh("ENQUANTO")) {
+		    return enquanto();
+		}
+		
+		if (proximoEh("PARA")) {
+		    return para();
+		}
 		
 		if (textoAtual().equalsIgnoreCase("se")) {
 		    return se();
@@ -198,6 +208,60 @@ public class AnalisadorSintatico {
 	    }
 
 	    return comparacao();
+	}
+	
+	private Enquanto enquanto() {
+
+	    consumir("ENQUANTO");
+
+	    Expressao condicao = expressao();
+
+	    List<Comando> comandos = new ArrayList<>();
+
+	    while (!proximoEh("FIM")) {
+	        comandos.add(comando());
+	    }
+
+	    consumir("FIM");
+
+	    return new Enquanto(condicao, comandos);
+	}
+	
+	private Para para() {
+
+	    consumir("PARA");
+
+	    String variavel = consumirIdentificador();
+
+	    //consumir("DE");
+
+	    Expressao inicio = expressao();
+
+	    //consumir("ATE");
+
+	    Expressao fim = expressao();
+
+	    List<Comando> comandos = new ArrayList<>();
+
+	    while (!proximoEh("FIM")) {
+	        comandos.add(comando());
+	    }
+
+	    consumir("FIM");
+	    return new Para(variavel, inicio, fim, comandos);
+	}
+
+	private String consumirIdentificador() {
+		
+		Simbolo simbolo = atual();
+
+	    if (simbolo.getCategoria() != CategoriaSimbolo.IDENTIFICADOR) {
+	        erro("Esperado um identificador.");
+	    }
+
+	    avancar();
+
+	    return simbolo.getTexto();
 	}
 
 	private Expressao expressao() {
