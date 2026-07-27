@@ -23,11 +23,10 @@
 
 - ⏳ funções
 
-## v1.0
+## v1.0 - Sophia 1.0 — Pronta para uso em sala de aula
 
 - ⏳ documentação completa
 - ⏳ playground web
-- ⏳ IDE
 - ⏳ primeiros materiais didáticos
 
 ---
