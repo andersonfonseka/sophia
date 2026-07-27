@@ -190,7 +190,7 @@ Mesmo pessoas que nunca programaram conseguem compreender a intenção do algori
 
 ---
 
-# Princípios da Sophia
+# Princípios
 
 A Sophia seguirá estes princípios durante toda sua evolução.
 
