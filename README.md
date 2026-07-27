@@ -3,10 +3,23 @@
 > Uma linguagem de programação em português criada para ensinar lógica de programação de forma simples, intuitiva e acessível.
 
 ![Status](https://img.shields.io/badge/status-em%20desenvolvimento-orange)
-![Versão](https://img.shields.io/badge/version-0.6.0-blue)
+![Versão](https://img.shields.io/badge/version-0.7.0-blue)
 ![Licença](https://img.shields.io/badge/license-MIT-green)
 
 ---
+
+**Status:** 🚧 Em desenvolvimento (v0.7)
+
+## Recursos atuais
+
+- ✅ Variáveis (`numero`, `texto`, `logico`)
+- ✅ Operações matemáticas
+- ✅ Comparações
+- ✅ Operadores lógicos (`e`, `ou`, `nao`)
+- ✅ Condições (`se` / `senao`)
+- ✅ Estruturas de repetição (`enquanto` / `para`)
+- ✅ AST
+- ✅ Interpretador
 
 ## O que é a Sophia?
 
@@ -116,6 +129,8 @@ Maior de idade
 
 - ✅ se
 - ✅ senao
+- ✅ enquanto
+- ✅ para
 
 ---
 
@@ -200,6 +215,24 @@ A Sophia seguirá estes princípios durante toda sua evolução.
 - Recursos novos não devem comprometer a simplicidade da linguagem.
 - A linguagem deve ser adequada para o ensino de programação.
 - Toda nova funcionalidade deve manter compatibilidade com versões anteriores sempre que possível.
+
+---
+
+# Exemplos
+
+Os exemplos da linguagem serão disponibilizados na pasta `https://github.com/andersonfonseka/sophia/tree/main/sophia-sintatico/src/main/resources/exemplos/`.
+
+---
+
+# Roadmap
+
+Consulte o arquivo `ROADMAP.md` para acompanhar a evolução da linguagem.
+
+---
+
+# Documentação
+
+A documentação será expandida gradualmente conforme a evolução da Sophia.
 
 ---
 
