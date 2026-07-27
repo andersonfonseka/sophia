@@ -1,0 +1,23 @@
+programa "Maioridade"
+
+inicio
+
+numero idade recebe 18
+logico ativo recebe verdadeiro
+
+se idade maior ou igual a 18
+e ativo igual a verdadeiro
+
+    escreva "Permitido"
+
+fim
+
+se verdadeiro
+e verdadeiro
+e verdadeiro
+
+    escreva "Tudo certo"
+
+fim
+
+fim

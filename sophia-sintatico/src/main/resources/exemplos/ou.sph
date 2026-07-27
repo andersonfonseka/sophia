@@ -1,0 +1,36 @@
+programa "OU"
+
+inicio
+
+se verdadeiro ou verdadeiro
+    escreva "Teste 1"
+fim
+
+se verdadeiro ou falso
+    escreva "Teste 2"
+fim
+
+se falso ou verdadeiro
+    escreva "Teste 3"
+fim
+
+se falso ou falso
+    escreva "ERRO"
+fim
+
+numero idade recebe 17
+logico ativo recebe verdadeiro
+
+se idade maior ou igual a 18 ou ativo igual a verdadeiro
+    escreva "Permitido"
+fim
+
+se falso ou falso ou verdadeiro
+    escreva "Tudo certo"
+fim
+
+se verdadeiro ou falso e falso
+    escreva "OK"
+fim
+
+fim

@@ -1,0 +1,17 @@
+package org.sophia.lexico;
+
+public enum CategoriaSimbolo {
+
+	ESTRUTURA, 
+	TIPO,
+	OPERADOR,
+	COMPARACAO,
+	COMANDO,
+	LITERAL,
+	LITERAL_TEXTO,
+	LITERAL_NUMERO,
+	LITERAL_LOGICO,
+	IDENTIFICADOR,
+	SEPARADOR,
+	FIM_DO_ARQUIVO
+}
