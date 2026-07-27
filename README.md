@@ -224,6 +224,19 @@ Mesmo pessoas que nunca programaram conseguem compreender a intenção do algori
 
 ---
 
+# Princípios da Sophia
+
+A Sophia seguirá estes princípios durante toda sua evolução.
+
+- A linguagem deve ser escrita em português.
+- A sintaxe deve privilegiar palavras ao invés de símbolos.
+- O código deve ser legível por pessoas iniciantes.
+- Recursos novos não devem comprometer a simplicidade da linguagem.
+- A linguagem deve ser adequada para o ensino de programação.
+- Toda nova funcionalidade deve manter compatibilidade com versões anteriores sempre que possível.
+
+---
+
 # Como contribuir
 
 Contribuições são bem-vindas.
