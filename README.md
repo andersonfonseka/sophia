@@ -3,21 +3,24 @@
 > Uma linguagem de programação em português criada para ensinar lógica de programação de forma simples, intuitiva e acessível.
 
 ![Status](https://img.shields.io/badge/status-em%20desenvolvimento-orange)
-![Versão](https://img.shields.io/badge/version-0.7.0-blue)
+![Versão](https://img.shields.io/badge/version-0.8.0-blue)
 ![Licença](https://img.shields.io/badge/license-MIT-green)
 
 ---
 
-**Status:** 🚧 Em desenvolvimento (v0.7)
+**Status:** 🚧 Em desenvolvimento (v0.8)
 
 ## Recursos atuais
 
 - ✅ Variáveis (`numero`, `texto`, `logico`)
+- ✅ Entrada (`leia`)
+- ✅ Saída (`escreva`)
 - ✅ Operações matemáticas
 - ✅ Comparações
 - ✅ Operadores lógicos (`e`, `ou`, `nao`)
 - ✅ Condições (`se` / `senao`)
 - ✅ Estruturas de repetição (`enquanto` / `para`)
+- ✅ Comentários (`comentario` / `fim comentario`)
 - ✅ AST
 - ✅ Interpretador
 
@@ -133,6 +136,46 @@ Maior de idade
 - ✅ para
 
 ---
+
+
+
+## Exemplo com entrada de dados
+
+```text
+programa "Olá"
+
+inicio
+
+texto nome recebe ""
+
+escreva "Digite seu nome:"
+leia nome
+
+escreva "Olá " mais nome
+
+fim
+```
+
+---
+
+## Estado atual
+
+A versão **0.8** conclui o núcleo da linguagem Sophia para o ensino de Algoritmos I.
+
+Recursos disponíveis:
+
+- Variáveis
+- Tipos (`numero`, `texto` e `logico`)
+- Entrada e saída
+- Operações matemáticas
+- Comparadores
+- Operadores lógicos
+- Estruturas condicionais
+- Estruturas de repetição
+- Comentários
+
+A próxima etapa será a implementação de **funções**, prevista para a versão **0.9**.
+
 
 # Arquitetura
 

@@ -12,6 +12,7 @@ import org.sophia.compilador.ast.comando.Declaracao;
 import org.sophia.compilador.ast.comando.E;
 import org.sophia.compilador.ast.comando.Enquanto;
 import org.sophia.compilador.ast.comando.Escreva;
+import org.sophia.compilador.ast.comando.Leia;
 import org.sophia.compilador.ast.comando.Nao;
 import org.sophia.compilador.ast.comando.Ou;
 import org.sophia.compilador.ast.comando.Para;
@@ -78,6 +79,10 @@ public class AnalisadorSintatico {
 	}
 
 	private Comando comando() {
+	
+		while ((categoriaAtual() == CategoriaSimbolo.COMENTARIO)) {
+			avancar();
+		}
 		
 		if (proximoEh("ENQUANTO")) {
 		    return enquanto();
@@ -102,10 +107,22 @@ public class AnalisadorSintatico {
 		if (categoriaAtual() == CategoriaSimbolo.IDENTIFICADOR) {
 			return atribuicao();
 		}
-
+		
+		 if (proximoEh("LEIA")) {
+		    return leia();
+		 }
+	
 		throw erro("Comando desconhecido.");
 	}
+	
+	private Leia leia() {
 
+		consumir("LEIA");
+	    String identificador = consumirIdentificador();
+
+	    return new Leia(identificador);
+	}
+	
 	private Declaracao declaracao() {
 
 		String tipo = atual().getTexto();

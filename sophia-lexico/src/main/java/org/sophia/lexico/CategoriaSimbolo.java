@@ -6,6 +6,7 @@ public enum CategoriaSimbolo {
 	TIPO,
 	OPERADOR,
 	COMPARACAO,
+	COMENTARIO,
 	COMANDO,
 	LITERAL,
 	LITERAL_TEXTO,

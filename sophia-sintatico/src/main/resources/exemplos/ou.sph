@@ -1,17 +1,17 @@
-programa "OU"
+programa "ou"
 
 inicio
 
 se verdadeiro ou verdadeiro
-    escreva "Teste 1"
+    escreva "Teste1"
 fim
 
 se verdadeiro ou falso
-    escreva "Teste 2"
+    escreva "Teste2"
 fim
 
 se falso ou verdadeiro
-    escreva "Teste 3"
+    escreva "Teste3"
 fim
 
 se falso ou falso
@@ -21,7 +21,8 @@ fim
 numero idade recebe 17
 logico ativo recebe verdadeiro
 
-se idade maior ou igual a 18 ou ativo igual a verdadeiro
+se idade maior ou igual a 18 
+ou ativo igual a verdadeiro
     escreva "Permitido"
 fim
 

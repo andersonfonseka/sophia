@@ -1,0 +1,16 @@
+programa "Leia"
+
+inicio
+
+escreva "===== TESTE 1 ====="
+
+texto nome recebe ""
+numero idade recebe 18
+logico ativo recebe falso
+
+escreva "Escreva o seu nome:"
+leia nome
+
+escreva "Ola," mais nome mais "Idade:" mais idade mais "Ativo:" mais ativo
+
+fim

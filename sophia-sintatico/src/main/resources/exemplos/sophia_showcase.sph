@@ -1,0 +1,110 @@
+programa "Sophia Showcase"
+
+inicio
+
+escreva "======================================"
+escreva "      LINGUAGEM SOPHIA v0.8"
+escreva "======================================"
+
+texto nome recebe ""
+numero idade recebe 0
+logico ativo recebe falso
+numero soma recebe 0
+
+escreva ""
+escreva "Digite seu nome:"
+leia nome
+
+escreva "Digite sua idade:"
+leia idade
+
+escreva "Voce esta ativo? (verdadeiro/falso)"
+leia ativo
+
+escreva ""
+escreva "===== DADOS INFORMADOS ====="
+
+escreva "Nome:" mais nome
+escreva "Idade:" mais idade
+escreva "Ativo:" mais ativo
+
+escreva ""
+escreva "===== TESTE DE COMPARADORES ====="
+
+escreva idade maior ou igual a 18
+escreva idade menor que 18
+escreva idade diferente de 10
+escreva nome igual a "Sophia"
+
+escreva ""
+escreva "===== TESTE DO SE ====="
+
+se idade maior ou igual a 18
+
+    escreva "Maior de idade."
+
+senao
+
+    escreva "Menor de idade."
+
+fim
+
+escreva ""
+escreva "===== TESTE DO ENQUANTO ====="
+
+numero contador recebe 1
+
+enquanto contador menor ou igual a 5
+    escreva contador
+    contador recebe contador mais 1
+fim
+
+escreva ""
+escreva "===== TESTE DO PARA ====="
+
+para i 1 5
+    escreva i
+fim
+
+escreva ""
+escreva "===== SOMATORIO ====="
+
+soma recebe 0
+
+para i 1 10
+    soma recebe soma mais i
+fim
+
+escreva "Soma de 1 ate 10 =" mais soma
+
+escreva ""
+escreva "===== NUMEROS PARES ====="
+
+para i 1 10
+    se resto de i dividido por 2 igual a 0
+        escreva i
+    fim
+fim
+
+escreva ""
+escreva "===== OPERADORES LOGICOS ====="
+
+escreva ativo e idade maior ou igual a 18
+escreva ativo ou idade menor que 18
+escreva nao ativo
+
+escreva ""
+escreva "===== OPERACOES ====="
+
+escreva 10 mais 5
+escreva 10 menos 5
+escreva 10 vezes 5
+escreva 10 dividido por 5
+escreva resto de 10 dividido por 3
+
+escreva ""
+escreva "======================================"
+escreva " Demonstracao concluida com sucesso!"
+escreva "======================================"
+
+fim

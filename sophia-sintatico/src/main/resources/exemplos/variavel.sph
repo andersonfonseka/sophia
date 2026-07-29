@@ -6,7 +6,7 @@ numero idade recebe 12
 escreva idade
 
 texto nome recebe "Sophia Fonseca"
-escreva "Ola, " mais nome mais "!"
+escreva "Ola," mais nome
 
 logico valor recebe falso
 escreva valor
@@ -14,6 +14,6 @@ escreva valor
 numero idade recebe 12
 texto nome recebe "Sophia"
 logico ativo recebe verdadeiro
-escreva nome mais " tem " mais idade mais " anos. Ativo: " mais ativo
+escreva nome mais "tem" mais idade mais "anos. Situacao Ativo:" mais ativo
 
 fim

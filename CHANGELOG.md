@@ -6,7 +6,36 @@ O formato segue o padrão Keep a Changelog.
 
 ---
 
-## [0.7.0] - 2026-07-10
+## [0.8.0]
+
+### Adicionado
+
+- Comando `leia`
+- Suporte à leitura de variáveis dos tipos `texto`, `numero` e `logico`
+- Conversão automática de entrada para `String`, `BigDecimal` e `Boolean`
+- Suporte a comentários utilizando `comentario` ... `fim comentario`
+- Operador `resto`
+- AST para o comando `Leia`
+- Programa **Sophia Showcase** cobrindo os principais recursos da linguagem
+
+### Alterado
+
+- Refatoração da avaliação numérica através do método `numero()`
+- Refatoração da conversão textual através do método `texto()`
+- Concatenação entre textos, números e valores lógicos
+- Impressão de valores lógicos utilizando `verdadeiro` e `falso`
+- Melhorias na organização do interpretador e do analisador sintático
+
+### Corrigido
+
+- Correções na leitura de valores lógicos
+- Correções na concatenação envolvendo tipos diferentes
+- Correções na avaliação de comparadores
+- Correções na execução do comando `leia`
+
+---
+
+## [0.7.0]
 
 ### Adicionado
 
@@ -34,7 +63,7 @@ O formato segue o padrão Keep a Changelog.
 
 ---
 
-## [0.6.0] - 2026-07-09
+## [0.6.0]
 
 ### Adicionado
 
