@@ -20,13 +20,13 @@ public class Cliente {
 		System.out.println(java.nio.charset.Charset.defaultCharset());
 
 //		String[] testes = new String[] {"operadores.sph", "ola.sph", "variavel.sph", "comparadores.sph", "maioridade.sph", "ou.sph", "nao.sph", "enquanto.sph","para.sph", "comentarios.sph", "leia.sph"}; 
-		String[] testes = new String[] {"sophia_showcase.sph"}; 
+		String[] testes = new String[] {"notas.sph"}; 
 		
 		for (int i = 0; i < testes.length; i++) {
 
 			Path path = Paths.get(AnalisadorLexico.class.getResource("/exemplos/" + testes[i]).toURI());
 			String codigo = Files.readString(path, StandardCharsets.UTF_8);
-
+			
 			AnalisadorLexico analexico = new AnalisadorLexico();
 			AnalisadorSintatico as = new AnalisadorSintatico(analexico.analisar(codigo));
 			Programa prg = as.analisar();

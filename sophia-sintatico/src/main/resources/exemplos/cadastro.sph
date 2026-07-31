@@ -1,0 +1,137 @@
+programa "Cadastro de Pessoas"
+
+inicio
+
+comentario
+
+Programa demonstrativo da Sophia v0.8
+
+Recursos utilizados:
+- variáveis
+- leia
+- escreva
+- se/senao
+- enquanto
+- para
+- operadores matemáticos
+- operadores lógicos
+- comparadores
+
+fim comentario
+
+texto nome recebe ""
+numero idade recebe 0
+logico ativo recebe falso
+
+numero totalMaiores recebe 0
+numero totalMenores recebe 0
+numero contador recebe 1
+
+escreva "======================================"
+escreva "     SISTEMA DE CADASTRO - SOPHIA"
+escreva "======================================"
+
+enquanto contador menor ou igual a 3
+
+    escreva ""
+    escreva "Cadastro " mais contador
+
+    escreva "Nome:"
+    leia nome
+
+    escreva "Idade:"
+    leia idade
+
+    escreva "Está ativo? (verdadeiro/falso)"
+    leia ativo
+
+    escreva ""
+    escreva "========== DADOS =========="
+
+    escreva "Nome: " mais nome
+    escreva "Idade: " mais idade
+    escreva "Ativo: " mais ativo
+
+    se idade maior ou igual a 18
+
+        escreva "Situação: Maior de idade"
+        totalMaiores recebe totalMaiores mais 1
+
+    senao
+
+        escreva "Situação: Menor de idade"
+        totalMenores recebe totalMenores mais 1
+
+    fim
+
+    se ativo
+
+        escreva "Usuário ativo."
+
+    senao
+
+        escreva "Usuário inativo."
+
+    fim
+
+    contador recebe contador mais 1
+
+fim
+
+escreva ""
+escreva "======================================"
+escreva "RESUMO FINAL"
+escreva "======================================"
+
+escreva "Total de maiores: " mais totalMaiores
+escreva "Total de menores: " mais totalMenores
+
+escreva ""
+escreva "===== CONTAGEM REGRESSIVA ====="
+
+para i de 5 ate 1
+
+    escreva i
+
+fim
+
+escreva ""
+escreva "===== NÚMEROS PARES ====="
+
+para i de 1 ate 20
+
+    se resto de i dividido por 2 igual a 0
+
+        escreva i
+
+    fim
+
+fim
+
+escreva ""
+escreva "===== TABUADA DO 7 ====="
+
+para i de 1 ate 10
+
+    escreva i mais " x 7 = " mais i vezes 7
+
+fim
+
+escreva ""
+escreva "===== AVALIAÇÃO FINAL ====="
+
+se totalMaiores maior que totalMenores 
+e totalMaiores maior que 0
+
+    escreva "Há mais adultos cadastrados."
+
+senao
+
+    escreva "Não há predominância de adultos."
+
+fim
+
+escreva ""
+escreva "Programa encerrado."
+
+fim

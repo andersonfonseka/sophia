@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.sophia.util.Sanitizador;
+
 public class AnalisadorLexico {
 
 	private String codigoFonte;
@@ -36,6 +38,8 @@ public class AnalisadorLexico {
 
 	public List<Simbolo> analisar(String codigoFonte) {
 
+		codigoFonte = new Sanitizador().removerEspacosDentroDasAspas(codigoFonte);
+		
 		int linha = 1;
 		int coluna = 1;
 
@@ -154,9 +158,9 @@ public class AnalisadorLexico {
 		
 		} else if (termo.toUpperCase().contains("MAIOR")) {
 			
-			if (linhaCodigo.toUpperCase().contains("MAIOR QUE")) {
+			if (linhaCodigo.toUpperCase().contains("MAIOR QUE") && (termo.length() == "MAIOR".length())) {
 				simbolo.setTexto("MAIOR QUE");	
-			} else if (linhaCodigo.toUpperCase().contains("MAIOR OU")) {
+			} else if (linhaCodigo.toUpperCase().contains("MAIOR OU") && (termo.length() == "MAIOR".length())) {
 				simbolo.setTexto("MAIOR OU IGUAL A");	
 			} else {
 				simbolo.setTexto(termo);
@@ -164,9 +168,9 @@ public class AnalisadorLexico {
 		
 		} else if (termo.toUpperCase().contains("MENOR")) {
 			
-			if (linhaCodigo.toUpperCase().contains("MENOR QUE")) {
+			if (linhaCodigo.toUpperCase().contains("MENOR QUE") && (termo.length() == "MENOR".length())) {
 				simbolo.setTexto("MENOR QUE");	
-			} else if (linhaCodigo.toUpperCase().contains("MENOR OU")){
+			} else if (linhaCodigo.toUpperCase().contains("MENOR OU") && (termo.length() == "MENOR".length())){
 				simbolo.setTexto("MENOR OU IGUAL A");	
 			} else {
 				simbolo.setTexto(termo);
@@ -237,17 +241,17 @@ public class AnalisadorLexico {
 				
 			} else if (termo.toUpperCase().contains("MAIOR")) {
 				
-				if (linhaCodigo.toUpperCase().contains("MAIOR QUE")) {
+				if (linhaCodigo.toUpperCase().contains("MAIOR QUE") && (termo.length() == "MAIOR".length())) {
 					cs = vc.categoria("MAIOR QUE");	
-				} else if (linhaCodigo.toUpperCase().contains("MAIOR OU")) {
+				} else if (linhaCodigo.toUpperCase().contains("MAIOR OU") && (termo.length() == "MAIOR".length())) {
 					cs = vc.categoria("MAIOR OU IGUAL A");	
 				} 
 			
 			} else if (termo.toUpperCase().contains("MENOR")) {
 					
-				if (linhaCodigo.toUpperCase().contains("MENOR QUE")) {
+				if (linhaCodigo.toUpperCase().contains("MENOR QUE") && (termo.length() == "MENOR".length())) {
 					cs = vc.categoria("MENOR QUE");
-				} else if (linhaCodigo.toUpperCase().contains("MENOR OU")){
+				} else if (linhaCodigo.toUpperCase().contains("MENOR OU") && (termo.length() == "MENOR".length())){
 					cs = vc.categoria("MENOR OU IGUAL A");
 				}
 
