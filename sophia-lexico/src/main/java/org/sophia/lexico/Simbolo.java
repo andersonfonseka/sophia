@@ -1,5 +1,7 @@
 package org.sophia.lexico;
 
+import java.util.Objects;
+
 public class Simbolo {
 
 	private int indice;
@@ -50,6 +52,23 @@ public class Simbolo {
 
 	public void setColuna(int coluna) {
 		this.coluna = coluna;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(texto);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Simbolo other = (Simbolo) obj;
+		return Objects.equals(texto, other.texto);
 	}
 
 	@Override

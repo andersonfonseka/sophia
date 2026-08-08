@@ -11,6 +11,8 @@ public enum Operador {
     VEZ("vez"),
 
     DIVIDIDO_POR("dividido por"),
+    
+    RESTO_DE("resto de"),
 
     MAIOR_QUE("maior que"),
 

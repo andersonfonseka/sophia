@@ -1,0 +1,6 @@
+programa "Erro"
+
+inicio
+	numero idade recebe 18
+    escreva calcular 10
+fim

@@ -5,15 +5,42 @@ import java.util.Map;
 
 public class ContextoExecucao {
 
-    private final Map<String, Variavel> variaveis =
-            new HashMap<>();
+    private Map<String, Variavel> variaveis = new HashMap<>();
+
+    private ContextoExecucao pai;
+
+    public ContextoExecucao() {
+        this.pai = null;
+    }
+
+    public ContextoExecucao(ContextoExecucao pai) {
+        this.pai = pai;
+    }
 
     public void declarar(String nome, Variavel variavel) {
         variaveis.put(nome, variavel);
     }
 
     public Variavel obter(String nome) {
-        return variaveis.get(nome);
-    }
 
+        Variavel variavel = variaveis.get(nome);
+        
+        if (variavel != null) {
+            return variavel;
+        }
+        
+        if (pai != null) {
+            return pai.obter(nome);
+        }
+        
+        if (variavel == null) {
+        	throw new RuntimeException("Variável '" + nome + "' não foi declarada.");
+        }
+
+        return null;
+    }
+    
+    public void limpar() {
+    	this.variaveis.clear();
+    }
 }

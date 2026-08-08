@@ -1,9 +1,13 @@
 package org.sophia;
 
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.sophia.compilador.ast.Programa;
 import org.sophia.lexico.AnalisadorLexico;
@@ -19,23 +23,47 @@ public class Cliente {
 		System.out.println(System.getProperty("native.encoding"));
 		System.out.println(java.nio.charset.Charset.defaultCharset());
 
-//		String[] testes = new String[] {"operadores.sph", "ola.sph", "variavel.sph", "comparadores.sph", "maioridade.sph", "ou.sph", "nao.sph", "enquanto.sph","para.sph", "comentarios.sph", "leia.sph"}; 
-		String[] testes = new String[] {"notas.sph"}; 
+		Path pathBase = Paths.get(Cliente.class.getResource("/erros").getFile().replaceFirst("/", ""));
 		
-		for (int i = 0; i < testes.length; i++) {
+		try (Stream<Path> stream = Files.list(pathBase)) {
+			
+			List<Path> files = stream
+		        .filter(Files::isRegularFile)
+		        .collect(Collectors.toList());
 
-			Path path = Paths.get(AnalisadorLexico.class.getResource("/exemplos/" + testes[i]).toURI());
-			String codigo = Files.readString(path, StandardCharsets.UTF_8);
+			if (files.isEmpty()) {
+		        System.out.println("Nenhum arquivo encontrado.");
+		        return;
+		    }
+
+		    AnalisadorLexico analisadorLexico = new AnalisadorLexico();
+		    Interpretador interpretador = new Interpretador();
+
+		    for (Path arquivo : files) {
+		        try {
+		            System.out.println("Processando: " + arquivo.getFileName());
+
+		            String codigo = Files.readString(arquivo, StandardCharsets.UTF_8);
+
+		            AnalisadorSintatico analisadorSintatico =
+		                    new AnalisadorSintatico(analisadorLexico.analisar(codigo));
+
+		            Programa programa = analisadorSintatico.analisar();
+
+		            System.out.println(programa);
+
+		            interpretador.executar(programa);
+
+		        } catch (Exception e) {
+		            System.err.println("Erro ao processar o arquivo: " + arquivo);
+		            e.printStackTrace();
+		        }
+		    }
 			
-			AnalisadorLexico analexico = new AnalisadorLexico();
-			AnalisadorSintatico as = new AnalisadorSintatico(analexico.analisar(codigo));
-			Programa prg = as.analisar();
-			System.out.println(prg);
-			
-			Interpretador interpretador = new Interpretador();
-			interpretador.executar(prg);
+		} catch (IOException e) {
+		    e.printStackTrace();
 		}
-		
+				
 	}
 
 }

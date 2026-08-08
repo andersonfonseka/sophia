@@ -10,8 +10,8 @@ public class LiteralLogico extends Expressao {
         this.valor = valor;
     }
 
-    public String getValor() {
-    	return valor ? "verdadeiro" : "falso";
+    public Boolean getValor() {
+        return valor;
     }
 
     @Override

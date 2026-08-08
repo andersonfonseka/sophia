@@ -1,0 +1,11 @@
+funcao teste
+    retorno numero
+inicio
+    retorne "Sophia"
+fim
+
+programa "Erro"
+
+inicio
+    escreva teste
+fim

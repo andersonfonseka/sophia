@@ -1,0 +1,5 @@
+programa "Erro"
+
+inicio
+    escreva nome
+fim

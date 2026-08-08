@@ -1,0 +1,13 @@
+programa "Tipos"
+
+inicio
+
+    texto nome recebe "Sophia"
+    numero idade recebe 12
+    logico ativa recebe verdadeiro
+
+    escreva nome
+    escreva idade
+    escreva ativa
+
+fim

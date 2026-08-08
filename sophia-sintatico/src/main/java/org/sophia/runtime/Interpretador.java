@@ -2,6 +2,7 @@ package org.sophia.runtime;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -18,6 +19,7 @@ import org.sophia.compilador.ast.comando.Leia;
 import org.sophia.compilador.ast.comando.Nao;
 import org.sophia.compilador.ast.comando.Ou;
 import org.sophia.compilador.ast.comando.Para;
+import org.sophia.compilador.ast.comando.Retorne;
 import org.sophia.compilador.ast.comando.Se;
 import org.sophia.compilador.ast.comando.TipoVariavel;
 import org.sophia.compilador.ast.comparador.Diferente;
@@ -26,11 +28,16 @@ import org.sophia.compilador.ast.comparador.Maior;
 import org.sophia.compilador.ast.comparador.MaiorOuIgual;
 import org.sophia.compilador.ast.comparador.Menor;
 import org.sophia.compilador.ast.comparador.MenorOuIgual;
+import org.sophia.compilador.ast.excecoes.Retorno;
 import org.sophia.compilador.ast.expressao.Identificador;
 import org.sophia.compilador.ast.expressao.LiteralLogico;
 import org.sophia.compilador.ast.expressao.LiteralNumero;
 import org.sophia.compilador.ast.expressao.LiteralTexto;
 import org.sophia.compilador.ast.expressao.Resto;
+import org.sophia.compilador.ast.funcao.ChamadaFuncao;
+import org.sophia.compilador.ast.funcao.ChamadaFuncaoExpressao;
+import org.sophia.compilador.ast.funcao.Funcao;
+import org.sophia.compilador.ast.funcao.Parametro;
 import org.sophia.compilador.ast.operador.Divisao;
 import org.sophia.compilador.ast.operador.Multiplicacao;
 import org.sophia.compilador.ast.operador.Soma;
@@ -38,11 +45,17 @@ import org.sophia.compilador.ast.operador.Subtracao;
 
 public class Interpretador {
 
-	private final ContextoExecucao contexto = new ContextoExecucao();
+	private ContextoExecucao contexto = new ContextoExecucao();
 
 	private final Scanner scanner = new Scanner(System.in);
 
+	private Programa programa;
+
 	public void executar(Programa programa) {
+
+		this.programa = programa;
+		
+		this.contexto.limpar();
 
 		for (Comando comando : programa.getComandos()) {
 			executar(comando);
@@ -116,7 +129,151 @@ public class Interpretador {
 			return;
 		}
 
+		
+		if (comando instanceof ChamadaFuncao) {
+		    executarChamadaFuncao((ChamadaFuncao) comando);
+		    return;
+		}
+
+		if (comando instanceof Retorne retorna) {
+			Object valor = avaliar(retorna.getExpressao());
+			System.out.println("RETORNANDO = " + valor);
+			throw new RetornoFuncao(valor);
+		}
+
 		throw new RuntimeException("Comando não implementado.");
+	}
+
+	private void executarChamadaFuncao(ChamadaFuncao comando) {
+		executarFuncao(comando.getNome(), comando.getArgumentos());
+	}
+
+	private Object executarFuncao(String nome, List<Expressao> argumentos) {
+
+		Funcao funcao = programa.getFuncoes().get(nome);
+		
+		if (funcao == null) {
+		    throw new RuntimeException("A função '" + nome + "' não foi declarada.");
+		}
+
+		if (argumentos.size() != funcao.getParametros().size()) {
+		    throw new RuntimeException(
+		        "A função '" + nome + "' espera "
+		        + funcao.getParametros().size()
+		        + " argumento(s), mas recebeu "
+		        + argumentos.size() + "."
+		    );
+		}
+		
+		validarTipoParametro(funcao, argumentos);
+		
+		List<Parametro> parametros = funcao.getParametros();
+
+		List<Object> valores = new ArrayList<>();
+
+		for (Expressao argumento : argumentos) {
+			valores.add(avaliar(argumento));
+		}
+
+		ContextoExecucao contextoAnterior = contexto;
+
+		contexto = new ContextoExecucao(contextoAnterior);
+
+		for (int i = 0; i < parametros.size(); i++) {
+
+			Parametro parametro = parametros.get(i);
+			Object valor = valores.get(i);
+
+			Variavel variavel = new Variavel(TipoVariavel.valueOf(parametro.getTipo().toUpperCase()), valor);
+			contexto.declarar(parametro.getNome(), variavel);
+		}
+		
+		try {
+		    
+			for (Comando comandoFuncao : funcao.getComandos()) {
+		        executar(comandoFuncao);
+		    }
+
+		} catch (RetornoFuncao retorno) {
+			
+			Object valor = retorno.getValor();
+
+			System.out.println("CAPTUROU = " + valor);
+			
+			validarTipoRetorno(funcao, valor);
+		    return valor;
+
+		} finally {
+			
+		    contexto = contextoAnterior;
+		}
+		
+		if (funcao.getTipoRetorno() != null) {
+		    throw new RuntimeException(
+		        "A função '" + funcao.getNome()
+		        + "' deve retornar um valor do tipo "
+		        + funcao.getTipoRetorno() + "."
+		    );
+		}
+		
+		return null;
+	}
+	
+	public void validarTipoParametro(Funcao funcao, List<Expressao> argumentos) {
+		
+	    List<Parametro> params = funcao.getParametros();
+	    
+	    int i = 0;
+	    
+	    for (Parametro p : params) {
+			
+	    	Expressao expr = argumentos.get(i);
+			
+			if (expr instanceof LiteralTexto) {
+				
+				LiteralTexto lt = (LiteralTexto) expr;
+				
+				if (!p.getTipo().equalsIgnoreCase("TEXTO")) {
+					throw new RuntimeException("O argumento " + lt.getValor() + " da função " + funcao.getNome() + " deve ser do tipo " + p.getTipo() + ".");
+				}
+			}
+			
+			i++;
+		}
+	}
+	
+	private void executarRetorne(Retorne comando) {
+	   Object valor = avaliar(comando.getExpressao());
+		throw new Retorno(valor);
+	}
+
+	private void validarTipoRetorno(Funcao funcao, Object valor) {
+		
+		TipoVariavel tipo = funcao.getTipoRetorno();
+
+	    if (tipo == null) {
+	        return;
+	    }
+	    
+		System.out.println("valor = " + valor);
+		System.out.println("classe = " + valor.getClass());
+		System.out.println("tipo esperado = " + tipo);
+
+	    boolean valido = switch (tipo) {
+	        case TEXTO -> valor instanceof String;
+	        case NUMERO -> valor instanceof BigDecimal;
+	        case LOGICO -> valor instanceof Boolean;
+	    };
+
+	    if (!valido) {
+	        throw new RuntimeException(
+	            "A função '" + funcao.getNome()
+	            + "' deve retornar um valor do tipo "
+	            + tipo + "."
+	        );
+	    }
+	    
+	    System.out.println("válido = " + valido);
 	}
 
 	private void executarLeia(Leia comando) {
@@ -236,6 +393,10 @@ public class Interpretador {
 
 			BigDecimal esquerdo = numero(divisao.getEsquerda());
 			BigDecimal direito = numero(divisao.getDireita());
+			
+			if (direito.compareTo(BigDecimal.ZERO) == 0) {
+			    throw new RuntimeException("Divisão por zero.");
+			}
 
 			return esquerdo.divide(direito, 10, RoundingMode.HALF_UP);
 		}
@@ -305,6 +466,13 @@ public class Interpretador {
 			Boolean valor = (Boolean) avaliar(nao.getExpressao());
 			return !valor;
 		}
+		
+		if (expressao instanceof ChamadaFuncaoExpressao chamada) {
+			
+			Object resultado = executarFuncao(chamada.getNome(), chamada.getArgumentos());
+		    System.out.println("FUNÇÃO RETORNOU = " + resultado);
+		    return resultado;
+		}
 
 		throw new RuntimeException("Expressão desconhecida.");
 
@@ -338,23 +506,23 @@ public class Interpretador {
 
 	private String texto(Object valor) {
 
-	    if (valor == null) {
-	        return "nulo";
-	    }
+		if (valor == null) {
+			return "nulo";
+		}
 
-	    if (valor instanceof Boolean b) {
-	        return b ? "verdadeiro" : "falso";
-	    }
+		if (valor instanceof Boolean b) {
+			return b ? "verdadeiro" : "falso";
+		}
 
-	    if (valor instanceof BigDecimal bd) {
-	        return bd.stripTrailingZeros().toPlainString();
-	    }
+		if (valor instanceof BigDecimal bd) {
+			return bd.stripTrailingZeros().toPlainString();
+		}
 
-	    if (valor instanceof String s) {
-	        return s.replace("\"", " ");
-	    }
+		if (valor instanceof String s) {
+			return s.replace("\"", " ");
+		}
 
-	    return valor.toString();
+		return valor.toString();
 	}
 
 }

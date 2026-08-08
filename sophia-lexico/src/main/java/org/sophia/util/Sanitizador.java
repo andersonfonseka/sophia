@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class Sanitizador {
 	
-	public static String removerEspacosDentroDasAspas(String texto) {
+	public String removerEspacosDentroDasAspas(String texto) {
 	    Pattern pattern = Pattern.compile("\"([^\"]*)\"");
 	    Matcher matcher = pattern.matcher(texto);
 

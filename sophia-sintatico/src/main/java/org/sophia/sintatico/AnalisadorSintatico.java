@@ -2,7 +2,9 @@ package org.sophia.sintatico;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.sophia.compilador.ast.Expressao;
 import org.sophia.compilador.ast.Programa;
@@ -16,7 +18,9 @@ import org.sophia.compilador.ast.comando.Leia;
 import org.sophia.compilador.ast.comando.Nao;
 import org.sophia.compilador.ast.comando.Ou;
 import org.sophia.compilador.ast.comando.Para;
+import org.sophia.compilador.ast.comando.Retorne;
 import org.sophia.compilador.ast.comando.Se;
+import org.sophia.compilador.ast.comando.TipoVariavel;
 import org.sophia.compilador.ast.comparador.Diferente;
 import org.sophia.compilador.ast.comparador.Igual;
 import org.sophia.compilador.ast.comparador.Maior;
@@ -28,6 +32,10 @@ import org.sophia.compilador.ast.expressao.LiteralLogico;
 import org.sophia.compilador.ast.expressao.LiteralNumero;
 import org.sophia.compilador.ast.expressao.LiteralTexto;
 import org.sophia.compilador.ast.expressao.Resto;
+import org.sophia.compilador.ast.funcao.ChamadaFuncao;
+import org.sophia.compilador.ast.funcao.ChamadaFuncaoExpressao;
+import org.sophia.compilador.ast.funcao.Funcao;
+import org.sophia.compilador.ast.funcao.Parametro;
 import org.sophia.compilador.ast.operador.Divisao;
 import org.sophia.compilador.ast.operador.Multiplicacao;
 import org.sophia.compilador.ast.operador.Operador;
@@ -39,22 +47,38 @@ import org.sophia.lexico.Simbolo;
 public class AnalisadorSintatico {
 
 	private final List<Simbolo> simbolos;
+	
+	private final Map<String, Simbolo> simbolosMap = new HashMap<>();
 
 	private int indice;
+	
+	private Programa programa;
 
 	public AnalisadorSintatico(List<Simbolo> simbolos) {
 		this.simbolos = simbolos;
 		this.indice = 0;
+		
+		for (Simbolo simbolo : simbolos) {
+			simbolosMap.put(simbolo.getTexto(), simbolo);
+		}
+		
 	}
 
 	public Programa analisar() {
-
 		Programa programa = programa();
 		consumir(CategoriaSimbolo.FIM_DO_ARQUIVO);
 		return programa;
 	}
 
 	private Programa programa() {
+
+		Programa programa = new Programa();
+		
+		this.programa = programa;
+		
+		while (proximoEh("FUNCAO")) {
+		    programa.adicionarFuncao(funcao());
+		}
 
 		consumir("programa");
 
@@ -63,8 +87,6 @@ public class AnalisadorSintatico {
 		consumir(CategoriaSimbolo.LITERAL_TEXTO);
 
 		consumir("inicio");
-
-		Programa programa = new Programa();
 
 		programa.setTitulo(titulo);
 
@@ -76,6 +98,109 @@ public class AnalisadorSintatico {
 
 		return programa;
 
+	}
+
+	private Funcao funcao() {
+
+		consumir("FUNCAO");
+
+	    String nome = atual().getTexto();
+	    consumir(CategoriaSimbolo.IDENTIFICADOR);
+
+	    Funcao funcao = new Funcao(nome);
+
+	    while (proximoEh("PARAMETRO")) {
+
+	        Parametro parametro = parametro();
+
+	        funcao.adicionarParametro(parametro);
+	    }
+	    
+	    if (proximoEh("RETORNO")) {
+
+	        consumir("RETORNO");
+
+	        String tipo = atual().getTexto();
+	        consumir(CategoriaSimbolo.TIPO);
+
+	        funcao.setTipoRetorno(TipoVariavel.valueOf(tipo.toUpperCase()));
+	    }
+	    
+
+	    consumir("INICIO");
+
+	    while (!proximoEh("FIM")) {
+	        funcao.adicionarComando(comando());
+	    }
+
+	    consumir("FIM");
+	    
+	    boolean existeRetorno = false;
+	    
+	    if (funcao.getTipoRetorno() != null) {
+	    	
+	    	for (Comando comando : funcao.getComandos()) {
+			
+	    		existeRetorno = verificaRetornoFuncao(funcao, existeRetorno, comando);
+				
+				if (comando instanceof Se) {
+					Se comandoSe = (Se) comando;
+					
+					for (Comando com : comandoSe.getComandosFalsos()) {
+						existeRetorno = verificaRetornoFuncao(funcao, existeRetorno, com);
+					}
+					
+					for (Comando com : comandoSe.getComandosVerdadeiros()) {
+						existeRetorno = verificaRetornoFuncao(funcao, existeRetorno, com);
+					}
+				}
+			}
+	    	
+	    	if (!existeRetorno) {
+	    		throw new RuntimeException("A função " + funcao.getNome() + " deve retornar um valor do tipo " + funcao.getTipoRetorno() + ".");
+	    	}
+	    }
+	    
+
+	    return funcao;
+	    
+	}
+
+	private boolean verificaRetornoFuncao(Funcao funcao, boolean existeRetorno, Comando comando) {
+		if (comando instanceof Retorne) {
+			Retorne ret = (Retorne) comando;
+			
+			existeRetorno = true;
+			
+			if (ret.getExpressao() instanceof LiteralTexto && 
+					!funcao.getTipoRetorno().toString().equals("TEXTO")) {
+				throw new RuntimeException("A função " + funcao.getNome() + " deve retornar um valor do tipo " + funcao.getTipoRetorno() + ".");
+			}
+			
+			if (ret.getExpressao() instanceof LiteralNumero && 
+					!funcao.getTipoRetorno().toString().equals("NUMERO")) {
+				throw new RuntimeException("A função " + funcao.getNome() + " deve retornar um valor do tipo " + funcao.getTipoRetorno() + ".");
+			}
+			
+			if (ret.getExpressao() instanceof LiteralLogico && 
+					!funcao.getTipoRetorno().toString().equals("LOGICO")) {
+				throw new RuntimeException("A função " + funcao.getNome() + " deve retornar um valor do tipo " + funcao.getTipoRetorno() + ".");
+			}
+		}
+		return existeRetorno;
+	}
+	
+	private Parametro parametro() {
+
+	    consumir("PARAMETRO");
+
+	    String tipo = atual().getTexto();
+	    consumir(CategoriaSimbolo.TIPO);
+
+	    String nome = atual().getTexto();
+	    consumir(CategoriaSimbolo.IDENTIFICADOR);
+
+	    return new Parametro(tipo, nome);
 	}
 
 	private Comando comando() {
@@ -99,13 +224,23 @@ public class AnalisadorSintatico {
 		if (textoAtual().equals("escreva")) {
 			return escreva();
 		}
+		
+		if (textoAtual().equalsIgnoreCase("retorne")) {
+		    return retorne();
+		}
 
 		if (categoriaAtual() == CategoriaSimbolo.TIPO) {
 			return declaracao();
 		}
 
 		if (categoriaAtual() == CategoriaSimbolo.IDENTIFICADOR) {
-			return atribuicao();
+			
+			if (proximo().getCategoria().equals(CategoriaSimbolo.COMANDO) && 
+					proximo().getTexto().equalsIgnoreCase("RECEBE")){
+		        return atribuicao();
+			}
+		        
+	    	return chamadaFuncao();
 		}
 		
 		 if (proximoEh("LEIA")) {
@@ -113,6 +248,35 @@ public class AnalisadorSintatico {
 		 }
 	
 		throw erro("Comando desconhecido.");
+	}
+	
+	private Retorne retorne() {
+
+	    consumir("RETORNE");
+	    Expressao expressao = expressao();
+	    return new Retorne(expressao);
+	}
+	
+	private ChamadaFuncao chamadaFuncao() {
+
+	    String nome = atual().getTexto();
+
+	    consumir(CategoriaSimbolo.IDENTIFICADOR);
+
+	    Funcao funcao = this.programa.getFuncoes().get(nome);
+
+	    if (funcao == null) {
+	        throw new RuntimeException("A função" +nome  + " não foi declarada.");
+	    }
+
+	    ChamadaFuncao chamada = new ChamadaFuncao(nome);
+
+	    for (Parametro parametro : funcao.getParametros()) {
+	        Expressao argumento = expressao();
+	        chamada.adicionarArgumento(argumento);
+	    }
+
+	    return chamada;
 	}
 	
 	private Leia leia() {
@@ -250,11 +414,11 @@ public class AnalisadorSintatico {
 
 	    String variavel = consumirIdentificador();
 
-	    //consumir("DE");
+	    consumir("DE");
 
 	    Expressao inicio = expressao();
 
-	    //consumir("ATE");
+	    consumir("ATE");
 
 	    Expressao fim = expressao();
 
@@ -360,7 +524,9 @@ public class AnalisadorSintatico {
 
 		Expressao esquerda = primario();
 
-		while (proximoEh("vez") || proximoEh("vezes") || proximoEh("DIVIDIDO POR")) {
+		while (proximoEh("VEZES")
+			    || proximoEh("DIVIDIDO POR")
+			    || proximoEh("RESTO DE")) {
 
 			String operador = atual().getTexto();
 
@@ -402,15 +568,107 @@ public class AnalisadorSintatico {
 			return new LiteralLogico(simbolo.getTexto().equalsIgnoreCase("verdadeiro"));
 
 		case IDENTIFICADOR:
-			avancar();
-			return new Identificador(simbolo.getTexto());
+		    
+			if (pareceChamadaFuncao()) {
+		        return chamadaFuncaoExpressao();
+		    }
 
+		    avancar();
+		    return new Identificador(simbolo.getTexto());
+
+		case ESTRUTURA:
+			avancar();
+			return null;
+			
 		default:
 
 			throw erro("Expressão inválida.");
 
 		}
 
+	}
+
+	private ChamadaFuncaoExpressao chamadaFuncaoExpressao() {
+
+	    String nome = atual().getTexto();
+
+	    consumir(CategoriaSimbolo.IDENTIFICADOR);
+
+	    Funcao funcao = this.programa.getFuncoes().get(nome);
+	    
+	    if (funcao == null) {
+	        throw new RuntimeException("A função " + nome  + " não foi declarada.");
+	    }
+
+	    ChamadaFuncaoExpressao chamada = new ChamadaFuncaoExpressao(nome);
+
+	    for (Parametro parametro : funcao.getParametros()) {
+	        Expressao argumento = expressao();
+	        
+	        if (argumento != null) {
+	        	chamada.adicionarArgumento(argumento);	
+	        }
+	    }
+	    
+	    if (funcao.getParametros().size() != chamada.getArgumentos().size()) {
+	    	throw new RuntimeException("A função " + funcao.getNome() + " espera " + funcao.getParametros().size() +  " argumentos, mas recebeu "  + chamada.getArgumentos().size() + ".");
+	    }
+
+	    return chamada;
+	}
+
+	private boolean pareceChamadaFuncao() {
+
+	    if (categoriaAtual() != CategoriaSimbolo.IDENTIFICADOR) {
+	        return false;
+	    }
+
+	    if (estaNoFim()) {
+	        return false;
+	    }
+
+	    Simbolo proximo = olhar(1);
+
+	    if (proximo == null) {
+	        return false;
+	    }
+	    
+	    if (this.simbolosMap.containsKey(atual().getTexto()) &&
+	    		!programa.getFuncoes().containsKey(atual().getTexto())) {
+	    	return false;
+	    } else {
+	    	System.out.println(atual().getTexto());
+	    }
+
+	    // Atribuição nunca é chamada de função.
+	    if (proximo.getTexto().equalsIgnoreCase("recebe")) {
+	        return false;
+	    }
+
+	    // Início de uma expressão.
+	    return switch (proximo.getCategoria()) {
+
+	        case IDENTIFICADOR,
+	             LITERAL_NUMERO,
+	             LITERAL_TEXTO,
+	             LITERAL_LOGICO -> true;
+
+	        default -> false;
+	    };
+	}
+	
+	private Simbolo olhar(int deslocamento) {
+	    int indice = this.indice + deslocamento;
+
+	    if (indice >= simbolos.size()) {
+	        return null;
+	    }
+
+	    return simbolos.get(indice);
+	}
+
+	private boolean estaNoFim() {
+	    return categoriaAtual() == CategoriaSimbolo.FIM_DO_ARQUIVO;
 	}
 
 	private Expressao resto() {
@@ -444,6 +702,9 @@ public class AnalisadorSintatico {
 
 		case VEZES:
 			return new Multiplicacao(esquerda, direita);
+			
+		case RESTO_DE:
+			return new Resto(esquerda, direita);
 
 		case DIVIDIDO_POR:
 			return new Divisao(esquerda, direita);
@@ -485,6 +746,10 @@ public class AnalisadorSintatico {
 
 	private Simbolo atual() {
 		return simbolos.get(indice);
+	}
+	
+	private Simbolo proximo() {
+		return simbolos.get(indice+1);
 	}
 
 	private String textoAtual() {

@@ -15,6 +15,7 @@ public class Vocabulario {
 
 		palavras.put("COMENTARIO", CategoriaSimbolo.COMENTARIO);
 		
+		
 		palavras.put("NUMERO", CategoriaSimbolo.TIPO);
 		palavras.put("TEXTO", CategoriaSimbolo.TIPO);
 		palavras.put("LOGICO", CategoriaSimbolo.TIPO);
@@ -24,8 +25,12 @@ public class Vocabulario {
 
 		palavras.put("ESCREVA", CategoriaSimbolo.COMANDO);
 		palavras.put("LEIA", CategoriaSimbolo.COMANDO);
-
 		palavras.put("RECEBE", CategoriaSimbolo.COMANDO);
+		
+		palavras.put("FUNCAO", CategoriaSimbolo.COMANDO);
+		palavras.put("PARAMETRO", CategoriaSimbolo.COMANDO);
+		palavras.put("RETORNO", CategoriaSimbolo.COMANDO);
+		palavras.put("RETORNE", CategoriaSimbolo.COMANDO);
 		
 		palavras.put("IGUAL A", CategoriaSimbolo.COMPARACAO);
 		palavras.put("DIFERENTE DE", CategoriaSimbolo.COMPARACAO);
@@ -64,11 +69,12 @@ public class Vocabulario {
 	}
 
 	public CategoriaSimbolo categoria(String palavra) {
+		
 		if (palavras.containsKey(palavra.toUpperCase())) {
 			return palavras.get(palavra.toUpperCase());
-		} else {
-			return CategoriaSimbolo.IDENTIFICADOR;
-		}
+		} 
+		
+		return null;
 	}
 
 }

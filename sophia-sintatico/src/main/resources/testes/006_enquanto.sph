@@ -1,0 +1,10 @@
+programa "Enquanto"
+
+inicio
+    numero i recebe 1
+
+    enquanto i menor ou igual a 5
+        escreva i
+        i recebe i mais 1
+    fim
+fim

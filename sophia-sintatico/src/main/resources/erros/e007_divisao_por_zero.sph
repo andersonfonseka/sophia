@@ -1,0 +1,5 @@
+programa "Erro"
+
+inicio
+    escreva 10 dividido por 0
+fim
