@@ -1,0 +1,13 @@
+funcao alterar
+    parametro texto nome
+inicio
+    escreva nome
+fim
+
+programa "Escopo"
+
+inicio
+    texto nome recebe "Anderson"
+    alterar "Sophia"
+    escreva nome
+fim

@@ -23,7 +23,7 @@ public class Cliente {
 		System.out.println(System.getProperty("native.encoding"));
 		System.out.println(java.nio.charset.Charset.defaultCharset());
 
-		Path pathBase = Paths.get(Cliente.class.getResource("/erros").getFile().replaceFirst("/", ""));
+		Path pathBase = Paths.get(Cliente.class.getResource("/exemplos").getFile().replaceFirst("/", ""));
 		
 		try (Stream<Path> stream = Files.list(pathBase)) {
 			

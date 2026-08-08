@@ -1,0 +1,14 @@
+funcao soma
+    parametro numero a
+    parametro numero b
+    retorno numero
+
+inicio
+    retorne a mais b
+fim
+
+programa "Erro"
+
+inicio
+    escreva soma 10
+fim
