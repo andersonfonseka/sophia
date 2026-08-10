@@ -137,7 +137,6 @@ public class Interpretador {
 
 		if (comando instanceof Retorne retorna) {
 			Object valor = avaliar(retorna.getExpressao());
-			System.out.println("RETORNANDO = " + valor);
 			throw new RetornoFuncao(valor);
 		}
 
@@ -197,9 +196,6 @@ public class Interpretador {
 		} catch (RetornoFuncao retorno) {
 			
 			Object valor = retorno.getValor();
-
-			System.out.println("CAPTUROU = " + valor);
-			
 			validarTipoRetorno(funcao, valor);
 		    return valor;
 
@@ -254,10 +250,6 @@ public class Interpretador {
 	    if (tipo == null) {
 	        return;
 	    }
-	    
-		System.out.println("valor = " + valor);
-		System.out.println("classe = " + valor.getClass());
-		System.out.println("tipo esperado = " + tipo);
 
 	    boolean valido = switch (tipo) {
 	        case TEXTO -> valor instanceof String;
@@ -272,8 +264,6 @@ public class Interpretador {
 	            + tipo + "."
 	        );
 	    }
-	    
-	    System.out.println("válido = " + valido);
 	}
 
 	private void executarLeia(Leia comando) {
@@ -470,7 +460,6 @@ public class Interpretador {
 		if (expressao instanceof ChamadaFuncaoExpressao chamada) {
 			
 			Object resultado = executarFuncao(chamada.getNome(), chamada.getArgumentos());
-		    System.out.println("FUNÇÃO RETORNOU = " + resultado);
 		    return resultado;
 		}
 

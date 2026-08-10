@@ -19,11 +19,7 @@ public class Cliente {
 	
 	public static void main(String[] args) throws Exception {
 
-		System.out.println(System.getProperty("file.encoding"));
-		System.out.println(System.getProperty("native.encoding"));
-		System.out.println(java.nio.charset.Charset.defaultCharset());
-
-		Path pathBase = Paths.get(Cliente.class.getResource("/teste").getFile().replaceFirst("/", ""));
+		Path pathBase = Paths.get(Cliente.class.getResource("/exemplos").getFile().replaceFirst("/", ""));
 		
 		try (Stream<Path> stream = Files.list(pathBase)) {
 			
@@ -32,7 +28,6 @@ public class Cliente {
 		        .collect(Collectors.toList());
 
 			if (files.isEmpty()) {
-		        System.out.println("Nenhum arquivo encontrado.");
 		        return;
 		    }
 
@@ -41,9 +36,8 @@ public class Cliente {
 
 		    for (Path arquivo : files) {
 		        try {
-		            System.out.println("Processando: " + arquivo.getFileName());
 
-		            String codigo = Files.readString(arquivo, StandardCharsets.UTF_8);
+		        	String codigo = Files.readString(arquivo, StandardCharsets.UTF_8);
 		            
 		            System.out.println(codigo);
 
