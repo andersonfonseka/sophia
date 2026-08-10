@@ -1,0 +1,12 @@
+funcao teste
+    retorno logico
+
+inicio
+
+fim
+
+programa "Erro"
+
+inicio
+    escreva teste
+fim

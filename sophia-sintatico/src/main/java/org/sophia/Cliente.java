@@ -23,7 +23,7 @@ public class Cliente {
 		System.out.println(System.getProperty("native.encoding"));
 		System.out.println(java.nio.charset.Charset.defaultCharset());
 
-		Path pathBase = Paths.get(Cliente.class.getResource("/exemplos").getFile().replaceFirst("/", ""));
+		Path pathBase = Paths.get(Cliente.class.getResource("/teste").getFile().replaceFirst("/", ""));
 		
 		try (Stream<Path> stream = Files.list(pathBase)) {
 			
@@ -44,6 +44,8 @@ public class Cliente {
 		            System.out.println("Processando: " + arquivo.getFileName());
 
 		            String codigo = Files.readString(arquivo, StandardCharsets.UTF_8);
+		            
+		            System.out.println(codigo);
 
 		            AnalisadorSintatico analisadorSintatico =
 		                    new AnalisadorSintatico(analisadorLexico.analisar(codigo));

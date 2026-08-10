@@ -332,7 +332,7 @@ public class Interpretador {
 
 		Object valor = avaliar(atribuicao.getExpressao());
 
-		Variavel variavel = contexto.obter(atribuicao.getIdentificador().getValor());
+		Variavel variavel = contexto.obter(String.valueOf(atribuicao.getIdentificador().getValor()));
 		variavel.setValor(valor);
 	}
 
@@ -357,7 +357,7 @@ public class Interpretador {
 		}
 
 		if (expressao instanceof Identificador) {
-			String nome = ((Identificador) expressao).getValor();
+			String nome = String.valueOf(((Identificador) expressao).getValor());
 			return contexto.obter(nome).getValor();
 		}
 

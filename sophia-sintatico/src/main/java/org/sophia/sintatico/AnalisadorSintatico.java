@@ -633,12 +633,45 @@ public class AnalisadorSintatico {
 	        return false;
 	    }
 	    
-	    if (this.simbolosMap.containsKey(atual().getTexto()) &&
-	    		!programa.getFuncoes().containsKey(atual().getTexto())) {
+	    if (!programa.getFuncoes().containsKey(atual().getTexto())) {
+	    	
+	    	int i = 0;
+	    	for (Simbolo simbolo : simbolos) {
+	    		if (simbolo.getTexto().equals(atual().getTexto())) {
+
+	    			if ((i+1 < simbolos.size()) 
+	    					&& (simbolos.get(i+1).getTexto().equalsIgnoreCase("DE") 
+			    			|| simbolos.get(i+1).getTexto().equalsIgnoreCase("RECEBE")
+			    			|| simbolos.get(i+1).getTexto().equalsIgnoreCase("MAIOR QUE")
+			    			|| simbolos.get(i+1).getTexto().equalsIgnoreCase("MAIOR OU IGUAL")
+			    			|| simbolos.get(i+1).getTexto().equalsIgnoreCase("MENOR QUE")
+			    			|| simbolos.get(i+1).getTexto().equalsIgnoreCase("MENOR OU IGUAL")
+			    			|| simbolos.get(i+1).getTexto().equalsIgnoreCase("DIFERENTE DE")
+			    			|| simbolos.get(i+1).getTexto().equalsIgnoreCase("VEZES")
+			    			|| simbolos.get(i+1).getTexto().equalsIgnoreCase("MENOS")
+			    			|| simbolos.get(i+1).getTexto().equalsIgnoreCase("MAIS")
+			    			|| simbolos.get(i+1).getTexto().equalsIgnoreCase("DIVIDIDO POR"))) {
+		    				
+		    				return false;
+	    			}
+	    			
+	    			if ((i+1 < simbolos.size()) 
+	    				&& (simbolos.get(i+1).getCategoria() == CategoriaSimbolo.LITERAL_NUMERO
+	    				|| simbolos.get(i+1).getCategoria() == CategoriaSimbolo.LITERAL_LOGICO
+	    				|| simbolos.get(i+1).getCategoria() == CategoriaSimbolo.LITERAL_TEXTO 
+	    				|| simbolos.get(i+1).getCategoria() == CategoriaSimbolo.IDENTIFICADOR)) {
+	    				
+	    				return true;
+	    	    	}
+	    			
+	    		
+	    		}
+	    		i++;
+			}
+	    	
 	    	return false;
-	    } else {
-	    	System.out.println(atual().getTexto());
-	    }
+	    
+	    } 
 
 	    // Atribuição nunca é chamada de função.
 	    if (proximo.getTexto().equalsIgnoreCase("recebe")) {

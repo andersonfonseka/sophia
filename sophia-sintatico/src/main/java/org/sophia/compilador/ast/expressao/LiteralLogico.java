@@ -11,7 +11,7 @@ public class LiteralLogico extends Expressao {
     }
 
     public Boolean getValor() {
-        return valor;
+        return this.valor;
     }
 
     @Override
