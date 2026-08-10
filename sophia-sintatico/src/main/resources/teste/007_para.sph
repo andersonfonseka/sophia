@@ -1,7 +1,0 @@
-programa "Para"
-
-inicio
-    para i de 1 ate 5
-        escreva i
-    fim
-fim
