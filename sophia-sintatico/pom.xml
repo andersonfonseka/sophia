@@ -5,17 +5,17 @@
     <artifactId>sophia</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
+  
   <artifactId>sophia-sintatico</artifactId>
+  <version>1.0.0</version>
   
   
   <dependencies>
-
   	<dependency>
  	  <groupId>org.sophia</groupId>
       <artifactId>sophia-lexico</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
   	</dependency>
-
   </dependencies>
   
 </project>

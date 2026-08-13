@@ -19,7 +19,7 @@ public class Cliente {
 	
 	public static void main(String[] args) throws Exception {
 
-		Path pathBase = Paths.get(Cliente.class.getResource("/exemplos").getFile().replaceFirst("/", ""));
+		Path pathBase = Paths.get(Cliente.class.getResource("/teste").getFile().replaceFirst("/", ""));
 		
 		try (Stream<Path> stream = Files.list(pathBase)) {
 			

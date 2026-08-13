@@ -5,5 +5,8 @@
     <artifactId>sophia</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
+  
   <artifactId>sophia-lexico</artifactId>
+  <version>1.0.0</version>
+
 </project>

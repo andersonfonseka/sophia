@@ -58,10 +58,6 @@ public final class AnalisadorLexico {
                 novoToken(
                         "FIM_DO_ARQUIVO",
                         CategoriaSimbolo.FIM_DO_ARQUIVO));
-
-        for (Simbolo simbolo : simbolos) {
-			System.out.println(simbolo);
-		}
         
         return simbolos;
     }
@@ -472,4 +468,9 @@ public final class AnalisadorLexico {
         linha = backupLinha;
         coluna = backupColuna;
     }
+
+	public List<Simbolo> getSimbolos() {
+		return simbolos;
+	}
+    
 }

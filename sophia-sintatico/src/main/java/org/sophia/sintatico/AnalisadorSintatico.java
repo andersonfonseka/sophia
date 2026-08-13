@@ -47,8 +47,6 @@ import org.sophia.lexico.Simbolo;
 public class AnalisadorSintatico {
 
 	private final List<Simbolo> simbolos;
-	
-	private final Map<String, Simbolo> simbolosMap = new HashMap<>();
 
 	private int indice;
 	
@@ -57,14 +55,10 @@ public class AnalisadorSintatico {
 	public AnalisadorSintatico(List<Simbolo> simbolos) {
 		this.simbolos = simbolos;
 		this.indice = 0;
-		
-		for (Simbolo simbolo : simbolos) {
-			simbolosMap.put(simbolo.getTexto(), simbolo);
-		}
-		
 	}
 
 	public Programa analisar() {
+		
 		Programa programa = programa();
 		consumir(CategoriaSimbolo.FIM_DO_ARQUIVO);
 		return programa;
@@ -72,9 +66,9 @@ public class AnalisadorSintatico {
 
 	private Programa programa() {
 
-		Programa programa = new Programa();
-		
-		this.programa = programa;
+		if (this.programa == null) {
+		    this.programa = new Programa();
+		}
 		
 		while (proximoEh("FUNCAO")) {
 		    programa.adicionarFuncao(funcao());
@@ -627,58 +621,23 @@ public class AnalisadorSintatico {
 	        return false;
 	    }
 
+	    Simbolo atual = atual();
 	    Simbolo proximo = olhar(1);
 
 	    if (proximo == null) {
 	        return false;
 	    }
-	    
-	    if (!programa.getFuncoes().containsKey(atual().getTexto())) {
-	    	
-	    	int i = 0;
-	    	for (Simbolo simbolo : simbolos) {
-	    		if (simbolo.getTexto().equals(atual().getTexto())) {
-
-	    			if ((i+1 < simbolos.size()) 
-	    					&& (simbolos.get(i+1).getTexto().equalsIgnoreCase("DE") 
-			    			|| simbolos.get(i+1).getTexto().equalsIgnoreCase("RECEBE")
-			    			|| simbolos.get(i+1).getTexto().equalsIgnoreCase("MAIOR QUE")
-			    			|| simbolos.get(i+1).getTexto().equalsIgnoreCase("MAIOR OU IGUAL")
-			    			|| simbolos.get(i+1).getTexto().equalsIgnoreCase("MENOR QUE")
-			    			|| simbolos.get(i+1).getTexto().equalsIgnoreCase("MENOR OU IGUAL")
-			    			|| simbolos.get(i+1).getTexto().equalsIgnoreCase("DIFERENTE DE")
-			    			|| simbolos.get(i+1).getTexto().equalsIgnoreCase("VEZES")
-			    			|| simbolos.get(i+1).getTexto().equalsIgnoreCase("MENOS")
-			    			|| simbolos.get(i+1).getTexto().equalsIgnoreCase("MAIS")
-			    			|| simbolos.get(i+1).getTexto().equalsIgnoreCase("DIVIDIDO POR"))) {
-		    				
-		    				return false;
-	    			}
-	    			
-	    			if ((i+1 < simbolos.size()) 
-	    				&& (simbolos.get(i+1).getCategoria() == CategoriaSimbolo.LITERAL_NUMERO
-	    				|| simbolos.get(i+1).getCategoria() == CategoriaSimbolo.LITERAL_LOGICO
-	    				|| simbolos.get(i+1).getCategoria() == CategoriaSimbolo.LITERAL_TEXTO 
-	    				|| simbolos.get(i+1).getCategoria() == CategoriaSimbolo.IDENTIFICADOR)) {
-	    				
-	    				return true;
-	    	    	}
-	    			
-	    		
-	    		}
-	    		i++;
-			}
-	    	
-	    	return false;
-	    
-	    } 
 
 	    // Atribuição nunca é chamada de função.
 	    if (proximo.getTexto().equalsIgnoreCase("recebe")) {
 	        return false;
 	    }
 
-	    // Início de uma expressão.
+	    // Um argumento de chamada deve estar na mesma linha.
+	    if (atual.getLinha() != proximo.getLinha()) {
+	        return false;
+	    }
+
 	    return switch (proximo.getCategoria()) {
 
 	        case IDENTIFICADOR,

@@ -99,11 +99,11 @@ public class SophiaCli {
         System.out.println("Sophia " + VERSAO);
         System.out.println();
         System.out.println("Uso:");
-        System.out.println("  sophia versao");
-        System.out.println("  sophia executar <arquivo.sph> [--verbose]");
-        System.out.println("  sophia verificar <arquivo.sph> [--verbose]");
-        System.out.println("  sophia repl");
-        System.out.println("  sophia ajuda");
+        System.out.println("  versao");
+        System.out.println("  executar <arquivo.sph> [--verbose]");
+        System.out.println("  verificar <arquivo.sph> [--verbose]");
+        System.out.println("  repl");
+        System.out.println("  ajuda");
     }
 
     private static void erro(String mensagem) {

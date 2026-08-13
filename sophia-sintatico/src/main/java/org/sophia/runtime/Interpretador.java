@@ -61,6 +61,16 @@ public class Interpretador {
 			executar(comando);
 		}
 	}
+	
+	public void executarREPL(Programa programa) {
+
+		this.programa = programa;
+
+		for (Comando comando : programa.getComandos()) {
+			executar(comando);
+		}
+	}
+
 
 	private void executar(Comando comando) {
 

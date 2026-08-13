@@ -224,7 +224,7 @@ A Sophia possui um REPL (Read-Eval-Print Loop) que permite utilizar a linguagem 
 Para iniciar:
 
 ```bash
-java -jar sophia-cli-0.0.1-SNAPSHOT.jar repl
+java -jar sophia-cli-1.0.0.jar repl
 ```
 
 O REPL permite trabalhar interativamente com variáveis, estruturas de controle e funções durante a sessão.
@@ -292,19 +292,19 @@ O CLI permite executar programas Sophia armazenados em arquivos `.sph`.
 ## Executar
 
 ```bash
-java -jar sophia-cli-0.0.1-SNAPSHOT.jar executar programa.sph
+java -jar sophia-cli-1.0.0.jar executar programa.sph
 ```
 
 ## Verificar
 
 ```bash
-java -jar sophia-cli-0.0.1-SNAPSHOT.jar verificar programa.sph
+java -jar sophia-cli-1.0.0.jar verificar programa.sph
 ```
 
 ## Modo detalhado
 
 ```bash
-java -jar sophia-cli-0.0.1-SNAPSHOT.jar executar programa.sph --verbose
+java -jar sophia-cli-1.0.0.jar executar programa.sph --verbose
 ```
 
 O modo `--verbose` permite visualizar código, símbolos e AST.
@@ -312,19 +312,19 @@ O modo `--verbose` permite visualizar código, símbolos e AST.
 ## REPL
 
 ```bash
-java -jar sophia-cli-0.0.1-SNAPSHOT.jar repl
+java -jar sophia-cli-1.0.0.jar repl
 ```
 
 ## Ajuda
 
 ```bash
-java -jar sophia-cli-0.0.1-SNAPSHOT.jar ajuda
+java -jar sophia-cli-1.0.0.jar ajuda
 ```
 
 ## Versão
 
 ```bash
-java -jar sophia-cli-0.0.1-SNAPSHOT.jar versao
+java -jar sophia-cli-1.0.0.jar versao
 ```
 
 ---
