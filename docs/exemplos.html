@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Exemplos — Sophia</title>
+
+<link rel="stylesheet"
+      href="css/style.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="container nav">
+
+<a href="index.html"
+   class="logo">
+   Sophia
+</a>
+
+<nav>
+
+<a href="linguagem.html">A Sophia</a>
+<a href="comecar.html">Comece agora</a>
+<a href="exemplos.html">Exemplos</a>
+<a href="ide.html">IDE</a>
+
+</nav>
+
+</div>
+
+</header>
+
+
+<main>
+
+<section class="section">
+
+<div class="container">
+
+<h1>Exemplos</h1>
+
+
+<h2>Variáveis</h2>
+
+<div class="terminal">
+
+<pre><code>numero idade recebe 20
+
+escreva idade</code></pre>
+
+</div>
+
+
+<h2>Condicionais</h2>
+
+<div class="terminal">
+
+<pre><code>numero idade recebe 20
+
+se idade maior ou igual a 18
+    escreva "Maior de idade"
+senao
+    escreva "Menor de idade"
+fim</code></pre>
+
+</div>
+
+
+<h2>Repetição</h2>
+
+<div class="terminal">
+
+<pre><code>numero i recebe 0
+
+enquanto i menor ou igual a 5
+    escreva i
+    i recebe i mais 1
+fim</code></pre>
+
+</div>
+
+
+<h2>Funções</h2>
+
+<div class="terminal">
+
+<pre><code>funcao dobro
+    parametro numero valor
+    retorno numero
+    inicio
+        retorne valor vezes 2
+    fim
+
+programa "Exemplo"
+
+inicio
+    escreva dobro 21
+fim</code></pre>
+
+</div>
+
+
+<h2>Funções chamando funções</h2>
+
+<div class="terminal">
+
+<pre><code>funcao ola
+    parametro texto nome
+    inicio
+        escreva nome
+    fim
+
+funcao chamada
+    parametro texto palavra
+    inicio
+        escreva palavra
+        ola palavra
+    fim
+
+programa "Teste"
+
+inicio
+    chamada "Joao"
+fim</code></pre>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<div class="container">
+
+<strong>Sophia Programming Language</strong>
+
+<p>Sophia 1.0.0</p>
+
+</div>
+
+</footer>
+
+</body>
+
+</html>
