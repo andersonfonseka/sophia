@@ -15,5 +15,6 @@
 		<module>sophia-lexico</module>
 		<module>sophia-sintatico</module>
 		<module>sophia-cli</module>
+		<module>sophia-ide</module>
 	</modules>
 </project>

@@ -1,110 +1,158 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>IDE — Sophia</title>
-
-<link rel="stylesheet"
-      href="css/style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDE — Sophia</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
 <header class="header">
-
-<div class="container nav">
-
-<a href="index.html"
-   class="logo">
-   Sophia
-</a>
-
-<nav>
-
-<a href="linguagem.html">A Sophia</a>
-<a href="comecar.html">Comece agora</a>
-<a href="exemplos.html">Exemplos</a>
-<a href="ide.html">IDE</a>
-
-</nav>
-
-</div>
-
+    <div class="container nav">
+        <a href="index.html" class="logo">Sophia</a>
+        <nav>
+            <a href="linguagem.html">A Sophia</a>
+            <a href="comecar.html">Comece agora</a>
+            <a href="exemplos.html">Exemplos</a>
+            <a href="ide.html">IDE</a>
+        </nav>
+    </div>
 </header>
 
-
 <main>
-
 <section class="section">
-
 <div class="container">
 
-<h1>Sophia IDE</h1>
+    <h1>Sophia IDE</h1>
 
-<p>
-A Sophia IDE está em desenvolvimento.
-</p>
+    <p>
+        A Sophia IDE é o ambiente de desenvolvimento da linguagem Sophia,
+        criado para tornar a programação simples, visual e acessível.
+    </p>
 
-<p>
-A proposta é oferecer um ambiente simples para que
-estudantes possam escrever e executar programas Sophia
-sem precisar utilizar o terminal.
-</p>
+	<a href="https://github.com/andersonfonseka/sophia/tree/main/dist"
+	   class="button primary">
+	    Download Sophia IDE 0.1.0
+	</a>
 
+    <p>
+        A IDE permite escrever, organizar, salvar e executar programas Sophia
+        sem depender do terminal. A proposta é manter a simplicidade da
+        linguagem, oferecendo uma experiência de uso mais confortável.
+    </p>
 
-<h2>Objetivo</h2>
+    <div class="ide-preview" style="margin: 2rem 0 3rem; text-align: center;">
+        <div style="border: 2px dashed currentColor; border-radius: 12px; padding: 1rem; overflow: hidden;">
+            <p style="margin: 0 0 1rem; font-size: 1.1rem;">
+                <strong>Imagem da Sophia IDE</strong>
+            </p>
+            <img
+                alt="Sophia IDE"
+                src="ide.png"
+                style="display: block; width: 100%; max-width: 100%; height: auto; margin: 0 auto; border-radius: 6px;"
+            >
+        </div>
+    </div>
 
-<p>
-A IDE não pretende ser uma ferramenta profissional de
-desenvolvimento. Ela será um ambiente didático para
-experimentação e aprendizagem.
-</p>
+    <h2>Um ambiente simples para programar</h2>
 
+    <p>
+        A interface é organizada em três áreas principais: a árvore do
+        projeto, o editor de código e a área de saída. Dessa forma, o
+        programador consegue visualizar o projeto, escrever o programa e
+        acompanhar sua execução no mesmo ambiente.
+    </p>
 
-<h2>Próximos passos</h2>
+    <ul>
+        <li>Árvore de projetos e programas</li>
+        <li>Editor de código com numeração de linhas</li>
+        <li>Syntax highlighting da linguagem Sophia</li>
+        <li>Realce da gramática durante a edição</li>
+        <li>Área de saída para os resultados da execução</li>
+        <li>Mensagens de execução e erros</li>
+    </ul>
 
-<ul>
+    <h2>Programas e projetos</h2>
 
-<li>Editor de código</li>
+    <p>
+        A IDE diferencia a criação de um novo programa da criação de um
+        projeto. Um programa Sophia pode ser criado ou aberto diretamente,
+        enquanto um projeto permite organizar vários programas em uma
+        estrutura de arquivos.
+    </p>
 
-<li>Execução de programas</li>
+    <ul>
+        <li><strong>Novo Programa</strong> — cria um novo arquivo Sophia.</li>
+        <li><strong>Abrir Programa</strong> — abre um programa existente.</li>
+        <li><strong>Criar Projeto</strong> — cria uma nova estrutura de projeto.</li>
+        <li><strong>Abrir Projeto</strong> — abre uma pasta como projeto Sophia.</li>
+        <li><strong>Salvar</strong> — salva o programa atualmente editado.</li>
+        <li><strong>Executar</strong> — executa o programa Sophia.</li>
+    </ul>
 
-<li>Área de saída</li>
+    <h2>Editor com destaque da linguagem</h2>
 
-<li>Abertura de arquivos Sophia</li>
+    <p>
+        Enquanto o programa é escrito, a IDE reconhece os elementos da
+        linguagem e aplica destaque visual à sua gramática. Estruturas,
+        tipos, comandos, identificadores e literais podem ser diferenciados
+        visualmente.
+    </p>
 
-<li>Salvamento de programas</li>
+    <p>
+        O destaque é atualizado durante a digitação, permitindo que o editor
+        permaneça útil mesmo enquanto o programa ainda está sendo construído.
+    </p>
 
-<li>Mensagens de erro amigáveis</li>
+    <h2>Execução e entrada de dados</h2>
 
-</ul>
+    <p>
+        O programa pode ser executado diretamente pela IDE e seu resultado
+        aparece na área de saída.
+    </p>
+
+    <p>
+        Programas que utilizam o comando <code>leia</code> podem solicitar
+        a entrada de dados por meio de uma janela de entrada, mantendo a
+        execução dentro da experiência da Sophia IDE.
+    </p>
+
+    <h2>Uma IDE para aprender programação</h2>
+
+    <p>
+        A Sophia IDE não pretende competir com ambientes profissionais de
+        desenvolvimento. Seu objetivo é oferecer um espaço pequeno, direto
+        e didático para aprender programação e experimentar os conceitos da
+        linguagem Sophia.
+    </p>
+
+    <p>
+        A combinação de uma linguagem de sintaxe expressiva com uma IDE
+        visual reduz a distância entre escrever um programa e observar
+        imediatamente o que ele faz.
+    </p>
+
+    <h2>Estado atual</h2>
+
+    <p>
+        A Sophia IDE já possui editor, árvore de projetos, abertura e
+        salvamento de programas, execução, área de saída, destaque de
+        sintaxe e suporte à organização de projetos. A ferramenta continua
+        evoluindo junto com a linguagem Sophia.
+    </p>
 
 </div>
-
 </section>
-
 </main>
 
-
 <footer>
-
-<div class="container">
-
-<strong>Sophia Programming Language</strong>
-
-<p>Sophia 1.0.0</p>
-
-</div>
-
+    <div class="container">
+        <strong>Sophia Programming Language</strong>
+        <p>Sophia 1.0.0</p>
+    </div>
 </footer>
 
 </body>
-
 </html>

@@ -23,6 +23,8 @@ public final class AnalisadorLexico {
     
     private int backupColuna;
     
+    private int contador = 0;
+    
     
     public List<Simbolo> analisar(String codigoFonte) {
 
@@ -52,6 +54,8 @@ public final class AnalisadorLexico {
             } else {
             	 throw erroLexico("Caractere inválido: '" + c + "'");
             }
+            
+            contador++;
         }
 
         simbolos.add(
@@ -119,6 +123,7 @@ public final class AnalisadorLexico {
 
         Simbolo simbolo = new Simbolo();
 
+        simbolo.setIndice(contador);
         simbolo.setTexto(texto);
         simbolo.setCategoria(categoria);
         simbolo.setLinha(linha);
@@ -152,6 +157,7 @@ public final class AnalisadorLexico {
 
         Simbolo simbolo = new Simbolo();
 
+        simbolo.setIndice(contador);
         simbolo.setTexto("\"" + sb + "\"");
         simbolo.setCategoria(CategoriaSimbolo.LITERAL_TEXTO);
         simbolo.setLinha(linha);
@@ -217,6 +223,7 @@ public final class AnalisadorLexico {
 
         Simbolo simbolo = new Simbolo();
 
+        simbolo.setIndice(contador);
         simbolo.setTexto(texto);
         simbolo.setCategoria(categoria);
         simbolo.setLinha(linha);
@@ -446,7 +453,7 @@ public final class AnalisadorLexico {
 
         Simbolo simbolo = new Simbolo();
 
-        simbolo.setIndice(indice);
+        simbolo.setIndice(contador);
         simbolo.setTexto(sb.toString());
         simbolo.setCategoria(CategoriaSimbolo.LITERAL_NUMERO);
         simbolo.setLinha(linha);

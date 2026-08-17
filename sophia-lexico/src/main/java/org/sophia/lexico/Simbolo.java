@@ -3,7 +3,7 @@ package org.sophia.lexico;
 import java.util.Objects;
 
 public class Simbolo {
-
+	
 	private int indice;
 	
 	private String texto;

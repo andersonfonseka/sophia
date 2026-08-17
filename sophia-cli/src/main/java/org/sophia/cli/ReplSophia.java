@@ -7,6 +7,7 @@ import java.util.Deque;
 
 import org.sophia.compilador.ast.Programa;
 import org.sophia.lexico.AnalisadorLexico;
+import org.sophia.runtime.EntradaSaidaConsole;
 import org.sophia.runtime.Interpretador;
 import org.sophia.sintatico.AnalisadorSintatico;
 
@@ -30,7 +31,6 @@ public class ReplSophia {
 	
 	public ReplSophia() {
 	    
-		this.interpretador = new Interpretador();
 	    this.blocoAtual = new StringBuilder();
 	    this.modoMultilinha = false;
 	
@@ -230,6 +230,7 @@ public class ReplSophia {
             AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico(analisadorLexico.analisar(codigoCompleto));
             this.programaREPL = analisadorSintatico.analisar();
 
+            this.interpretador = new Interpretador(programaREPL, new EntradaSaidaConsole());
             interpretador.executarREPL(this.programaREPL);
 
         } catch (Exception e) {

@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import org.sophia.compilador.ast.Programa;
 import org.sophia.lexico.AnalisadorLexico;
 import org.sophia.lexico.Simbolo;
+import org.sophia.runtime.EntradaSaidaConsole;
 import org.sophia.runtime.Interpretador;
 import org.sophia.sintatico.AnalisadorSintatico;
 
@@ -45,9 +46,8 @@ public class ExecutorSophia {
             System.out.println("--------------------------------------------------------------------------");
         }
         
-        Interpretador interpretador = new Interpretador();
-
-        interpretador.executar(programa);
+        Interpretador interpretador = new Interpretador(programa, new EntradaSaidaConsole());
+        interpretador.executar();
     }
 
     public void verificar(String arquivo, boolean verbose) throws Exception {

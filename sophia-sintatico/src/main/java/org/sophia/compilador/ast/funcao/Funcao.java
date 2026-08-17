@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.sophia.compilador.ast.comando.Comando;
 import org.sophia.compilador.ast.comando.TipoVariavel;
+import org.sophia.lexico.Simbolo;
 
 public class Funcao {
 	
@@ -16,6 +17,9 @@ public class Funcao {
 	
     private List<Comando> comandos;
     
+	private int linha;
+    private int coluna;
+        
     public Funcao(String nome) {
         this.nome = nome;
         this.parametros = new ArrayList<>();
@@ -63,5 +67,24 @@ public class Funcao {
 	public void setTipoRetorno(TipoVariavel tipoRetorno) {
 	    this.tipoRetorno = tipoRetorno;
 	}
+	
+	public int getLinha() {
+        return linha;
+    }
+
+    public int getColuna() {
+        return coluna;
+    }
+
+    public void setLocalizacao(int linha, int coluna) {
+        this.linha = linha;
+        this.coluna = coluna;
+    }
+
+    public void setLocalizacao(Simbolo simbolo) {
+        this.linha = simbolo.getLinha();
+        this.coluna = simbolo.getColuna();
+    }
+
 
 }

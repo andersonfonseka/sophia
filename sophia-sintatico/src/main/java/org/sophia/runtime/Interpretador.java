@@ -47,13 +47,16 @@ public class Interpretador {
 
 	private ContextoExecucao contexto = new ContextoExecucao();
 
-	private final Scanner scanner = new Scanner(System.in);
+	private final EntradaSaida io;
 
 	private Programa programa;
+	
+	public Interpretador(Programa programa, EntradaSaida io) {
+	    this.programa = programa;
+	    this.io = io;
+	}
 
-	public void executar(Programa programa) {
-
-		this.programa = programa;
+	public void executar() {
 		
 		this.contexto.limpar();
 
@@ -99,7 +102,7 @@ public class Interpretador {
 			Object resultado = avaliar(se.getCondicao());
 
 			if (!(resultado instanceof Boolean)) {
-				throw new RuntimeException("A condição do SE deve resultar em um valor lógico.");
+				throw new ErroExecucao("A condição do SE deve resultar em um valor lógico.", se.getLinha(), se.getColuna());
 			}
 
 			if ((Boolean) resultado) {
@@ -150,7 +153,7 @@ public class Interpretador {
 			throw new RetornoFuncao(valor);
 		}
 
-		throw new RuntimeException("Comando não implementado.");
+		throw new ErroExecucao("Comando não implementado.", comando.getLinha(), comando.getColuna());
 	}
 
 	private void executarChamadaFuncao(ChamadaFuncao comando) {
@@ -240,7 +243,7 @@ public class Interpretador {
 				LiteralTexto lt = (LiteralTexto) expr;
 				
 				if (!p.getTipo().equalsIgnoreCase("TEXTO")) {
-					throw new RuntimeException("O argumento " + lt.getValor() + " da função " + funcao.getNome() + " deve ser do tipo " + p.getTipo() + ".");
+					throw new ErroExecucao("O argumento " + lt.getValor() + " da função " + funcao.getNome() + " deve ser do tipo " + p.getTipo() + ".", lt.getLinha(), lt.getColuna());
 				}
 			}
 			
@@ -279,7 +282,7 @@ public class Interpretador {
 	private void executarLeia(Leia comando) {
 
 		Variavel variavel = contexto.obter(comando.getIdentificador());
-		String texto = scanner.nextLine().trim();
+		String texto = io.ler();
 
 		switch (variavel.getTipo()) {
 
@@ -287,7 +290,7 @@ public class Interpretador {
 			try {
 				variavel.setValor(new BigDecimal(texto));
 			} catch (NumberFormatException e) {
-				throw new RuntimeException("Valor inválido para NUMERO: " + texto);
+				throw new ErroExecucao("Valor inválido para NUMERO: ", comando.getLinha(), comando.getColuna());
 			}
 		}
 
@@ -301,7 +304,7 @@ public class Interpretador {
 			} else if (texto.equalsIgnoreCase("falso") || texto.equalsIgnoreCase("false")) {
 				variavel.setValor(false);
 			} else {
-				throw new RuntimeException("Valor inválido para LOGICO: " + texto);
+				throw new ErroExecucao("Valor inválido para LOGICO: ", comando.getLinha(), comando.getColuna());
 			}
 		}
 		}
@@ -321,10 +324,10 @@ public class Interpretador {
 		Object valor = avaliar(escreva.getExpressao());
 
 		if (valor instanceof BigDecimal numero) {
-			System.out.println(numero.stripTrailingZeros().toPlainString());
+			io.escrever(numero.stripTrailingZeros().toPlainString());
 		} else {
 			String novoValor = String.valueOf(valor).replace("\"", " ");
-			System.out.println(texto(novoValor));
+			io.escrever(texto(novoValor));
 		}
 	}
 
@@ -357,8 +360,14 @@ public class Interpretador {
 		}
 
 		if (expressao instanceof Identificador) {
-			String nome = String.valueOf(((Identificador) expressao).getValor());
-			return contexto.obter(nome).getValor();
+			
+			try {
+
+				String nome = String.valueOf(((Identificador) expressao).getValor());
+				return contexto.obter(nome).getValor();
+			} catch (VariavelNaoDeclaradaException e) {
+				throw new ErroExecucao(e.getMessage(), expressao.getLinha(), expressao.getColuna());
+			}
 		}
 
 		if (expressao instanceof Soma soma) {
@@ -395,7 +404,7 @@ public class Interpretador {
 			BigDecimal direito = numero(divisao.getDireita());
 			
 			if (direito.compareTo(BigDecimal.ZERO) == 0) {
-			    throw new RuntimeException("Divisão por zero.");
+			    throw new ErroExecucao("Divisão por zero.\n", divisao.getLinha(), divisao.getColuna());
 			}
 
 			return esquerdo.divide(direito, 10, RoundingMode.HALF_UP);
@@ -473,7 +482,7 @@ public class Interpretador {
 		    return resultado;
 		}
 
-		throw new RuntimeException("Expressão desconhecida.");
+		throw new ErroExecucao("Expressão desconhecida.", expressao.getLinha(), expressao.getColuna());		
 
 	}
 

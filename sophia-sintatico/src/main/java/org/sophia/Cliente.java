@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 
 import org.sophia.compilador.ast.Programa;
 import org.sophia.lexico.AnalisadorLexico;
+import org.sophia.runtime.EntradaSaidaConsole;
 import org.sophia.runtime.Interpretador;
 import org.sophia.sintatico.AnalisadorSintatico;
 
@@ -32,7 +33,6 @@ public class Cliente {
 		    }
 
 		    AnalisadorLexico analisadorLexico = new AnalisadorLexico();
-		    Interpretador interpretador = new Interpretador();
 
 		    for (Path arquivo : files) {
 		        try {
@@ -47,8 +47,9 @@ public class Cliente {
 		            Programa programa = analisadorSintatico.analisar();
 
 		            System.out.println(programa);
-
-		            interpretador.executar(programa);
+		            
+				    Interpretador interpretador = new Interpretador(programa, new EntradaSaidaConsole());
+		            interpretador.executar();
 
 		        } catch (Exception e) {
 		            System.err.println("Erro ao processar o arquivo: " + arquivo);

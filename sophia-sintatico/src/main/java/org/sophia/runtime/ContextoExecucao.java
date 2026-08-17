@@ -33,11 +33,7 @@ public class ContextoExecucao {
             return pai.obter(nome);
         }
         
-        if (variavel == null) {
-        	throw new RuntimeException("Variável '" + nome + "' não foi declarada.");
-        }
-
-        return null;
+       	throw new VariavelNaoDeclaradaException(nome);
     }
     
     public void limpar() {

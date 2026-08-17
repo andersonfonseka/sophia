@@ -2,9 +2,7 @@ package org.sophia.sintatico;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.sophia.compilador.ast.Expressao;
 import org.sophia.compilador.ast.Programa;
@@ -43,6 +41,7 @@ import org.sophia.compilador.ast.operador.Soma;
 import org.sophia.compilador.ast.operador.Subtracao;
 import org.sophia.lexico.CategoriaSimbolo;
 import org.sophia.lexico.Simbolo;
+import org.sophia.runtime.ErroExecucao;
 
 public class AnalisadorSintatico {
 
@@ -102,6 +101,7 @@ public class AnalisadorSintatico {
 	    consumir(CategoriaSimbolo.IDENTIFICADOR);
 
 	    Funcao funcao = new Funcao(nome);
+	    	   funcao.setLocalizacao(atual());
 
 	    while (proximoEh("PARAMETRO")) {
 
@@ -151,7 +151,7 @@ public class AnalisadorSintatico {
 			}
 	    	
 	    	if (!existeRetorno) {
-	    		throw new RuntimeException("A função " + funcao.getNome() + " deve retornar um valor do tipo " + funcao.getTipoRetorno() + ".");
+	    		throw new ErroExecucao("A função " + funcao.getNome() + " deve retornar um valor do tipo " + funcao.getTipoRetorno() + ".\n", funcao.getLinha(), funcao.getColuna());
 	    	}
 	    }
 	    
@@ -166,19 +166,21 @@ public class AnalisadorSintatico {
 			
 			existeRetorno = true;
 			
-			if (ret.getExpressao() instanceof LiteralTexto && 
+			Expressao expr = ret.getExpressao();
+			
+			if (expr instanceof LiteralTexto && 
 					!funcao.getTipoRetorno().toString().equals("TEXTO")) {
-				throw new RuntimeException("A função " + funcao.getNome() + " deve retornar um valor do tipo " + funcao.getTipoRetorno() + ".");
+				throw new ErroExecucao("A função " + funcao.getNome() + " deve retornar um valor do tipo " + funcao.getTipoRetorno() + ".\n", funcao.getLinha(), funcao.getColuna());
 			}
 			
-			if (ret.getExpressao() instanceof LiteralNumero && 
+			if (expr instanceof LiteralNumero && 
 					!funcao.getTipoRetorno().toString().equals("NUMERO")) {
-				throw new RuntimeException("A função " + funcao.getNome() + " deve retornar um valor do tipo " + funcao.getTipoRetorno() + ".");
+				throw new ErroExecucao("A função " + funcao.getNome() + " deve retornar um valor do tipo " + funcao.getTipoRetorno() + ".\n", funcao.getLinha(), funcao.getColuna());
 			}
 			
-			if (ret.getExpressao() instanceof LiteralLogico && 
+			if (expr instanceof LiteralLogico && 
 					!funcao.getTipoRetorno().toString().equals("LOGICO")) {
-				throw new RuntimeException("A função " + funcao.getNome() + " deve retornar um valor do tipo " + funcao.getTipoRetorno() + ".");
+				throw new ErroExecucao("A função " + funcao.getNome() + " deve retornar um valor do tipo " + funcao.getTipoRetorno() + ".\n", funcao.getLinha(), funcao.getColuna());
 			}
 		}
 		return existeRetorno;
@@ -260,7 +262,7 @@ public class AnalisadorSintatico {
 	    Funcao funcao = this.programa.getFuncoes().get(nome);
 
 	    if (funcao == null) {
-	        throw new RuntimeException("A função" +nome  + " não foi declarada.");
+	        throw erro("A função" +nome  + " não foi declarada.");
 	    }
 
 	    ChamadaFuncao chamada = new ChamadaFuncao(nome);
@@ -303,7 +305,11 @@ public class AnalisadorSintatico {
 
 		consumir("escreva");
 		Expressao expressao = expressao();
-		return new Escreva(expressao);
+		
+		Escreva escreva = new Escreva(expressao);
+		escreva.setLocalizacao(atual());
+		
+		return escreva;
 
 	}
 
@@ -317,7 +323,10 @@ public class AnalisadorSintatico {
 
 		Expressao expressao = expressao();
 
-		return new Atribuicao(identificador, expressao);
+		Atribuicao atribuicao =  new Atribuicao(identificador, expressao);
+				   atribuicao.setLocalizacao(atual());
+		
+		return atribuicao;
 	}
 	
 	private Se se() {
@@ -342,7 +351,12 @@ public class AnalisadorSintatico {
 	    }
 
 	    consumir("FIM");
-	    return new Se(condicao, comandosVerdadeiros, comandosFalsos);
+	    
+	    
+	    Se se = new Se(condicao, comandosVerdadeiros, comandosFalsos);
+	       se.setLocalizacao(atual());
+	    
+	    return se;
 	}
 	
 	
@@ -399,7 +413,10 @@ public class AnalisadorSintatico {
 
 	    consumir("FIM");
 
-	    return new Enquanto(condicao, comandos);
+	    Enquanto enquanto = new Enquanto(condicao, comandos);
+	    		 enquanto.setLocalizacao(atual());
+	    
+	    return enquanto;
 	}
 	
 	private Para para() {
@@ -423,7 +440,11 @@ public class AnalisadorSintatico {
 	    }
 
 	    consumir("FIM");
-	    return new Para(variavel, inicio, fim, comandos);
+	    
+	    Para para = new Para(variavel, inicio, fim, comandos);
+	    	 para.setLocalizacao(atual());
+	    
+	    return para;
 	}
 
 	private String consumirIdentificador() {
@@ -548,18 +569,29 @@ public class AnalisadorSintatico {
 		case LITERAL_NUMERO:
 
 			avancar();
-
-			return new LiteralNumero(new BigDecimal(simbolo.getTexto()));
+			
+			LiteralNumero literalNumero = new LiteralNumero(new BigDecimal(simbolo.getTexto()));
+						  literalNumero.setLocalizacao(simbolo);
+			
+			return literalNumero;
 
 		case LITERAL_TEXTO:
 
 			avancar();
-
-			return new LiteralTexto(simbolo.getTexto());
+			
+			LiteralTexto literalTexto = new LiteralTexto(simbolo.getTexto());
+			literalTexto.setLocalizacao(simbolo);
+			
+			return literalTexto;
 
 		case LITERAL_LOGICO:
+
 			avancar();
-			return new LiteralLogico(simbolo.getTexto().equalsIgnoreCase("verdadeiro"));
+			
+			LiteralLogico literalLogico = new LiteralLogico(simbolo.getTexto().equalsIgnoreCase("verdadeiro"));
+			literalLogico.setLocalizacao(simbolo);
+			
+			return literalLogico;
 
 		case IDENTIFICADOR:
 		    
@@ -568,7 +600,12 @@ public class AnalisadorSintatico {
 		    }
 
 		    avancar();
-		    return new Identificador(simbolo.getTexto());
+		    
+		    
+		    Identificador identificador = new Identificador(simbolo.getTexto());
+		    identificador.setLocalizacao(simbolo);
+		    
+		    return identificador;
 
 		case ESTRUTURA:
 			avancar();
@@ -591,10 +628,11 @@ public class AnalisadorSintatico {
 	    Funcao funcao = this.programa.getFuncoes().get(nome);
 	    
 	    if (funcao == null) {
-	        throw new RuntimeException("A função " + nome  + " não foi declarada.");
+	        throw erro("A função " + nome  + " não foi declarada.");
 	    }
 
 	    ChamadaFuncaoExpressao chamada = new ChamadaFuncaoExpressao(nome);
+	    					   chamada.setLocalizacao(atual());
 
 	    for (Parametro parametro : funcao.getParametros()) {
 	        Expressao argumento = expressao();
@@ -605,7 +643,7 @@ public class AnalisadorSintatico {
 	    }
 	    
 	    if (funcao.getParametros().size() != chamada.getArgumentos().size()) {
-	    	throw new RuntimeException("A função " + funcao.getNome() + " espera " + funcao.getParametros().size() +  " argumentos, mas recebeu "  + chamada.getArgumentos().size() + ".");
+	    	throw new ErroExecucao("A função " + funcao.getNome() + " espera " + funcao.getParametros().size() +  " argumentos, mas recebeu "  + chamada.getArgumentos().size() + ".\n", funcao.getLinha(), funcao.getColuna());
 	    }
 
 	    return chamada;
@@ -754,9 +792,7 @@ public class AnalisadorSintatico {
 
 	private RuntimeException erro(String mensagem) {
 		Simbolo simbolo = atual();
-
-		return new RuntimeException(
-				"Erro sintático na linha " + simbolo.getLinha() + ", coluna " + simbolo.getColuna() + ": " + mensagem);
+		return new ErroExecucao("Erro sintático: \n" + mensagem + "\n", simbolo.getLinha(), simbolo.getColuna());
 	}
 
 }
