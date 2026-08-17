@@ -1,0 +1,18 @@
+programa "Fatorial"
+
+inicio
+
+    numero valor recebe 5
+    numero resultado recebe 1
+    numero contador recebe 1
+
+    enquanto contador menor ou igual a valor
+
+        resultado recebe resultado vezes contador
+        contador recebe contador mais 1
+
+    fim
+
+    escreva resultado
+
+fim

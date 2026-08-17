@@ -1,0 +1,13 @@
+programa "Tabuada"
+
+inicio
+    numero valor recebe 8
+    numero contador recebe 1
+    numero resultado recebe 0
+
+    enquanto contador menor ou igual a 10
+        resultado recebe valor vezes contador
+        escreva valor mais " x " mais contador mais "=" mais resultado
+        contador recebe contador mais 1
+    fim
+fim

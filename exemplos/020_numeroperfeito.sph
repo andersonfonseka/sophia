@@ -1,0 +1,22 @@
+programa "Numero Perfeito"
+
+inicio
+    numero valor recebe 6
+    numero divisor recebe 1
+    numero soma recebe 0
+    numero resto recebe 0
+
+    enquanto divisor menor que valor
+        resto recebe valor resto de divisor
+        se resto igual a 0
+            soma recebe soma mais divisor
+        fim
+        divisor recebe divisor mais 1
+    fim
+
+    se soma igual a valor
+        escreva valor mais "eh um numero perfeito"
+    senao
+        escreva valor mais "nao e numero perfeito"
+    fim
+fim

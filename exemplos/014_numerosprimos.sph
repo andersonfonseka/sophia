@@ -1,0 +1,34 @@
+programa "Numeros Primos"
+
+inicio
+    numero limite recebe 20
+    numero candidato recebe 2
+    numero divisor recebe 2
+    numero resto recebe 0
+    logico primo recebe verdadeiro
+
+    escreva "Até que numero voce deseja calcular os numeros primos?"
+    leia limite
+
+    enquanto candidato menor ou igual a limite
+
+        divisor recebe 2
+        primo recebe verdadeiro
+
+        enquanto divisor menor que candidato
+            resto recebe candidato resto de divisor
+
+            se resto igual a 0
+                primo recebe falso
+            fim
+
+            divisor recebe divisor mais 1
+        fim
+
+        se primo igual a verdadeiro
+            escreva candidato
+        fim
+
+        candidato recebe candidato mais 1
+    fim
+fim

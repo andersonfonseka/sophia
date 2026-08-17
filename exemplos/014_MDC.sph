@@ -1,0 +1,14 @@
+programa "MDC"
+
+inicio
+    numero primeiro recebe 48
+    numero segundo recebe 18
+    numero resto recebe 0
+
+    enquanto segundo diferente de 0
+        resto recebe primeiro resto de segundo
+        primeiro recebe segundo
+        segundo recebe resto
+    fim
+    escreva primeiro
+fim

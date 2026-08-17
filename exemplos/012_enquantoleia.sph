@@ -1,0 +1,13 @@
+programa "teste"
+
+inicio 
+    texto nome recebe "."
+    numero contador recebe 0
+    
+    enquanto contador menor que 5
+            leia nome
+            escreva nome
+            contador recebe contador mais 1
+    fim     
+
+fim

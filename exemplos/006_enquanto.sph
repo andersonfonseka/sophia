@@ -1,0 +1,16 @@
+programa "Enquanto"
+
+inicio
+    numero i recebe 1
+
+    enquanto i menor ou igual a 10
+
+        se resto de i dividido por 2 igual a 0
+            escreva i mais "par"
+        senao
+            escreva i mais "impar"
+        fim
+
+        i recebe i mais 1
+    fim
+fim

@@ -1,0 +1,24 @@
+programa "Fibonacci"
+
+inicio
+    numero quantidade recebe 0
+
+    escreva "Quantos termos voçe deseja calcular?"
+    leia quantidade
+
+    numero anterior recebe 0
+    numero atual recebe 1
+    numero proximo recebe 0
+    numero contador recebe 1
+
+    enquanto contador menor ou igual a quantidade
+
+        escreva atual
+
+        proximo recebe anterior mais atual
+        anterior recebe atual
+        atual recebe proximo
+
+        contador recebe contador mais 1
+    fim
+fim

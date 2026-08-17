@@ -3,6 +3,8 @@ programa "Se"
 inicio
     numero idade recebe 20
 
+    leia idade
+
     se idade maior ou igual a 18
         escreva "Maior"
     senao
