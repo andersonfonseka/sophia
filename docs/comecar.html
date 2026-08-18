@@ -1,30 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comece agora — Sophia</title>
-
-    <link rel="stylesheet"
-          href="css/style.css">
-
+    <meta name="description"
+          content="Comece a programar com Sophia 1.0.0 usando a Sophia IDE, a CLI e o REPL.">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
 <header class="header">
-
     <div class="container nav">
-
-        <a href="index.html"
-           class="logo">
-            Sophia
-        </a>
+        <a href="index.html" class="logo">Sophia</a>
 
         <nav>
             <a href="linguagem.html">A Sophia</a>
@@ -32,96 +21,212 @@
             <a href="exemplos.html">Exemplos</a>
             <a href="ide.html">IDE</a>
         </nav>
-
     </div>
-
 </header>
-
 
 <main>
 
 <section class="section">
+    <div class="container">
+        <h1>Comece agora</h1>
 
-<div class="container">
+        <p>
+            Você pode começar a programar com Sophia de duas formas:
+            usando a <strong>Sophia IDE</strong> ou utilizando a
+            <strong>CLI e o REPL</strong>.
+        </p>
+    </div>
+</section>
 
-<h1>Comece agora</h1>
+<section class="section alternate">
+    <div class="container">
+        <h2>1. Requisitos</h2>
 
-<h2>1. Requisitos</h2>
+        <p>
+            Para executar a Sophia 1.0.0, você precisa de uma instalação
+            do <strong>Java 17+</strong> compatível com a versão utilizada
+            na distribuição.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2>2. Escolha como começar</h2>
+
+        <div class="features">
+
+            <div class="feature">
+                <h3>Sophia IDE</h3>
+                <p>
+                    A forma mais simples de começar. Escreva, organize,
+                    salve e execute seus programas em um ambiente visual.
+                </p>
+
+                <a class="button primary" href="ide.html">
+                    Conhecer a Sophia IDE
+                </a>
+            </div>
+
+            <div class="feature">
+                <h3>CLI e REPL</h3>
+                <p>
+                    Para quem prefere trabalhar pelo terminal ou
+                    experimentar a linguagem de forma interativa.
+                </p>
+
+                <a class="button secondary" href="#repl">
+                    Ver o REPL
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section alternate">
+    <div class="container">
+        <h2>3. Baixe a Sophia</h2>
+
+        <p>
+            A Sophia IDE possui uma distribuição própria para facilitar
+            o primeiro contato com a linguagem.
+        </p>
+
+        <div class="buttons">
+
+            <a class="button primary"
+               href="https://github.com/andersonfonseka/sophia/tree/main/dist"
+               download
+               onclick="if (typeof gtag === 'function') gtag('event', 'download_ide', {version: '0.1.0'});">
+                Download Sophia IDE 0.1.0
+            </a>
+
+            <a class="button secondary"
+               href="https://github.com/andersonfonseka/sophia/tree/main/dist"
+               download
+               onclick="if (typeof gtag === 'function') gtag('event', 'download_cli', {version: '1.0.0'});">
+                Download Sophia CLI 1.0.0
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2>4. Execute a Sophia</h2>
 
 <p>
-Para executar a Sophia 1.0.0 você precisa apenas de uma
-instalação do Java 17+ compatível com a versão utilizada na
-distribuição.
+    Depois de baixar a Sophia, abra um terminal na pasta onde está o arquivo
+    <code>sophia-cli-1.0.0.jar</code> e execute:
 </p>
-
-
-<h2>2. Baixe a Sophia</h2>
-
-<p>
-Baixe o arquivo executável na Release 1.0.0:
-</p>
-
-<p>
-
-<a class="button primary"
-   href="https://github.com/andersonfonseka/sophia/tree/main/dist"
-   target="_blank">
-Download Sophia 1.0.0
-</a>
-
-</p>
-
-
-<h2>3. Execute o REPL</h2>
 
 <div class="terminal">
+<pre><code>java -jar sophia-cli-1.0.0.jar</code></pre>
+</div>
 
+<p>
+    Para iniciar o ambiente interativo da Sophia (REPL), execute:
+</p>
+
+<div class="terminal">
 <pre><code>java -jar sophia-cli-1.0.0.jar repl</code></pre>
-
 </div>
 
+<p>
+    A partir daí você pode escrever comandos Sophia diretamente no REPL.
+</p>
 
-<h2>4. Escreva seu primeiro programa</h2>
+<h2>4.1 Escreva seu primeiro programa</h2>
 
-<div class="terminal">
+<pre><code>programa "Primeiro Programa"
 
-<pre><code>numero idade recebe 20
+inicio
 
-escreva idade</code></pre>
+    numero idade recebe 20
 
-</div>
+    escreva idade
 
+fim</code></pre>
 
-<h2>5. Experimente</h2>
+        <p>
+            Na Sophia, as variáveis são declaradas e inicializadas
+            explicitamente. A linguagem utiliza palavras em português
+            para expressar a lógica do programa.
+        </p>
+    </div>
+</section>
 
-<div class="terminal">
+<section class="section alternate">
+    <div class="container">
+        <h2>5. Execute</h2>
 
-<pre><code>sophia&gt; numero idade recebe 20
-sophia&gt; escreva idade
+        <p>
+            Na Sophia IDE, clique em <strong>Executar</strong>.
+            O resultado aparecerá na área de saída da própria IDE.
+        </p>
 
-20</code></pre>
+        <div class="terminal">
+<pre><code>20</code></pre>
+        </div>
+    </div>
+</section>
 
-</div>
+<section class="section" id="repl">
+    <div class="container">
+        <h2>6. Experimente o REPL</h2>
 
-</div>
+        <p>
+            O REPL permite experimentar comandos Sophia diretamente
+            no terminal, sem precisar criar um programa completo.
+        </p>
 
+<pre><code>sophia&gt; numero idade recebe 51
+sophia&gt; se idade maior ou igual a 18
+... escreva "Maior"
+... senao
+... escreva "Menor"
+... fim
+Maior
+sophia&gt;</code></pre>
+    </div>
+</section>
+
+<section class="section alternate">
+    <div class="container">
+        <h2>7. Continue aprendendo</h2>
+
+        <p>
+            Agora que você conhece o caminho básico, explore os exemplos
+            e conheça os recursos da linguagem.
+        </p>
+
+        <div class="buttons">
+            <a class="button primary" href="exemplos.html">
+                Ver exemplos
+            </a>
+
+            <a class="button secondary" href="linguagem.html">
+                Conhecer a linguagem
+            </a>
+        </div>
+    </div>
 </section>
 
 </main>
 
-
 <footer>
+    <div class="container">
+        <strong>Sophia Programming Language</strong>
 
-<div class="container">
+        <p>Sophia 1.0.0 · Sophia IDE 0.1.0</p>
 
-<strong>Sophia Programming Language</strong>
-
-<p>Sophia 1.0.0</p>
-
-</div>
-
+        <p>
+            Uma linguagem de programação educacional em português.
+        </p>
+    </div>
 </footer>
 
 </body>
-
 </html>
