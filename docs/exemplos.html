@@ -2,52 +2,51 @@
 <html lang="pt-BR">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
+    <title>Exemplos — Sophia Programming Language</title>
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+    <meta
+        name="description"
+        content="Exemplos de programas e algoritmos escritos em Sophia 1.0.0."
+    >
 
-<title>Sophia Programming Language</title>
-<meta name="description"
-          content="Comece a programar com Sophia 1.0.0 usando a Sophia IDE, a CLI e o REPL.">
+    <link rel="stylesheet" href="css/style.css">
 
-<link rel="stylesheet"
-      href="css/style.css">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZQHJ5NRBP1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-ZQHJ5NRBP1');
+    </script>
 </head>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZQHJ5NRBP1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-ZQHJ5NRBP1');
-</script>
 
 <body>
 
 <header class="header">
 
-<div class="container nav">
+    <div class="container nav">
 
-<a href="index.html"
-   class="logo">
-   Sophia
-</a>
+        <a href="index.html" class="logo">
+            Sophia
+        </a>
 
-<nav>
+        <nav>
+            <a href="linguagem.html">A Sophia</a>
+            <a href="comecar.html">Comece agora</a>
+            <a href="exemplos.html">Exemplos</a>
+            <a href="ide.html">IDE</a>
+        </nav>
 
-<a href="linguagem.html">A Sophia</a>
-<a href="comecar.html">Comece agora</a>
-<a href="exemplos.html">Exemplos</a>
-<a href="ide.html">IDE</a>
-
-</nav>
-
-</div>
+    </div>
 
 </header>
 
@@ -56,97 +55,545 @@
 
 <section class="section">
 
-<div class="container">
+    <div class="container">
 
-<h1>Exemplos</h1>
+        <h1>Exemplos</h1>
+
+        <p>
+            Os exemplos da Sophia foram organizados como uma trilha
+            progressiva. Comece pelos fundamentos e avance até algoritmos
+            que combinam diferentes recursos da linguagem.
+        </p>
+
+        <p>
+            A ideia não é apenas mostrar código, mas permitir que você
+            compreenda como a lógica de um programa pode ser expressa
+            em Sophia.
+        </p>
+
+    </div>
+
+</section>
 
 
-<h2>Variáveis</h2>
+<section class="section alternate">
 
-<div class="terminal">
+    <div class="container">
 
-<pre><code>numero idade recebe 20
+        <h2>1. Fundamentos</h2>
 
-escreva idade</code></pre>
+        <p>
+            Antes de construir algoritmos, conheça os elementos básicos
+            da linguagem.
+        </p>
 
-</div>
+
+        <h3>Tipos e variáveis</h3>
+
+        <div class="terminal">
+<pre><code>texto nome recebe "Sophia"
+numero idade recebe 12
+logico ativa recebe verdadeiro
+
+escreva nome
+escreva idade
+escreva ativa</code></pre>
+        </div>
 
 
-<h2>Condicionais</h2>
+        <h3>Operações</h3>
 
-<div class="terminal">
+        <div class="terminal">
+<pre><code>escreva 5 mais 3
+escreva 10 menos 2
+escreva 10 vezes 2
+escreva 10 dividido por 2
+escreva 10 resto de 3</code></pre>
+        </div>
 
-<pre><code>numero idade recebe 20
+    </div>
 
-se idade maior ou igual a 18
-    escreva "Maior de idade"
-senao
-    escreva "Menor de idade"
+</section>
+
+
+<section class="section">
+
+    <div class="container">
+
+        <h2>2. Decisão</h2>
+
+        <p>
+            A estrutura <code>se</code> permite que o programa tome
+            decisões a partir de condições.
+        </p>
+
+        <div class="terminal">
+<pre><code>programa "Maioridade"
+
+inicio
+
+    numero idade recebe 20
+
+    se idade maior ou igual a 18
+        escreva "Maior de idade"
+    senao
+        escreva "Menor de idade"
+    fim
+
 fim</code></pre>
+        </div>
 
-</div>
+    </div>
+
+</section>
 
 
-<h2>Repetição</h2>
+<section class="section alternate">
 
-<div class="terminal">
+    <div class="container">
 
-<pre><code>numero i recebe 0
+        <h2>3. Repetição</h2>
 
-enquanto i menor ou igual a 5
-    escreva i
-    i recebe i mais 1
+        <p>
+            Com <code>enquanto</code>, podemos repetir um conjunto de
+            comandos enquanto uma condição for verdadeira.
+        </p>
+
+        <div class="terminal">
+<pre><code>programa "Contagem"
+
+inicio
+
+    numero i recebe 0
+
+    enquanto i menor ou igual a 5
+        escreva i
+        i recebe i mais 1
+    fim
+
 fim</code></pre>
+        </div>
 
-</div>
+        <p>
+            Esse é um dos exemplos mais importantes para compreender
+            algoritmos iterativos.
+        </p>
+
+    </div>
+
+</section>
 
 
-<h2>Funções</h2>
+<section class="section">
 
-<div class="terminal">
+    <div class="container">
 
+        <h2>4. Funções</h2>
+
+        <p>
+            Funções permitem separar uma lógica específica e reutilizá-la
+            em diferentes partes do programa.
+        </p>
+
+        <div class="terminal">
 <pre><code>funcao dobro
+
     parametro numero valor
     retorno numero
-    inicio
-        retorne valor vezes 2
-    fim
+
+inicio
+
+    retorne valor vezes 2
+
+fim
 
 programa "Exemplo"
 
 inicio
+
     escreva dobro 21
+
 fim</code></pre>
+        </div>
 
-</div>
+    </div>
+
+</section>
 
 
-<h2>Funções chamando funções</h2>
+<section class="section alternate">
 
-<div class="terminal">
+    <div class="container">
 
-<pre><code>funcao ola
-    parametro texto nome
-    inicio
-        escreva nome
-    fim
+        <h2>5. Algoritmos</h2>
 
-funcao chamada
-    parametro texto palavra
-    inicio
-        escreva palavra
-        ola palavra
-    fim
+        <p>
+            Depois dos fundamentos, podemos combinar variáveis, operações,
+            decisões, repetição e funções para construir algoritmos.
+        </p>
 
-programa "Teste"
+        <div class="features">
+
+            <div class="feature">
+                <h3>Fibonacci</h3>
+                <p>
+                    Construa uma sequência em que cada termo depende
+                    dos anteriores.
+                </p>
+                <a href="#fibonacci"
+                   onclick="gtag('event', 'example_click', {example: 'fibonacci'});">
+                    Ver exemplo
+                </a>
+            </div>
+
+            <div class="feature">
+                <h3>Números primos</h3>
+                <p>
+                    Verifique quais números possuem apenas dois
+                    divisores.
+                </p>
+                <a href="#primos"
+                   onclick="gtag('event', 'example_click', {example: 'primos'});">
+                    Ver exemplo
+                </a>
+            </div>
+
+
+
+            <div class="feature">
+                <h3>Potência</h3>
+                <p>
+                    Calcule uma potência utilizando repetição.
+                </p>
+                <a href="#potencia"
+                   onclick="gtag('event', 'example_click', {example: 'potencia'});">
+                    Ver exemplo
+                </a>
+            </div>
+
+            <div class="feature">
+                <h3>Tabuada</h3>
+                <p>
+                    Use repetição para produzir uma tabuada.
+                </p>
+                <a href="#tabuada"
+                   onclick="gtag('event', 'example_click', {example: 'tabuada'});">
+                    Ver exemplo
+                </a>
+            </div>
+
+            <div class="feature">
+                <h3>Sequências numéricas</h3>
+                <p>
+                    Gere sequências aplicando regras matemáticas
+                    aos valores.
+                </p>
+                <a href="#sequencias"
+                   onclick="gtag('event', 'example_click', {example: 'sequencias'});">
+                    Ver exemplo
+                </a>
+            </div>
+
+            <div class="feature">
+                <h3>Número perfeito</h3>
+                <p>
+                    Verifique se um número é igual à soma dos seus
+                    divisores próprios.
+                </p>
+                <a href="#perfeito"
+                   onclick="gtag('event', 'example_click', {example: 'numero_perfeito'});">
+                    Ver exemplo
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section" id="fibonacci">
+
+    <div class="container">
+
+        <h2>Fibonacci</h2>
+
+        <p>
+            A sequência de Fibonacci é um ótimo exercício para trabalhar
+            estado, repetição e atualização de variáveis.
+        </p>
+
+        <div class="terminal">
+<pre><code>programa "Fibonacci"
 
 inicio
-    chamada "Joao"
+
+    numero limite recebe 10
+    numero atual recebe 0
+    numero proximo recebe 1
+    numero contador recebe 0
+    numero proximoValor recebe 0
+
+    enquanto contador menor que limite
+
+        escreva atual
+
+        proximoValor recebe atual mais proximo
+        atual recebe proximo
+        proximo recebe proximoValor
+        contador recebe contador mais 1
+
+    fim
+
 fim</code></pre>
+        </div>
 
-</div>
+    </div>
 
-</div>
+</section>
+
+
+<section class="section alternate" id="primos">
+
+    <div class="container">
+
+        <h2>Números primos</h2>
+
+        <p>
+            Este algoritmo combina duas estruturas de repetição com
+            uma decisão para verificar os divisores de cada candidato.
+        </p>
+
+        <div class="terminal">
+<pre><code>programa "Numeros Primos"
+
+inicio
+
+    numero limite recebe 20
+    numero candidato recebe 2
+    numero divisor recebe 2
+    numero resto recebe 0
+    logico primo recebe verdadeiro
+
+    enquanto candidato menor ou igual a limite
+
+        divisor recebe 2
+        primo recebe verdadeiro
+
+        enquanto divisor menor que candidato
+
+            resto recebe candidato resto de divisor
+
+            se resto igual a 0
+                primo recebe falso
+            fim
+
+            divisor recebe divisor mais 1
+
+        fim
+
+        se primo igual a verdadeiro
+            escreva candidato
+        fim
+
+        candidato recebe candidato mais 1
+
+    fim
+
+fim</code></pre>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+<section class="section alternate" id="potencia">
+
+    <div class="container">
+
+        <h2>Potência</h2>
+
+        <p>
+            Uma potência pode ser calculada pela multiplicação sucessiva
+            da base.
+        </p>
+
+        <div class="terminal">
+<pre><code>programa "Potencia"
+
+inicio
+
+    numero base recebe 2
+    numero expoente recebe 5
+    numero resultado recebe 1
+    numero contador recebe 0
+
+    enquanto contador menor que expoente
+
+        resultado recebe resultado vezes base
+        contador recebe contador mais 1
+
+    fim
+
+    escreva resultado
+
+fim</code></pre>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section" id="tabuada">
+
+    <div class="container">
+
+        <h2>Tabuada</h2>
+
+        <p>
+            Um exercício simples para praticar repetição e operações
+            aritméticas.
+        </p>
+
+        <div class="terminal">
+<pre><code>programa "Tabuada"
+
+inicio
+
+    numero numeroTabuada recebe 7
+    numero contador recebe 1
+    numero resultado recebe 0
+
+    enquanto contador menor ou igual a 10
+
+        resultado recebe numeroTabuada vezes contador
+        escreva resultado
+        contador recebe contador mais 1
+
+    fim
+
+fim</code></pre>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section alternate" id="sequencias">
+
+    <div class="container">
+
+        <h2>Sequências numéricas</h2>
+
+        <p>
+            Sequências são excelentes para desenvolver o raciocínio
+            necessário para identificar e implementar uma regra.
+        </p>
+
+        <div class="terminal">
+<pre><code>programa "Sequencia"
+
+inicio
+
+    numero valor recebe 2
+    numero contador recebe 0
+
+    enquanto contador menor que 10
+
+        escreva valor
+        valor recebe valor mais 2
+        contador recebe contador mais 1
+
+    fim
+
+fim</code></pre>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section" id="perfeito">
+
+    <div class="container">
+
+        <h2>Número perfeito</h2>
+
+        <p>
+            Um número perfeito é igual à soma de seus divisores próprios.
+            O algoritmo exercita divisores, acumulação e repetição.
+        </p>
+
+        <div class="terminal">
+<pre><code>programa "Numero Perfeito"
+
+inicio
+
+    numero numeroVerificado recebe 28
+    numero divisor recebe 1
+    numero soma recebe 0
+
+    enquanto divisor menor que numeroVerificado
+
+        se numeroVerificado resto de divisor igual a 0
+            soma recebe soma mais divisor
+        fim
+
+        divisor recebe divisor mais 1
+
+    fim
+
+    se soma igual a numeroVerificado
+        escreva "Perfeito"
+    senao
+        escreva "Nao perfeito"
+    fim
+
+fim</code></pre>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section alternate">
+
+    <div class="container">
+
+        <h2>Continue praticando</h2>
+
+        <p>
+            Todos esses exemplos podem ser executados na Sophia IDE.
+            Experimente modificar os valores, alterar as condições e
+            observar como o resultado muda.
+        </p>
+
+        <div class="buttons">
+
+            <a class="button primary"
+               href="ide.html"
+               onclick="gtag('event', 'ide_from_examples');">
+                Conhecer a Sophia IDE
+            </a>
+
+            <a class="button secondary"
+               href="comecar.html"
+               onclick="gtag('event', 'start_from_examples');">
+                Começar agora
+            </a>
+
+        </div>
+
+    </div>
 
 </section>
 
@@ -155,16 +602,21 @@ fim</code></pre>
 
 <footer>
 
-<div class="container">
+    <div class="container">
 
-<strong>Sophia Programming Language</strong>
+        <strong>Sophia Programming Language</strong>
 
-<p>Sophia 1.0.0</p>
+        <p>
+            Sophia 1.0.0 · Sophia IDE 0.1.0
+        </p>
 
-</div>
+        <p>
+            Uma linguagem de programação educacional em português.
+        </p>
+
+    </div>
 
 </footer>
 
 </body>
-
 </html>
