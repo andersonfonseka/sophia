@@ -1,0 +1,25 @@
+programa "Media"
+
+inicio
+
+lista numeros recebe 5
+
+numeros em 0 recebe 10
+numeros em 1 recebe 20
+numeros em 2 recebe 30
+numeros em 3 recebe 40
+numeros em 4 recebe 50
+
+numero soma recebe 0
+
+para i de 0 ate 4
+    numero valor recebe numeros em i
+    soma recebe soma mais valor
+fim
+
+numero media recebe soma
+media recebe media dividido por 5
+
+escreva media
+
+fim

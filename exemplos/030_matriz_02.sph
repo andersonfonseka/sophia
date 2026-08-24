@@ -1,0 +1,34 @@
+programa "Matriz"
+
+inicio
+
+lista matriz recebe 9
+
+matriz em 0 recebe 1
+matriz em 1 recebe 2
+matriz em 2 recebe 3
+matriz em 3 recebe 4
+matriz em 4 recebe 5
+matriz em 5 recebe 6
+matriz em 6 recebe 7
+matriz em 7 recebe 8
+matriz em 8 recebe 9
+
+numero linha recebe 0
+numero coluna recebe 0
+numero posicao recebe 0
+
+para linha de 0 ate 2
+
+    para coluna de 0 ate 2
+
+        posicao recebe linha
+        posicao recebe posicao vezes 3
+        posicao recebe posicao mais coluna
+
+        escreva matriz em posicao
+
+    fim
+fim
+
+fim

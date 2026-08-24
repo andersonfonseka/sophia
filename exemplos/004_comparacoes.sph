@@ -7,4 +7,6 @@ inicio
     escreva 10 diferente de 20
     escreva 10 maior ou igual a 10
     escreva 10 menor ou igual a 9
+    escreva "ANDERSON" menor que "SANDRA"
+    escreva "SANDRA" maior que "SOPHIA"
 fim

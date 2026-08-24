@@ -1,0 +1,37 @@
+programa "Busca"
+
+inicio
+
+lista numeros recebe 5
+
+numeros em 0 recebe 10
+numeros em 1 recebe 20
+numeros em 2 recebe 30
+numeros em 3 recebe 40
+numeros em 4 recebe 50
+
+numero procurado recebe 20
+numero encontrado recebe 0
+
+numero enc1res recebe 1
+numero enc0res recebe 0
+
+para i de 0 ate 4
+
+    numero buscado recebe numeros em i
+
+    se buscado igual a procurado
+        encontrado recebe 1
+    fim
+
+fim
+
+se encontrado igual a enc1res
+    escreva procurado mais "Encontrado"
+fim
+
+se encontrado igual a enc0res
+    escreva procurado mais "Nao encontrado"
+fim
+
+fim

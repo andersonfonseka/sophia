@@ -1,0 +1,24 @@
+programa "Troca"
+
+inicio
+
+lista numeros recebe 4
+
+numeros em 0 recebe 10
+numeros em 1 recebe 20
+numeros em 2 recebe 30
+numeros em 3 recebe 40
+
+numero temporario recebe 0
+numero primeiro recebe 1
+numero segundo recebe numeros em 3
+
+temporario recebe numeros em 1
+numeros em primeiro recebe segundo
+numeros em 3 recebe temporario
+
+para i de 0 ate 3
+    escreva numeros em i
+fim
+
+fim

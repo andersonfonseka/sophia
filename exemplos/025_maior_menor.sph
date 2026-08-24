@@ -1,0 +1,33 @@
+programa "MaiorMenor"
+
+inicio
+
+lista numeros recebe 5
+
+numeros em 0 recebe 30
+numeros em 1 recebe 10
+numeros em 2 recebe 50
+numeros em 3 recebe 20
+numeros em 4 recebe 40
+
+numero maior recebe numeros em 0
+numero menor recebe numeros em 0
+
+para i de 1 ate 4
+
+    numero comparador recebe numeros em i
+
+    se comparador maior que maior
+        maior recebe numeros em i
+    fim
+
+    se comparador menor que menor
+        menor recebe numeros em i
+    fim
+
+fim
+
+escreva maior
+escreva menor
+
+fim

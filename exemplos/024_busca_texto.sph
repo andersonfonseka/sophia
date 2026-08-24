@@ -1,0 +1,37 @@
+programa "Busca"
+
+inicio
+
+lista nomes recebe 5
+
+nomes em 0 recebe "Anderson"
+nomes em 1 recebe "Maria"
+nomes em 2 recebe "Sophia"
+nomes em 3 recebe "Angelica"
+nomes em 4 recebe "Ana"
+
+texto procurado recebe "Sophia"
+numero encontrado recebe 0
+
+numero valida1 recebe 1
+numero valida0 recebe 0
+
+para i de 0 ate 4
+
+    texto buscado recebe nomes em i
+
+    se buscado igual a procurado
+        encontrado recebe 1
+    fim
+
+fim
+
+se encontrado igual a valida1
+    escreva procurado mais "Encontrado"
+fim
+
+se encontrado igual a valida0
+    escreva procurado mais "Nao encontrado"
+fim
+
+fim
