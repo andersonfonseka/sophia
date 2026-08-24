@@ -4,7 +4,8 @@ public enum TipoVariavel {
     
 	NUMERO("NUMERO"),
     TEXTO("TEXTO"),
-    LOGICO("LOGICO");
+    LOGICO("LOGICO"),
+    LISTA("LISTA");
 
 	TipoVariavel(String string) {}
 }

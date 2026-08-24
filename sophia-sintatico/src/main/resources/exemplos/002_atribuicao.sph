@@ -1,0 +1,12 @@
+programa "Atribuicao"
+
+inicio
+
+    numero contador recebe 1
+
+    contador recebe contador mais 1
+    contador recebe contador mais 1
+
+    escreva contador
+
+fim

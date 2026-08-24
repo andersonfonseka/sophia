@@ -14,8 +14,7 @@ public class Vocabulario {
 		palavras.put("FIM", CategoriaSimbolo.ESTRUTURA);
 
 		palavras.put("COMENTARIO", CategoriaSimbolo.COMENTARIO);
-		
-		
+				
 		palavras.put("NUMERO", CategoriaSimbolo.TIPO);
 		palavras.put("TEXTO", CategoriaSimbolo.TIPO);
 		palavras.put("LOGICO", CategoriaSimbolo.TIPO);

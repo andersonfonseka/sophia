@@ -2,7 +2,11 @@ package org.sophia.runtime;
 
 public class ErroExecucao extends RuntimeException {
 
-    private final int linha;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private final int linha;
     private final int coluna;
 
     public ErroExecucao(

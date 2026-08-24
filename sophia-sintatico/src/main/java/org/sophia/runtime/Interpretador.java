@@ -5,7 +5,6 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
 
 import org.sophia.compilador.ast.Expressao;
 import org.sophia.compilador.ast.Programa;
@@ -28,7 +27,6 @@ import org.sophia.compilador.ast.comparador.Maior;
 import org.sophia.compilador.ast.comparador.MaiorOuIgual;
 import org.sophia.compilador.ast.comparador.Menor;
 import org.sophia.compilador.ast.comparador.MenorOuIgual;
-import org.sophia.compilador.ast.excecoes.Retorno;
 import org.sophia.compilador.ast.expressao.Identificador;
 import org.sophia.compilador.ast.expressao.LiteralLogico;
 import org.sophia.compilador.ast.expressao.LiteralNumero;
@@ -251,11 +249,6 @@ public class Interpretador {
 		}
 	}
 	
-	private void executarRetorne(Retorne comando) {
-	   Object valor = avaliar(comando.getExpressao());
-		throw new Retorno(valor);
-	}
-
 	private void validarTipoRetorno(Funcao funcao, Object valor) {
 		
 		TipoVariavel tipo = funcao.getTipoRetorno();
@@ -268,6 +261,7 @@ public class Interpretador {
 	        case TEXTO -> valor instanceof String;
 	        case NUMERO -> valor instanceof BigDecimal;
 	        case LOGICO -> valor instanceof Boolean;
+	        case LISTA -> valor instanceof Object;
 	    };
 
 	    if (!valido) {
@@ -314,7 +308,32 @@ public class Interpretador {
 
 		Object valor = avaliar(declaracao.getValor());
 
-		Variavel variavel = new Variavel(declaracao.getTipo(), valor);
+		Variavel variavel = null;
+		
+		if (declaracao.getPosicao() != null) {
+			
+			Object[] valores = (Object[]) valor;
+			
+			
+			BigDecimal pos = null;
+			
+			if (declaracao.getPosicao() instanceof Identificador) {
+				
+				if (contexto.obter(String.valueOf(declaracao.getPosicao().getValor())).getValor() instanceof BigDecimal) {
+					pos = (BigDecimal) contexto.obter(String.valueOf(declaracao.getPosicao().getValor())).getValor();
+				} else {
+					Integer intPos = (int) contexto.obter(String.valueOf(declaracao.getPosicao().getValor())).getValor();
+					pos = new BigDecimal(intPos);
+				}
+				
+			} else {
+			    pos = (BigDecimal) declaracao.getPosicao().getValor();	
+			}
+			
+			variavel = new Variavel(declaracao.getTipo(), declaracao.getNome(), valores[pos.intValue()]);
+		} else {
+			variavel = new Variavel(declaracao.getTipo(), declaracao.getNome(), valor);
+		}
 
 		contexto.declarar(declaracao.getNome(), variavel);
 	}
@@ -325,9 +344,23 @@ public class Interpretador {
 
 		if (valor instanceof BigDecimal numero) {
 			io.escrever(numero.stripTrailingZeros().toPlainString());
+		} else if (valor instanceof Object[]){
+			Object[] valores = (Object[]) valor;
+			
+			BigDecimal pos = null;
+			
+			if (escreva.getPosicao() instanceof Identificador) {
+				Integer intPos = (int) contexto.obter(String.valueOf(escreva.getPosicao().getValor())).getValor();
+				pos = new BigDecimal(intPos);
+			} else {
+			    pos = (BigDecimal) escreva.getPosicao().getValor();	
+			}
+
+			String novoValor = String.valueOf(valores[pos.intValue()]).replace("\"", " ");
+			io.escrever(texto(novoValor.trim()));
 		} else {
 			String novoValor = String.valueOf(valor).replace("\"", " ");
-			io.escrever(texto(novoValor));
+			io.escrever(texto(novoValor.trim()));
 		}
 	}
 
@@ -336,7 +369,20 @@ public class Interpretador {
 		Object valor = avaliar(atribuicao.getExpressao());
 
 		Variavel variavel = contexto.obter(String.valueOf(atribuicao.getIdentificador().getValor()));
-		variavel.setValor(valor);
+		
+		if (atribuicao.getPosicao() != null) {
+			
+			if (valor instanceof Object[]) {
+				Object[] obj = (Object[]) valor;
+				variavel.setValor(obj[numero(atribuicao.getPosicao()).intValue()]);
+			} else {
+				variavel.setValor(numero(atribuicao.getPosicao()), valor);	
+			}
+		
+		} else {
+			variavel.setValor(valor);
+		}
+		
 	}
 
 	private void executar(List<Comando> comandos) {
@@ -364,7 +410,15 @@ public class Interpretador {
 			try {
 
 				String nome = String.valueOf(((Identificador) expressao).getValor());
-				return contexto.obter(nome).getValor();
+				
+				Variavel variavel = contexto.obter(nome);
+				
+				if (variavel.isColecaoNula()) {
+					return variavel.getValor();
+				} else {
+					return variavel.getColecao();
+				}
+				
 			} catch (VariavelNaoDeclaradaException e) {
 				throw new ErroExecucao(e.getMessage(), expressao.getLinha(), expressao.getColuna());
 			}
@@ -419,33 +473,27 @@ public class Interpretador {
 		}
 
 		if (expressao instanceof Igual igual) {
-			return iguais(avaliar(igual.getEsquerda()), avaliar(igual.getDireita()));
+			return comparar(igual.getEsquerda(), igual.getDireita()) == 0;
 		}
 
 		if (expressao instanceof Maior maior) {
-			BigDecimal esquerdo = numero(maior.getEsquerda());
-			BigDecimal direito = numero(maior.getDireita());
-
-			return esquerdo.compareTo(direito) > 0;
+			return comparar(maior.getEsquerda(), maior.getDireita()) > 0;
 		}
 
 		if (expressao instanceof MaiorOuIgual maiorOuIgual) {
-			return numero(maiorOuIgual.getEsquerda()).compareTo(numero(maiorOuIgual.getDireita())) >= 0;
+			return comparar(maiorOuIgual.getEsquerda(), maiorOuIgual.getDireita()) >= 0;
 		}
 
 		if (expressao instanceof MenorOuIgual menorOuIgual) {
-			return numero(menorOuIgual.getEsquerda()).compareTo(numero(menorOuIgual.getDireita())) <= 0;
+			return comparar(menorOuIgual.getEsquerda(), menorOuIgual.getDireita()) <= 0;
 		}
 
 		if (expressao instanceof Menor menor) {
-			BigDecimal esquerdo = numero(menor.getEsquerda());
-			BigDecimal direito = numero(menor.getDireita());
-
-			return esquerdo.compareTo(direito) < 0;
+			return comparar(menor.getEsquerda(), menor.getDireita()) < 0;
 		}
 
 		if (expressao instanceof Diferente diferente) {
-			return !iguais(avaliar(diferente.getEsquerda()), avaliar(diferente.getDireita()));
+			return comparar(diferente.getEsquerda(), diferente.getDireita()) != 0;
 		}
 
 		if (expressao instanceof E e) {
@@ -484,6 +532,48 @@ public class Interpretador {
 
 		throw new ErroExecucao("Expressão desconhecida.", expressao.getLinha(), expressao.getColuna());		
 
+	}
+
+	private int comparar(Expressao esquerda, Expressao direita) {
+		
+		if (esquerda instanceof Identificador && direita instanceof Identificador) {
+			Variavel varEsquerda = contexto.obter(texto(esquerda.getValor()));
+			Variavel varDireita = contexto.obter(texto(direita.getValor()));
+			
+			if (varEsquerda.getTipo() == TipoVariavel.TEXTO && varDireita.getTipo() == TipoVariavel.TEXTO) {
+
+			    String esquerdo = String.valueOf(varEsquerda.getValor());
+			    String direito = String.valueOf(varDireita.getValor());
+
+			    return esquerdo.compareTo(direito);
+			}
+
+			if (varEsquerda.getTipo() == TipoVariavel.NUMERO && varDireita.getTipo() == TipoVariavel.NUMERO) {
+
+			    BigDecimal esquerdo = numero(esquerda);
+			    BigDecimal direito = numero(direita);
+
+			    return esquerdo.compareTo(direito);
+			}
+
+		} else {
+			
+			if (esquerda instanceof LiteralNumero && direita instanceof LiteralNumero) {
+				BigDecimal esquerdo = numero(esquerda);
+			    BigDecimal direito = numero(direita);
+
+			    return esquerdo.compareTo(direito);
+			} 
+			
+			if (esquerda instanceof LiteralTexto && direita instanceof LiteralTexto) {
+			    String esquerdo = texto(esquerda);
+			    String direito = texto(direita);
+
+			    return esquerdo.compareTo(direito);
+			}
+		} 		
+
+		throw new RuntimeException("Não é possível comparar valores de tipos diferentes");
 	}
 
 	private boolean iguais(Object a, Object b) {

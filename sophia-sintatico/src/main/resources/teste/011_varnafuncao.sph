@@ -1,0 +1,18 @@
+funcao ola
+    parametro texto nome
+    inicio
+        escreva nome
+    fim
+
+funcao chamada
+    parametro texto palavra
+    inicio
+        escreva palavra
+        ola palavra
+    fim
+
+programa "Teste"
+
+inicio
+    chamada "Joao"
+fim

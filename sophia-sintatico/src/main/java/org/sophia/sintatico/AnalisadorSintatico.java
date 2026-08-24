@@ -83,7 +83,7 @@ public class AnalisadorSintatico {
 
 		programa.setTitulo(titulo);
 
-		while (!textoAtual().equals("fim")) {
+		while (!textoAtual().equalsIgnoreCase("fim")) {
 			programa.adicionarComando(comando());
 		}
 
@@ -217,7 +217,7 @@ public class AnalisadorSintatico {
 		    return se();
 		}
 
-		if (textoAtual().equals("escreva")) {
+		if (textoAtual().equalsIgnoreCase("escreva")) {
 			return escreva();
 		}
 		
@@ -235,7 +235,11 @@ public class AnalisadorSintatico {
 					proximo().getTexto().equalsIgnoreCase("RECEBE")){
 		        return atribuicao();
 			}
-		        
+			
+			if (proximo().getTexto().equalsIgnoreCase("EM")){
+		        return atribuicao();
+			}
+			    
 	    	return chamadaFuncao();
 		}
 		
@@ -267,7 +271,7 @@ public class AnalisadorSintatico {
 
 	    ChamadaFuncao chamada = new ChamadaFuncao(nome);
 
-	    for (Parametro parametro : funcao.getParametros()) {
+	    for (@SuppressWarnings("unused") Parametro parametro : funcao.getParametros()) {
 	        Expressao argumento = expressao();
 	        chamada.adicionarArgumento(argumento);
 	    }
@@ -296,17 +300,48 @@ public class AnalisadorSintatico {
 		consumir("recebe");
 
 		Expressao valor = expressao();
+		
+		Expressao posicao = null;
+		
+		Declaracao declaracao = null;
+		
+		if (proximoEh("em")) {
+			consumir("em");
+			posicao = expressao();
+		}
+		
+		if (posicao != null) {
+			declaracao = new Declaracao(tipo, nome, valor, posicao);
+		} else {
+			declaracao = new Declaracao(tipo, nome, valor);
+		}
 
-		return new Declaracao(tipo, nome, valor);
+		return declaracao;
 
 	}
 
 	private Escreva escreva() {
 
 		consumir("escreva");
+		
 		Expressao expressao = expressao();
 		
-		Escreva escreva = new Escreva(expressao);
+		Expressao posicao = null;
+		
+		Escreva escreva = null;
+		
+		if (proximoEh("em")) {
+			consumir("em");
+			posicao = expressao();
+		}
+		
+		if (posicao != null) {
+			escreva = new Escreva(expressao);
+			escreva.setPosicao(posicao);
+		} else {
+			escreva = new Escreva(expressao);
+		}
+		
 		escreva.setLocalizacao(atual());
 		
 		return escreva;
@@ -319,12 +354,31 @@ public class AnalisadorSintatico {
 
 		consumir(CategoriaSimbolo.IDENTIFICADOR);
 
+		Expressao posicao = null;
+		
+		if (proximoEh("em")) {
+			consumir("em");
+			posicao = expressao();
+		}
+		
 		consumir("recebe");
 
 		Expressao expressao = expressao();
 
-		Atribuicao atribuicao =  new Atribuicao(identificador, expressao);
-				   atribuicao.setLocalizacao(atual());
+		if (proximoEh("em")) {
+			consumir("em");
+			posicao = expressao();
+		}
+		
+		Atribuicao atribuicao = null;
+		
+		if (posicao != null) {
+			atribuicao =  new Atribuicao(identificador, posicao, expressao);
+			atribuicao.setLocalizacao(atual());
+		} else {
+		   atribuicao =  new Atribuicao(identificador, expressao);
+		   atribuicao.setLocalizacao(atual());
+		}
 		
 		return atribuicao;
 	}
@@ -634,7 +688,7 @@ public class AnalisadorSintatico {
 	    ChamadaFuncaoExpressao chamada = new ChamadaFuncaoExpressao(nome);
 	    					   chamada.setLocalizacao(atual());
 
-	    for (Parametro parametro : funcao.getParametros()) {
+	    for (@SuppressWarnings("unused") Parametro parametro : funcao.getParametros()) {
 	        Expressao argumento = expressao();
 	        
 	        if (argumento != null) {
@@ -667,7 +721,7 @@ public class AnalisadorSintatico {
 	    }
 
 	    // Atribuição nunca é chamada de função.
-	    if (proximo.getTexto().equalsIgnoreCase("recebe")) {
+	    if (proximo.getTexto().equalsIgnoreCase("recebe") || proximo.getTexto().equalsIgnoreCase("em")) {
 	        return false;
 	    }
 
@@ -750,10 +804,6 @@ public class AnalisadorSintatico {
 	
 	private boolean proximoEh(String texto) {
 		return atual().getTexto().equalsIgnoreCase(texto);
-	}
-	
-	private boolean proximoEh(CategoriaSimbolo categoria) {
-		return atual().getCategoria() == categoria;
 	}
 
 	private void consumir(String textoEsperado) {

@@ -6,6 +6,8 @@ import org.sophia.compilador.ast.expressao.Identificador;
 public class Atribuicao extends Comando {
 
     private final Identificador identificador;
+    
+    private Expressao posicao;
 
     private final Expressao expressao;
 
@@ -15,14 +17,28 @@ public class Atribuicao extends Comando {
 
         this.identificador = identificador;
         this.expressao = expressao;
-
     }
+    
+    public Atribuicao(
+            Identificador identificador,
+            Expressao posicao,
+            Expressao expressao) {
+
+        this.identificador = identificador;
+        this.posicao = posicao;
+        this.expressao = expressao;
+    }
+
 
     public Identificador getIdentificador() {
         return identificador;
     }
+    
+    public Expressao getPosicao() {
+		return posicao;
+	}
 
-    public Expressao getExpressao() {
+	public Expressao getExpressao() {
         return expressao;
     }
 

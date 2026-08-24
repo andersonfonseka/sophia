@@ -4,8 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 
-import javax.swing.SwingUtilities;
-
 import org.sophia.compilador.ast.Programa;
 import org.sophia.lexico.AnalisadorLexico;
 import org.sophia.runtime.ErroExecucao;

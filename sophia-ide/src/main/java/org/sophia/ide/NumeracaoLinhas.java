@@ -8,7 +8,11 @@ import java.awt.*;
 
 public class NumeracaoLinhas extends JComponent {
 
-    private final JTextPane editor;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private final JTextPane editor;
 
     public NumeracaoLinhas(JTextPane editor) {
 
