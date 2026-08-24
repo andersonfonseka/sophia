@@ -1,0 +1,48 @@
+programa "teste"
+
+inicio
+
+lista nomes recebe 4
+
+nomes em 0 recebe "SANDRA"
+nomes em 1 recebe "SOPHIA"
+nomes em 2 recebe "ANDERSON"
+nomes em 3 recebe "BIANCA"
+
+
+numero i recebe 0
+numero j recebe 0
+numero proximo recebe 0
+
+texto atual recebe ""
+texto seguinte recebe ""
+texto temporario recebe ""
+
+para i de 0 ate 2
+
+    para j de 0 ate 2
+
+        atual recebe nomes em j
+
+        proximo recebe j
+        proximo recebe proximo mais 1
+
+        seguinte recebe nomes em proximo
+
+        se atual maior que seguinte
+
+            temporario recebe atual
+            nomes em j recebe seguinte
+            nomes em proximo recebe temporario
+
+        fim
+
+    fim
+
+fim
+
+para j de 0 ate 3
+    escreva nomes em j
+fim
+
+fim

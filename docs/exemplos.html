@@ -9,7 +9,7 @@
 
     <meta
         name="description"
-        content="Exemplos de programas e algoritmos escritos em Sophia 1.0.0."
+        content="Exemplos de programas e algoritmos escritos em Sophia 1.1."
     >
 
     <link rel="stylesheet" href="css/style.css">
@@ -221,15 +221,99 @@ fim</code></pre>
 </section>
 
 
-<section class="section alternate">
+<section class="section alternate" id="listas">
 
     <div class="container">
 
-        <h2>5. Algoritmos</h2>
+        <h2>5. Listas</h2>
+        <p>Listas permitem armazenar vários valores em uma única estrutura. Os elementos podem ser acessados e alterados por índice, tornando possível construir algoritmos que trabalham com coleções de dados.</p>
+        <div class="terminal"><pre><code>programa "Lista"
+
+inicio
+
+    lista numeros recebe 3
+
+    numeros em 0 recebe 30
+    numeros em 1 recebe 10
+    numeros em 2 recebe 20
+
+    para i de 0 ate 2
+        escreva numeros em i
+    fim
+
+fim</code></pre></div>
+
+        <h3 id="ordenacao">Ordenação de uma lista</h3>
+        <p>Com listas, repetição e comparação de valores, a Sophia pode implementar algoritmos clássicos de ordenação.</p>
+        <div class="terminal"><pre><code>programa "Ordenacao"
+
+inicio
+
+    lista numeros recebe 6
+
+    numeros em 0 recebe 3
+    numeros em 1 recebe 2
+    numeros em 2 recebe 1
+    numeros em 3 recebe 6
+    numeros em 4 recebe 4
+    numeros em 5 recebe 5
+
+    numero proximo recebe 0
+    numero atual recebe 0
+    numero seguinte recebe 0
+    numero temporario recebe 0
+
+    para i de 0 ate 4
+        para j de 0 ate 4
+            atual recebe numeros em j
+            proximo recebe j
+            proximo recebe proximo mais 1
+            seguinte recebe numeros em proximo
+
+            se atual maior que seguinte
+                temporario recebe atual
+                numeros em j recebe seguinte
+                numeros em proximo recebe temporario
+            fim
+        fim
+    fim
+
+    para i de 0 ate 5
+        escreva numeros em i
+    fim
+
+fim</code></pre></div>
+    </div>
+
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2>6. Comparações</h2>
+        <p>A Sophia permite comparar números e textos usando operadores relacionais. As comparações podem ser usadas diretamente em expressões e condições.</p>
+        <div class="terminal"><pre><code>programa "Comparacoes"
+
+inicio
+    escreva 10 maior que 5
+    escreva 10 menor que 5
+    escreva 10 igual a 10
+    escreva 10 diferente de 20
+    escreva 10 maior ou igual a 10
+    escreva 10 menor ou igual a 9
+    escreva "ANDERSON" menor que "SANDRA"
+    escreva "SANDRA" maior que "SOPHIA"
+fim</code></pre></div>
+        <p>Números são comparados numericamente e textos são comparados lexicograficamente.</p>
+    </div>
+</section>
+
+<section class="section alternate">
+    <div class="container">
+        <h2>7. Algoritmos</h2>
 
         <p>
             Depois dos fundamentos, podemos combinar variáveis, operações,
-            decisões, repetição e funções para construir algoritmos.
+            decisões, repetição, funções, listas e comparações para construir algoritmos.
         </p>
 
         <div class="features">
@@ -607,7 +691,7 @@ fim</code></pre>
         <strong>Sophia Programming Language</strong>
 
         <p>
-            Sophia 1.0.0 · Sophia IDE 0.1.0
+            Sophia 1.1 · Sophia IDE 0.1.0
         </p>
 
         <p>
