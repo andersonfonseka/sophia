@@ -1,0 +1,13 @@
+funcao dobro
+    parametro numero valor
+    retorno numero
+
+inicio
+    retorne valor vezes 2
+fim
+
+programa "Erro"
+
+inicio
+    escreva dobro "Sophia"
+fim

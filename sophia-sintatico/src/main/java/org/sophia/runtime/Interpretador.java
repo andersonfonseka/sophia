@@ -350,8 +350,19 @@ public class Interpretador {
 			BigDecimal pos = null;
 			
 			if (escreva.getPosicao() instanceof Identificador) {
-				Integer intPos = (int) contexto.obter(String.valueOf(escreva.getPosicao().getValor())).getValor();
-				pos = new BigDecimal(intPos);
+				
+				Object valorVariavel = contexto.obter(String.valueOf(escreva.getPosicao().getValor())).getValor();
+				
+				BigDecimal intPos = new BigDecimal(0.0);
+				
+				if (valorVariavel instanceof BigDecimal) {
+					intPos = (BigDecimal) valorVariavel;
+				} else {
+					intPos = new BigDecimal(valorVariavel.toString());
+				}
+				
+				
+				pos = new BigDecimal(intPos.intValue());
 			} else {
 			    pos = (BigDecimal) escreva.getPosicao().getValor();	
 			}
