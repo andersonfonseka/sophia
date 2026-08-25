@@ -1,0 +1,18 @@
+funcao fatorial
+    parametro numero valor
+    retorno numero
+
+inicio
+    numero referencia recebe 1
+    se valor menor ou igual a referencia
+        retorne 1
+    fim
+    retorne valor vezes fatorial valor menos 1
+fim
+
+programa "Recursao"
+
+inicio
+numero resultado recebe fatorial 5
+escreva resultado
+fim

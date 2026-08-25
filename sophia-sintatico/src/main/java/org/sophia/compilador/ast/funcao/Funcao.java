@@ -86,5 +86,18 @@ public class Funcao {
         this.coluna = simbolo.getColuna();
     }
 
-
+    public boolean ehParametro(String nome) {
+    	
+    	boolean ehParam = false;
+    	
+    	for (Parametro param : this.parametros) {
+			if (param.getNome().equals(nome)) {
+				ehParam = true;
+				break;
+			}
+		}
+    	
+    	return ehParam;
+    }
+    
 }

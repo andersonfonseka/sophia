@@ -2,6 +2,7 @@ package org.sophia.sintatico;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.sophia.compilador.ast.Expressao;
@@ -70,7 +71,9 @@ public class AnalisadorSintatico {
 		}
 		
 		while (proximoEh("FUNCAO")) {
-		    programa.adicionarFuncao(funcao());
+		    Funcao funcao = funcao();
+			programa.adicionarFuncao(funcao);
+			complementoFuncao(funcao);
 		}
 
 		consumir("programa");
@@ -119,9 +122,11 @@ public class AnalisadorSintatico {
 
 	        funcao.setTipoRetorno(TipoVariavel.valueOf(tipo.toUpperCase()));
 	    }
-	    
+	    return funcao;
+	}
 
-	    consumir("INICIO");
+	private void complementoFuncao(Funcao funcao) {
+		consumir("INICIO");
 
 	    while (!proximoEh("FIM")) {
 	        funcao.adicionarComando(comando());
@@ -154,10 +159,6 @@ public class AnalisadorSintatico {
 	    		throw new ErroExecucao("A função " + funcao.getNome() + " deve retornar um valor do tipo " + funcao.getTipoRetorno() + ".\n", funcao.getLinha(), funcao.getColuna());
 	    	}
 	    }
-	    
-
-	    return funcao;
-	    
 	}
 
 	private boolean verificaRetornoFuncao(Funcao funcao, boolean existeRetorno, Comando comando) {
@@ -257,24 +258,42 @@ public class AnalisadorSintatico {
 	    return new Retorne(expressao);
 	}
 	
+	private boolean ehParametroFuncao = false;
+	private Funcao funcaoAtual;
+	
 	private ChamadaFuncao chamadaFuncao() {
 
 	    String nome = atual().getTexto();
-
+	    
 	    consumir(CategoriaSimbolo.IDENTIFICADOR);
+	    
+	    Funcao funcao = null;
+	    
+	    ChamadaFuncao chamada =  null;
+	    
+	    if (!ehParametroFuncao) {
 
-	    Funcao funcao = this.programa.getFuncoes().get(nome);
+		    funcao = this.programa.getFuncoes().get(nome);
+		    funcaoAtual = funcao;
 
-	    if (funcao == null) {
-	        throw erro("A função" +nome  + " não foi declarada.");
+		    if (funcao == null) {
+		        throw erro("A função" +nome  + " não foi declarada.");
+		    } else {
+		    	ehParametroFuncao = true;
+		    }
+	    } else {
+	    	funcao = funcaoAtual;
 	    }
+	    
 
-	    ChamadaFuncao chamada = new ChamadaFuncao(nome);
+	    chamada = new ChamadaFuncao(funcao.getNome());
 
 	    for (@SuppressWarnings("unused") Parametro parametro : funcao.getParametros()) {
 	        Expressao argumento = expressao();
 	        chamada.adicionarArgumento(argumento);
 	    }
+	    
+	    ehParametroFuncao = false;
 
 	    return chamada;
 	}
@@ -679,13 +698,25 @@ public class AnalisadorSintatico {
 
 	    consumir(CategoriaSimbolo.IDENTIFICADOR);
 
-	    Funcao funcao = this.programa.getFuncoes().get(nome);
+	    Funcao funcao = null;
 	    
-	    if (funcao == null) {
-	        throw erro("A função " + nome  + " não foi declarada.");
-	    }
+	    ChamadaFuncaoExpressao chamada =  null;
+	    
+	    if (!ehParametroFuncao) {
 
-	    ChamadaFuncaoExpressao chamada = new ChamadaFuncaoExpressao(nome);
+		    funcao = this.programa.getFuncoes().get(nome);
+		    funcaoAtual = funcao;
+
+		    if (funcao == null) {
+		        throw erro("A função" +nome  + " não foi declarada.");
+		    } else {
+		    	ehParametroFuncao = true;
+		    }
+	    } else {
+	    	funcao = funcaoAtual;
+	    }
+	    
+	    chamada = new ChamadaFuncaoExpressao(funcao.getNome());
 	    					   chamada.setLocalizacao(atual());
 
 	    for (@SuppressWarnings("unused") Parametro parametro : funcao.getParametros()) {
@@ -695,6 +726,8 @@ public class AnalisadorSintatico {
 	        	chamada.adicionarArgumento(argumento);	
 	        }
 	    }
+	    
+	    ehParametroFuncao = false;
 	    
 	    if (funcao.getParametros().size() != chamada.getArgumentos().size()) {
 	    	throw new ErroExecucao("A função " + funcao.getNome() + " espera " + funcao.getParametros().size() +  " argumentos, mas recebeu "  + chamada.getArgumentos().size() + ".\n", funcao.getLinha(), funcao.getColuna());
@@ -719,12 +752,23 @@ public class AnalisadorSintatico {
 	    if (proximo == null) {
 	        return false;
 	    }
+	    
+	    if (atual.getCategoria() == CategoriaSimbolo.IDENTIFICADOR) {
+	    	
+	    	Collection<Funcao> fcns = programa.getFuncoes().values();
+	    	
+	    	for (Funcao funcao : fcns) {
+				if(funcao.ehParametro(atual.getTexto())) {
+					return false;
+				}
+			}
+	    }
 
 	    // Atribuição nunca é chamada de função.
 	    if (proximo.getTexto().equalsIgnoreCase("recebe") || proximo.getTexto().equalsIgnoreCase("em")) {
 	        return false;
 	    }
-
+	    
 	    // Um argumento de chamada deve estar na mesma linha.
 	    if (atual.getLinha() != proximo.getLinha()) {
 	        return false;
@@ -735,7 +779,8 @@ public class AnalisadorSintatico {
 	        case IDENTIFICADOR,
 	             LITERAL_NUMERO,
 	             LITERAL_TEXTO,
-	             LITERAL_LOGICO -> true;
+	             LITERAL_LOGICO,
+	             LISTA -> true;
 
 	        default -> false;
 	    };

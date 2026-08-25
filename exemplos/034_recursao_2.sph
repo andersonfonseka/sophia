@@ -1,0 +1,41 @@
+funcao soma
+    parametro lista valores
+    parametro numero posicao
+    retorno numero
+
+inicio
+
+    numero ultima recebe 4
+
+    se posicao maior que ultima
+        retorne 0
+    fim
+
+    numero atual recebe valores em posicao
+    numero proxima recebe posicao
+    proxima recebe proxima mais 1
+
+    numero restante recebe soma valores proxima
+    numero resultado recebe atual mais restante
+
+    retorne resultado
+
+fim
+
+programa "RecursaoLista"
+
+inicio
+
+lista valores recebe 5
+
+valores em 0 recebe 10
+valores em 1 recebe 20
+valores em 2 recebe 30
+valores em 3 recebe 40
+valores em 4 recebe 50
+
+numero resultado recebe soma valores 0
+
+escreva resultado
+
+fim

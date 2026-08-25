@@ -484,7 +484,7 @@ public class Interpretador {
 		}
 
 		if (expressao instanceof Igual igual) {
-			return comparar(igual.getEsquerda(), igual.getDireita()) == 0;
+			return iguais(avaliar(igual.getEsquerda()), avaliar(igual.getDireita()));
 		}
 
 		if (expressao instanceof Maior maior) {
@@ -548,6 +548,7 @@ public class Interpretador {
 	private int comparar(Expressao esquerda, Expressao direita) {
 		
 		if (esquerda instanceof Identificador && direita instanceof Identificador) {
+		
 			Variavel varEsquerda = contexto.obter(texto(esquerda.getValor()));
 			Variavel varDireita = contexto.obter(texto(direita.getValor()));
 			
@@ -568,6 +569,26 @@ public class Interpretador {
 			}
 
 		} else {
+
+			if (esquerda instanceof Identificador && direita instanceof LiteralNumero) {
+			
+				Variavel varEsquerda = contexto.obter(texto(esquerda.getValor()));
+			    
+				BigDecimal esquerdo = numero(varEsquerda.getValor());
+				BigDecimal direito = numero(direita);
+
+			    return esquerdo.compareTo(direito);
+			} 
+			
+			if (esquerda instanceof LiteralNumero && direita instanceof Identificador) {
+				
+				Variavel varDireita = contexto.obter(texto(direita.getValor()));
+			    
+				BigDecimal esquerdo = numero(esquerda);
+				BigDecimal direito = numero(varDireita.getValor());
+
+			    return esquerdo.compareTo(direito);
+			} 
 			
 			if (esquerda instanceof LiteralNumero && direita instanceof LiteralNumero) {
 				BigDecimal esquerdo = numero(esquerda);

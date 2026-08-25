@@ -1,0 +1,31 @@
+funcao maior
+    parametro lista valores
+    retorno numero
+
+inicio
+    numero maior recebe valores em 0
+    para i de 1 ate 4
+        numero atual recebe valores em i
+        se atual maior que maior
+            maior recebe atual
+        fim
+    fim
+    retorne maior
+fim
+
+programa "Funcoes"
+
+inicio
+
+lista valores recebe 5
+
+valores em 0 recebe 10
+valores em 1 recebe 30
+valores em 2 recebe 20
+valores em 3 recebe 50
+valores em 4 recebe 40
+
+numero resultado recebe maior valores
+escreva resultado
+
+fim
