@@ -2,14 +2,14 @@
 
 > Uma linguagem de programação em português criada para ensinar lógica de programação de forma simples, intuitiva e acessível.
 
-![Versão](https://img.shields.io/badge/version-1.0.0-blue)
+![Versão](https://img.shields.io/badge/version-1.1.0-blue)
 ![Licença](https://img.shields.io/badge/license-MIT-green)
 
 ---
 
-**Status:** ✅ Versão 1.0.0 — Primeira versão estável
+**Status:** ✅ Versão 1.1.0 — Núcleo ampliado com listas, funções e recursão
 
-## Sophia 1.0.0
+## Sophia 1.1.0
 
 A Sophia é uma **linguagem de programação educacional** desenvolvida para facilitar o aprendizado de lógica de programação.
 
@@ -137,6 +137,54 @@ numero idade recebe 20
 texto nome recebe "Sophia"
 logico ativa recebe verdadeiro
 ```
+
+## Listas
+
+A Sophia possui listas como estrutura fundamental para trabalhar com coleções de valores.
+
+A lista é criada informando sua quantidade de posições:
+
+```text
+lista numeros recebe 5
+
+numeros em 0 recebe 10
+numeros em 1 recebe 20
+numeros em 2 recebe 30
+numeros em 3 recebe 40
+numeros em 4 recebe 50
+```
+
+Os elementos podem ser acessados por posição:
+
+```text
+numero valor recebe numeros em 2
+escreva valor
+```
+
+A iteração sobre listas utiliza a estrutura `para`:
+
+```text
+para i de 0 ate 4
+    escreva numeros em i
+fim
+```
+
+A proposta é manter uma única forma simples e explícita de percorrer listas, evitando múltiplas abstrações para a mesma finalidade.
+
+### Matrizes
+
+Uma matriz pode ser representada por uma lista linear, calculando a posição a partir da linha e da coluna:
+
+```text
+posicao recebe linha
+posicao recebe posicao vezes 3
+posicao recebe posicao mais coluna
+
+escreva matriz em posicao
+```
+
+Essa abordagem permite trabalhar com estruturas bidimensionais sem introduzir uma nova sintaxe específica para matrizes.
+
 
 ## Entrada e saída
 
@@ -281,7 +329,49 @@ sophia> escreva dobro 3
 6
 ```
 
-Funções também podem receber identificadores como argumentos e chamar outras funções.
+Funções também podem receber identificadores como argumentos, receber listas, chamar outras funções e realizar chamadas recursivas.
+
+Exemplo de função que recebe uma lista:
+
+```text
+funcao maior
+    parametro lista valores
+    retorno numero
+
+inicio
+    numero maior recebe valores em 0
+
+    para i de 1 ate 4
+        numero atual recebe valores em i
+
+        se atual maior que maior
+            maior recebe atual
+        fim
+    fim
+
+    retorne maior
+fim
+```
+
+Exemplo de recursão:
+
+```text
+funcao fatorial
+    parametro numero valor
+    retorno numero
+
+inicio
+    numero referencia recebe 1
+
+    se valor menor ou igual a referencia
+        retorne 1
+    fim
+
+    retorne valor vezes fatorial valor menos 1
+fim
+```
+
+
 
 ---
 
@@ -423,15 +513,21 @@ A Sophia possui uma suíte automatizada cobrindo os principais recursos da lingu
 - tipos;
 - atribuição;
 - operadores;
-- comparações;
+- comparações entre números e textos;
 - condicionais;
 - `enquanto`;
 - `para`;
+- listas;
+- acesso de listas por posição;
+- iteração sobre listas;
 - funções;
-- escopo;
+- parâmetros;
 - retorno;
 - argumentos;
 - chamadas de funções;
+- funções que recebem listas;
+- recursão;
+- escopo;
 - variáveis não declaradas;
 - funções inexistentes;
 - tipos de retorno inválidos;
@@ -475,7 +571,7 @@ A Sophia não pretende reproduzir toda a complexidade das linguagens profissiona
 
 # Roadmap
 
-A versão **1.0.0** estabelece o núcleo educacional da Sophia.
+A versão **1.1.0** amplia o núcleo da Sophia com listas, operações sobre coleções, funções que recebem listas e recursão, mantendo a mesma filosofia de simplicidade.
 
 A evolução futura deve priorizar melhorias que aumentem a qualidade da experiência de aprendizado, sem comprometer a simplicidade da linguagem.
 
@@ -499,7 +595,7 @@ A evolução da Sophia **não deve transformar a linguagem em uma linguagem prof
 Os exemplos da linguagem estão disponíveis em:
 
 ```text
-sophia-sintatico/src/main/resources/exemplos/
+exemplos/
 ```
 
 ---
