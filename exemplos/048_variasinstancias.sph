@@ -1,0 +1,31 @@
+dados pessoa
+    texto nome
+    numero idade
+fim
+
+programa "VariasInstancias"
+
+inicio
+
+    pessoa p1
+    p1 nome recebe "Anderson"
+    p1 idade recebe 51
+
+    pessoa p2
+    p2 nome recebe "Sophia"
+    p2 idade recebe 12
+
+    pessoa p3
+    p3 nome recebe "Sandra"
+    p3 idade recebe 45
+
+    escreva p1 nome
+    escreva p1 idade
+
+    escreva p2 nome
+    escreva p2 idade
+
+    escreva p3 nome
+    escreva p3 idade
+
+fim

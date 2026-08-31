@@ -1,0 +1,52 @@
+programa "BuscaBinaria"
+
+inicio
+
+    lista numeros recebe 7
+
+    numeros em 0 recebe 10
+    numeros em 1 recebe 20
+    numeros em 2 recebe 30
+    numeros em 3 recebe 40
+    numeros em 4 recebe 50
+    numeros em 5 recebe 60
+    numeros em 6 recebe 70
+
+    numero procurado recebe 50
+
+    numero inicial recebe 0
+    numero final recebe 6
+    numero meio recebe 0
+    numero atual recebe 0
+    numero encontrado recebe 0
+
+    para i de 0 ate 2
+
+        numero soma recebe inicial mais final
+        meio recebe soma dividido por 2
+
+        atual recebe numeros em meio
+
+        se atual igual a procurado
+            encontrado recebe 1
+        fim
+
+        se atual menor que procurado
+            inicial recebe meio mais 1
+        fim
+
+        se atual maior que procurado
+            final recebe meio menos 1
+        fim
+
+    fim
+
+    se encontrado igual a 1
+        escreva "Encontrado"
+    fim
+
+    se encontrado igual a 0
+        escreva "Nao encontrado"
+    fim
+
+fim

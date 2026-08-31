@@ -1,0 +1,55 @@
+programa "InsertionSort"
+
+inicio
+
+    lista numeros recebe 6
+
+    numeros em 0 recebe 30
+    numeros em 1 recebe 10
+    numeros em 2 recebe 50
+    numeros em 3 recebe 20
+    numeros em 4 recebe 40
+    numeros em 5 recebe 5
+
+    numero i recebe 0
+    numero j recebe 0
+    numero atual recebe 0
+    numero anterior recebe 0
+    numero posicao recebe 0
+
+    para i de 1 ate 5
+
+        atual recebe numeros em i
+        j recebe i
+        j recebe j menos 1
+
+        posicao recebe i
+
+        enquanto j maior ou igual a 0
+
+            anterior recebe numeros em j
+
+            se anterior maior que atual
+
+                numeros em j mais 1 recebe anterior
+
+                posicao recebe j
+                j recebe j menos 1
+
+            senao
+
+                j recebe j menos 1
+
+            fim
+
+        fim
+
+        numeros em posicao recebe atual
+
+    fim
+
+    para i de 0 ate 5
+        escreva numeros em i
+    fim
+
+fim

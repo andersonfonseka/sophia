@@ -1,0 +1,18 @@
+dados pessoa
+    texto nome
+    numero idade
+fim
+
+programa "DadosSimples"
+
+inicio
+
+    pessoa p
+
+    p nome recebe "Anderson"
+    p idade recebe 51
+
+    escreva p nome
+    escreva p idade
+
+fim

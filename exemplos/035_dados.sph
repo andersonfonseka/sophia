@@ -1,0 +1,16 @@
+dados pessoa
+   texto nome
+   numero idade
+fim
+
+programa "teste"
+
+inicio 
+  pessoa p
+  p nome recebe "Anderson"
+  p idade recebe 51
+ 
+  escreva p nome
+  escreva p idade
+
+fim

@@ -1,0 +1,43 @@
+dados Pessoa
+      texto nome
+      numero idade
+fim
+
+funcao encontrarMaior
+    parametro lista pessoas
+    parametro numero valor
+    retorno numero
+
+inicio
+    
+    numero maior recebe valor
+    Pessoa atual
+
+    para i de 0 ate 1
+        atual recebe pessoas em i
+        se atual idade maior que maior
+            maior recebe atual idade
+        fim
+    fim
+    retorne maior
+fim
+
+programa "teste"
+inicio
+
+Pessoa p
+p nome recebe "Anderson"
+p idade recebe 5
+
+Pessoa p1
+p1 nome recebe "Sophia"
+p1 idade recebe 12
+
+lista pessoas recebe 2
+pessoas em 0 recebe p
+pessoas em 1 recebe p1
+
+escreva encontrarMaior pessoas 10
+
+fim
+

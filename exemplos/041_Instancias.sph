@@ -1,0 +1,28 @@
+dados Pessoa
+ texto nome
+ numero idade
+ texto profissao
+fim
+
+programa "Teste"
+
+inicio
+
+   Pessoa p0
+   p0 nome recebe "Sophia"
+   p0 idade recebe 12
+   p0 profissao recebe "Estudante"
+
+   Pessoa p1
+   p1 nome recebe "Anderson"
+   p1 idade recebe 51
+   p1 profissao recebe "Cientista da Computação"
+
+
+   escreva p0
+   escreva p1
+
+   Pessoa pn recebe p1
+   escreva pn nome
+
+fim

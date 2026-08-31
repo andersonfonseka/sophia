@@ -1,0 +1,42 @@
+dados Pessoa
+    texto nome
+    numero idade
+fim
+
+programa "BuscaEmLista"
+
+inicio
+
+    Pessoa p1
+    p1 nome recebe "Anderson"
+    p1 idade recebe 51
+
+    Pessoa p2
+    p2 nome recebe "Sophia"
+    p2 idade recebe 12
+
+    Pessoa p3
+    p3 nome recebe "Sandra"
+    p3 idade recebe 45
+
+    lista pessoas recebe 3
+
+    pessoas em 0 recebe p1
+    pessoas em 1 recebe p2
+    pessoas em 2 recebe p3
+
+    Pessoa atual
+
+    numero idadeFutura recebe 0
+
+    para i de 0 ate 2
+
+    atual recebe pessoas em i
+
+      se atual nome igual a "Sophia"
+        idadeFutura recebe atual idade mais 10
+        escreva atual nome
+        escreva idadeFutura
+      fim
+    fim
+fim

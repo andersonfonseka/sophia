@@ -1,0 +1,26 @@
+dados pessoa
+    texto nome
+    numero idade
+fim
+
+programa "ListaDeDados"
+
+inicio
+
+    pessoa p1
+    p1 nome recebe "Anderson"
+    p1 idade recebe 51
+
+    pessoa p2
+    p2 nome recebe "Sophia"
+    p2 idade recebe 12
+
+    lista pessoas recebe 2
+
+    pessoas em 0 recebe p1
+    pessoas em 1 recebe p2
+
+    escreva pessoas em 0
+    escreva pessoas em 1
+
+fim

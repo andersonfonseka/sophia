@@ -1,0 +1,36 @@
+dados Pessoa
+    texto nome
+    numero idade
+fim
+
+programa "AlteracaoDeAtributo"
+
+inicio
+
+    Pessoa p
+    p nome recebe "Anderson"
+    p idade recebe 51
+
+    Pessoa p1
+    p1 nome recebe "Sophia"
+    p1 idade recebe 12
+
+    lista pessoas recebe 2
+
+    pessoas em 0 recebe p
+    pessoas em 1 recebe p1
+
+    Pessoa atual
+
+    para i de 0 ate 1
+       atual recebe pessoas em i
+       
+       se atual nome igual a "Sophia"
+        atual idade recebe atual idade mais 5
+        escreva atual
+       fim
+    fim
+
+    escreva pessoas em 1
+
+fim

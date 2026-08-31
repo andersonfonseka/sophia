@@ -1,0 +1,30 @@
+dados pessoa
+    texto nome
+    numero idade
+fim
+
+programa "Cadastro"
+
+inicio
+
+    pessoa pessoa1
+
+    pessoa1 nome recebe "Anderson"
+    pessoa1 idade recebe 51
+
+    pessoa pessoa2
+
+    pessoa2 nome recebe "Sophia"
+    pessoa2 idade recebe 12
+
+    lista pessoas recebe 2
+
+    pessoas em 0 recebe pessoa1
+    pessoas em 1 recebe pessoa2
+
+    pessoa atual recebe pessoas em 0
+
+    escreva atual nome
+    escreva atual idade
+
+fim
