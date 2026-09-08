@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aula 04 — Tomando decisões com Sophia — Sophia</title>
+
+    <meta name="description"
+          content="Aula 04 — Tomando decisões com Sophia — Curso de Algoritmos I com Sophia.">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="curso.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container nav">
+        <a href="../index.html" class="logo">Sophia</a>
+
+        <nav>
+            <a href="../linguagem.html">A Sophia</a>
+            <a href="../curso.html">Curso</a>
+            <a href="../comecar.html">Comece agora</a>
+            <a href="../exemplos.html">Exemplos</a>
+            <a href="https://sophia-playground.salmonwave-d0191ecb.brazilsouth.azurecontainerapps.io"
+               target="_blank" rel="noopener">
+                Playground
+            </a>
+            <a href="../ide.html">IDE</a>
+            <a href="https://github.com/andersonfonseka/sophia"
+               target="_blank" rel="noopener">
+                GitHub
+            </a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<section class="section">
+    <div class="container course-content">
+
+        <div class="version">Curso de Algoritmos I</div>
+
+        <h1>Aula 04 — Tomando decisões com Sophia</h1>
+
+        <h2>Algoritmos precisam tomar decisões</h2>
+<p>Até agora, trabalhamos com algoritmos que seguem uma sequência de passos.</p>
+<p>Mas muitos problemas não possuem apenas um caminho.</p>
+<p>Dependendo dos dados recebidos, o algoritmo pode precisar fazer uma coisa ou outra.</p>
+<p>Por exemplo:</p>
+<blockquote>
+<p>Se a nota for suficiente, apresentar que o aluno foi aprovado. Caso contrário, apresentar que ele não foi aprovado.</p>
+</blockquote>
+<p>Agora existe uma decisão.</p>
+<h2>A ideia da condição</h2>
+<p>Uma condição é uma afirmação que pode ser avaliada como verdadeira ou falsa.</p>
+<p>Por exemplo:</p>
+<blockquote>
+<p>A nota é maior ou igual a 6?</p>
+</blockquote>
+<p>A resposta pode ser:</p>
+<ul>
+<li>sim;</li>
+<li>não.</li>
+</ul>
+<p>Em um algoritmo, essa resposta pode determinar qual caminho será executado.</p>
+<h2>Decisão com SE</h2>
+<p>Em Sophia, usamos <code>SE</code> para representar uma decisão.</p>
+<p>Exemplo:</p>
+<pre><code class="language-sophia">PROGRAMA &quot;Aprovacao&quot;
+
+INICIO
+    NUMERO nota recebe 0
+    LEIA &quot;Digite uma nota &quot; nota
+
+    SE nota MAIOR OU IGUAL A 6
+        ESCREVA &quot;Aprovado&quot;
+    FIM
+FIM
+</code></pre>
+<p>Podemos ler:</p>
+<blockquote>
+<p>Se a nota for maior ou igual a 6, escreva &quot;Aprovado&quot;.</p>
+</blockquote>
+<h2>Decisão com SENAO</h2>
+<p>Quando existem dois caminhos, podemos usar <code>SENAO</code>.</p>
+<pre><code class="language-sophia">PROGRAMA &quot;Aprovacao&quot;
+
+INICIO
+    NUMERO nota recebe 0
+    LEIA &quot;Digite uma nota &quot; nota
+
+    SE nota MAIOR OU IGUAL A 6
+        ESCREVA &quot;Aprovado&quot;
+    SENAO
+        ESCREVA &quot;Reprovado&quot;
+    FIM
+FIM
+</code></pre>
+<p>Agora o algoritmo possui dois caminhos.</p>
+<p>Se a condição for verdadeira:</p>
+<p><strong>Aprovado</strong></p>
+<p>Se a condição for falsa:</p>
+<p><strong>Reprovado</strong></p>
+<h2>A condição vem do problema</h2>
+<p>Não devemos começar pensando:</p>
+<blockquote>
+<p>Qual comando vou usar?</p>
+</blockquote>
+<p>Devemos começar pensando:</p>
+<blockquote>
+<p>Qual decisão o problema exige?</p>
+</blockquote>
+<p>No problema da aprovação, a decisão é:</p>
+<blockquote>
+<p>A nota é maior ou igual a 6?</p>
+</blockquote>
+<p>Depois transformamos essa decisão em uma condição de Sophia.</p>
+<h2>Comparações</h2>
+<p>As condições podem utilizar comparações.</p>
+<p>Algumas comparações disponíveis em Sophia são:</p>
+<ul>
+<li><code>IGUAL A</code>;</li>
+<li><code>DIFERENTE DE</code>;</li>
+<li><code>MAIOR QUE</code>;</li>
+<li><code>MAIOR OU IGUAL A</code>;</li>
+<li><code>MENOR QUE</code>;</li>
+<li><code>MENOR OU IGUAL A</code>.</li>
+</ul>
+<p>Exemplo:</p>
+<pre><code class="language-sophia">SE idade MAIOR OU IGUAL A 18
+    ESCREVA &quot;Maior de idade&quot;
+FIM
+</code></pre>
+<h2>Outro exemplo</h2>
+<p>Problema:</p>
+<blockquote>
+<p>Verificar se um número é positivo.</p>
+</blockquote>
+<p>Algoritmo:</p>
+<ol>
+<li>receber um número;</li>
+<li>verificar se ele é maior que zero;</li>
+<li>se for, informar que é positivo.</li>
+</ol>
+<p>Sophia:</p>
+<pre><code class="language-sophia">PROGRAMA &quot;Positivo&quot;
+INICIO
+    NUMERO num recebe 0
+    LEIA &quot;Digite um numero &quot; num
+
+    SE num MAIOR QUE 0
+        ESCREVA &quot;Positivo&quot;
+    FIM
+FIM
+</code></pre>
+<h2>Com dois caminhos</h2>
+<p>Podemos informar também quando o número não é positivo.</p>
+<pre><code class="language-sophia">PROGRAMA &quot;PositivoOuNao&quot;
+INICIO
+    NUMERO num recebe 0
+    LEIA &quot;Digite um numero &quot; num
+
+    SE num MAIOR QUE 0
+        ESCREVA &quot;Positivo&quot;
+    SENAO
+        ESCREVA &quot;Nao Positivo&quot;
+    FIM
+FIM
+</code></pre>
+<p>Observe que a decisão possui exatamente dois caminhos.</p>
+<h2>Decisões encadeadas</h2>
+<p>Alguns problemas possuem mais de duas possibilidades.</p>
+<p>Por exemplo:</p>
+<ul>
+<li>nota maior ou igual a 7: aprovado;</li>
+<li>nota maior ou igual a 5: recuperação;</li>
+<li>nota menor que 5: reprovado.</li>
+</ul>
+<p>Uma solução pode utilizar decisões em sequência:</p>
+<pre><code class="language-sophia">PROGRAMA &quot;Resultado&quot;
+INICIO
+    NUMERO nota RECEBE 0
+    LEIA &quot;Digite uma nota &quot; nota
+
+    SE nota MAIOR OU IGUAL A 7
+        ESCREVA &quot;Aprovado&quot;
+    SENAO
+        SE nota MAIOR OU IGUAL A 5
+            ESCREVA &quot;Recuperacao&quot;
+        SENAO
+            ESCREVA &quot;Reprovado&quot;
+        FIM
+    FIM
+FIM
+</code></pre>
+<p>A segunda decisão só é necessária quando a primeira condição não foi atendida.</p>
+<h2>Pensando antes de escrever</h2>
+<p>Antes de construir uma decisão, responda:</p>
+<ol>
+<li>Qual é a pergunta?</li>
+<li>Quais respostas são possíveis?</li>
+<li>O que acontece quando a condição é verdadeira?</li>
+<li>O que acontece quando ela é falsa?</li>
+</ol>
+<p>Esse raciocínio ajuda a evitar decisões incompletas.</p>
+<h2>Testando uma decisão</h2>
+<p>Considere o programa de aprovação.</p>
+<p>Teste com:</p>
+<pre><code class="language-text">8
+</code></pre>
+<p>A condição:</p>
+<pre><code class="language-text">nota MAIOR OU IGUAL A 6
+</code></pre>
+<p>é verdadeira.</p>
+<p>Resultado:</p>
+<pre><code class="language-text">Aprovado
+</code></pre>
+<p>Agora teste com:</p>
+<pre><code class="language-text">4
+</code></pre>
+<p>A condição é falsa.</p>
+<p>Resultado:</p>
+<pre><code class="language-text">Reprovado
+</code></pre>
+<h2>Testando o limite</h2>
+<p>Também devemos testar valores próximos do limite.</p>
+<p>Para uma aprovação com nota maior ou igual a 6, teste:</p>
+<ul>
+<li>5;</li>
+<li>5.9;</li>
+<li>6;</li>
+<li>6.1;</li>
+<li>
+<ol start="10">
+<li></li>
+</ol>
+</li>
+</ul>
+<p>O valor 6 é especialmente importante porque representa o limite da condição.</p>
+<h2>Atividade 1 — Identifique a decisão</h2>
+<p>Qual é a condição necessária para resolver cada problema?</p>
+<ol>
+<li>verificar se uma pessoa pode entrar em um evento para maiores de idade;</li>
+<li>verificar se um número é maior que 100;</li>
+<li>verificar se uma nota permite aprovação.</li>
+</ol>
+<h2>Atividade 2 — Complete o algoritmo</h2>
+<p>Problema:</p>
+<blockquote>
+<p>Receber um número e informar se ele é maior que zero.</p>
+</blockquote>
+<p>Escreva os passos antes de escrever o programa.</p>
+<h2>Atividade 3 — Teste</h2>
+<p>Para o programa de aprovação, determine o resultado para:</p>
+<ul>
+<li>4;</li>
+<li>5;</li>
+<li>6;</li>
+<li>7;</li>
+<li>
+<ol start="10">
+<li></li>
+</ol>
+</li>
+</ul>
+<h2>Desafio</h2>
+<p>Crie um programa Sophia que receba a idade de uma pessoa e apresente:</p>
+<ul>
+<li><code>Maior de idade</code> quando a idade for maior ou igual a 18;</li>
+<li><code>Menor de idade</code> nos demais casos.</li>
+</ul>
+<p>Antes do código, escreva o algoritmo.</p>
+<h2>Síntese</h2>
+<p>Nesta aula aprendemos que:</p>
+<ul>
+<li>problemas podem exigir decisões;</li>
+<li>condições podem ser verdadeiras ou falsas;</li>
+<li><code>SE</code> representa uma decisão;</li>
+<li><code>SENAO</code> representa o caminho alternativo;</li>
+<li>comparações permitem construir condições;</li>
+<li>testes devem incluir valores comuns e valores de limite.</li>
+</ul>
+<p>Agora já conseguimos construir algoritmos que não apenas executam uma sequência, mas também <strong>escolhem caminhos de acordo com os dados</strong>.</p>
+<p>A próxima etapa será aprender a trabalhar com diferentes tipos de dados e valores.</p>
+
+
+        <div class="course-navigation">
+            <a class="button secondary" href="aula-03-expressando-algoritmos-com-sophia.html">
+    ← Aula anterior
+</a>
+
+            
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+        Curso de Algoritmos I com Sophia
+    </div>
+</footer>
+
+</body>
+</html>

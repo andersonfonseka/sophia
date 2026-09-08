@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sophia Programming Language</title>
+
+    <title>Comece agora — Sophia</title>
     <meta name="description"
-          content="Comece a programar com Sophia 1.0.0 usando a Sophia IDE, a CLI e o REPL.">
+          content="Comece a aprender algoritmos e programar com Sophia usando o Playground, o curso e a Sophia IDE.">
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -15,219 +18,251 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-ZQHJ5NRBP1');
 </script>
 
 <body>
 
 <header class="header">
+
     <div class="container nav">
+
         <a href="index.html" class="logo">Sophia</a>
 
         <nav>
             <a href="linguagem.html">A Sophia</a>
+            <a href="curso.html">Curso</a>
             <a href="comecar.html">Comece agora</a>
             <a href="exemplos.html">Exemplos</a>
+            <a href="https://sophia-playground.salmonwave-d0191ecb.brazilsouth.azurecontainerapps.io"
+               target="_blank"
+               onclick="gtag('event', 'playground_click', {version: '1.0.0'});">Playground</a>
             <a href="ide.html">IDE</a>
+            <a href="https://github.com/andersonfonseka/sophia"
+               target="_blank"
+               onclick="gtag('event', 'github_click', {version: '0.1.0'});">GitHub</a>
         </nav>
+
     </div>
+
 </header>
 
 <main>
 
 <section class="section">
+
     <div class="container">
+
         <h1>Comece agora</h1>
 
         <p>
-            Você pode começar a programar com Sophia de duas formas:
-            usando a <strong>Sophia IDE</strong> ou utilizando a
-            <strong>CLI e o REPL</strong>.
+            A forma mais simples de começar com Sophia é experimentar um
+            algoritmo no <strong>Playground</strong>.
         </p>
-    </div>
-</section>
-
-<section class="section alternate">
-    <div class="container">
-        <h2>1. Requisitos</h2>
 
         <p>
-            Para executar a Sophia 1.0.0, você precisa de uma instalação
-            do <strong>Java 17+</strong> compatível com a versão utilizada
-            na distribuição.
-        </p>
-    </div>
-</section>
-
-<section class="section">
-    <div class="container">
-        <h2>2. Escolha como começar</h2>
-
-        <div class="features">
-
-            <div class="feature">
-                <h3>Sophia IDE</h3>
-                <p>
-                    A forma mais simples de começar. Escreva, organize,
-                    salve e execute seus programas em um ambiente visual.
-                </p>
-
-                <a class="button primary" href="ide.html">
-                    Conhecer a Sophia IDE
-                </a>
-            </div>
-
-            <div class="feature">
-                <h3>CLI e REPL</h3>
-                <p>
-                    Para quem prefere trabalhar pelo terminal ou
-                    experimentar a linguagem de forma interativa.
-                </p>
-
-                <a class="button secondary" href="#repl">
-                    Ver o REPL
-                </a>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<section class="section alternate">
-    <div class="container">
-        <h2>3. Baixe a Sophia</h2>
-
-        <p>
-            A Sophia IDE possui uma distribuição própria para facilitar
-            o primeiro contato com a linguagem.
+            Você pode escrever e executar seus primeiros programas diretamente
+            no navegador, sem precisar instalar nada.
         </p>
 
         <div class="buttons">
 
             <a class="button primary"
-               href="https://github.com/andersonfonseka/sophia/tree/main/dist"
-               download
-               onclick="if (typeof gtag === 'function') gtag('event', 'download_ide', {version: '0.1.0'});">
-                Download Sophia IDE 0.1.0
+               href="https://sophia-playground.salmonwave-d0191ecb.brazilsouth.azurecontainerapps.io"
+               target="_blank"
+               onclick="gtag('event', 'playground_click', {version: '1.0.0', source: 'comecar'});">
+                Abrir o Playground
             </a>
 
             <a class="button secondary"
-               href="https://github.com/andersonfonseka/sophia/tree/main/dist"
-               download
-               onclick="if (typeof gtag === 'function') gtag('event', 'download_cli', {version: '1.0.0'});">
-                Download Sophia CLI 1.0.0
+               href="curso.html"
+               onclick="gtag('event', 'course_click', {source: 'comecar'});">
+                Começar o curso
             </a>
 
         </div>
+
     </div>
+
+</section>
+
+<section class="section alternate">
+
+    <div class="container">
+
+        <h2>1. Experimente o Playground</h2>
+
+        <p>
+            O Playground permite experimentar Sophia de forma imediata.
+            Escreva um algoritmo, execute e observe o resultado.
+        </p>
+
+        <p>
+            É o ponto de entrada recomendado para quem está conhecendo a
+            linguagem pela primeira vez.
+        </p>
+
+        <div class="buttons">
+            <a class="button primary"
+               href="https://sophia-playground.salmonwave-d0191ecb.brazilsouth.azurecontainerapps.io"
+               target="_blank"
+               onclick="gtag('event', 'playground_click', {version: '1.0.0', source: 'comecar_section'});">
+                Experimentar agora
+            </a>
+        </div>
+
+    </div>
+
 </section>
 
 <section class="section">
+
     <div class="container">
-        <h2>4. Execute a Sophia</h2>
 
-<p>
-    Depois de baixar a Sophia, abra um terminal na pasta onde está o arquivo
-    <code>sophia-cli-1.0.0.jar</code> e execute:
-</p>
+        <h2>2. Aprenda algoritmos</h2>
 
-<div class="terminal">
-<pre><code>java -jar sophia-cli-1.0.0.jar</code></pre>
-</div>
+        <p>
+            Depois de experimentar, você pode seguir o
+            <strong>Curso de Algoritmos I</strong>.
+        </p>
 
-<p>
-    Para iniciar o ambiente interativo da Sophia (REPL), execute:
-</p>
+        <p>
+            O curso começa pelo problema e pelo pensamento algorítmico e avança
+            progressivamente para a construção, expressão, execução, teste e
+            validação de algoritmos com Sophia.
+        </p>
 
-<div class="terminal">
-<pre><code>java -jar sophia-cli-1.0.0.jar repl</code></pre>
-</div>
+        <div class="features">
 
-<p>
-    A partir daí você pode escrever comandos Sophia diretamente no REPL.
-</p>
+            <div class="feature">
+                <h3>Pensamento algorítmico</h3>
+                <p>
+                    Aprenda a compreender problemas e organizar soluções.
+                </p>
+            </div>
 
-<h2>4.1 Escreva seu primeiro programa</h2>
+            <div class="feature">
+                <h3>Programação com Sophia</h3>
+                <p>
+                    Expresse algoritmos utilizando uma linguagem de programação
+                    em português.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Prática</h3>
+                <p>
+                    Execute seus algoritmos e observe seus resultados.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Validação</h3>
+                <p>
+                    Teste suas soluções e desenvolva a capacidade de verificar
+                    se elas estão corretas.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="buttons">
+            <a class="button primary"
+               href="curso.html"
+               onclick="gtag('event', 'course_click', {source: 'comecar'});">
+                Conhecer o curso
+            </a>
+
+            <a class="button secondary"
+               href="curso/prologo-algoritmos-na-era-da-ia.html"
+               onclick="gtag('event', 'course_prologue_click', {source: 'comecar'});">
+                Começar pelo prólogo
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section alternate">
+
+    <div class="container">
+
+        <h2>3. Conheça a linguagem</h2>
+
+        <p>
+            Sophia foi criada para aproximar o pensamento algorítmico da
+            programação, utilizando uma sintaxe em português.
+        </p>
+
+        <div class="buttons">
+            <a class="button primary" href="linguagem.html">
+                Conhecer a Sophia
+            </a>
+
+            <a class="button secondary" href="exemplos.html">
+                Ver exemplos
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="container">
+
+        <h2>4. Primeiro programa</h2>
+
+        <p>
+            Depois de abrir o Playground, experimente um programa simples:
+        </p>
 
 <pre><code>programa "Primeiro Programa"
 
 inicio
 
-    numero idade recebe 20
-
-    escreva idade
+    escreva "Olá, Sophia!"
 
 fim</code></pre>
 
         <p>
-            Na Sophia, as variáveis são declaradas e inicializadas
-            explicitamente. A linguagem utiliza palavras em português
-            para expressar a lógica do programa.
+            A partir daí, altere o programa, faça perguntas ao algoritmo e
+            observe como cada mudança modifica o resultado.
         </p>
+
     </div>
+
 </section>
 
 <section class="section alternate">
+
     <div class="container">
-        <h2>5. Execute</h2>
+
+        <h2>5. Quando quiser avançar</h2>
 
         <p>
-            Na Sophia IDE, clique em <strong>Executar</strong>.
-            O resultado aparecerá na área de saída da própria IDE.
-        </p>
-
-        <div class="terminal">
-<pre><code>20</code></pre>
-        </div>
-    </div>
-</section>
-
-<section class="section" id="repl">
-    <div class="container">
-        <h2>6. Experimente o REPL</h2>
-
-        <p>
-            O REPL permite experimentar comandos Sophia diretamente
-            no terminal, sem precisar criar um programa completo.
-        </p>
-
-<pre><code>sophia&gt; numero idade recebe 51
-sophia&gt; se idade maior ou igual a 18
-... escreva "Maior"
-... senao
-... escreva "Menor"
-... fim
-Maior
-sophia&gt;</code></pre>
-    </div>
-</section>
-
-<section class="section alternate">
-    <div class="container">
-        <h2>7. Continue aprendendo</h2>
-
-        <p>
-            Agora que você conhece o caminho básico, explore os exemplos
-            e conheça os recursos da linguagem.
+            Para desenvolver programas em um ambiente mais completo, você pode
+            utilizar a <strong>Sophia IDE</strong> ou trabalhar com a CLI e o REPL.
         </p>
 
         <div class="buttons">
-            <a class="button primary" href="exemplos.html">
-                Ver exemplos
-            </a>
-
-            <a class="button secondary" href="linguagem.html">
-                Conhecer a linguagem
+            <a class="button primary" href="ide.html">
+                Conhecer a Sophia IDE
             </a>
         </div>
+
     </div>
+
 </section>
 
 </main>
 
 <footer>
+
     <div class="container">
+
         <strong>Sophia Programming Language</strong>
 
         <p>Sophia 1.0.0 · Sophia IDE 0.1.0</p>
@@ -235,7 +270,9 @@ sophia&gt;</code></pre>
         <p>
             Uma linguagem de programação educacional em português.
         </p>
+
     </div>
+
 </footer>
 
 </body>

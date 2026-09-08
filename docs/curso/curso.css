@@ -1,0 +1,47 @@
+/*
+ * Curso de Algoritmos I
+ *
+ * A identidade visual e a tipografia vêm do css/style.css do site Sophia.
+ * Este arquivo cuida somente de elementos específicos do curso.
+ */
+
+.course-content {
+    max-width: 900px;
+}
+
+.course-content pre {
+    overflow-x: auto;
+}
+
+.course-content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.course-content th,
+.course-content td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid currentColor;
+}
+
+.course-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid currentColor;
+}
+
+@media (max-width: 760px) {
+    .course-navigation {
+        flex-direction: column;
+    }
+
+    .course-content table {
+        display: block;
+        overflow-x: auto;
+    }
+}

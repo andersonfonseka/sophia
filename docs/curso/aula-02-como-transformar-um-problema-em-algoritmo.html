@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aula 02 — Como transformar um problema em algoritmo? — Sophia</title>
+
+    <meta name="description"
+          content="Aula 02 — Como transformar um problema em algoritmo? — Curso de Algoritmos I com Sophia.">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="curso.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container nav">
+        <a href="../index.html" class="logo">Sophia</a>
+
+        <nav>
+            <a href="../linguagem.html">A Sophia</a>
+            <a href="../curso.html">Curso</a>
+            <a href="../comecar.html">Comece agora</a>
+            <a href="../exemplos.html">Exemplos</a>
+            <a href="https://sophia-playground.salmonwave-d0191ecb.brazilsouth.azurecontainerapps.io"
+               target="_blank" rel="noopener">
+                Playground
+            </a>
+            <a href="../ide.html">IDE</a>
+            <a href="https://github.com/andersonfonseka/sophia"
+               target="_blank" rel="noopener">
+                GitHub
+            </a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<section class="section">
+    <div class="container course-content">
+
+        <div class="version">Curso de Algoritmos I</div>
+
+        <h1>Aula 02 — Como transformar um problema em algoritmo?</h1>
+
+        <h2>O desafio</h2>
+<p>Na aula anterior, aprendemos que um algoritmo é uma solução organizada em passos.</p>
+<p>Mas como saímos de um problema e chegamos a esses passos?</p>
+<p>Precisamos aprender a transformar uma situação em uma solução organizada.</p>
+<h2>Primeiro: compreender o problema</h2>
+<p>Antes de pensar em comandos, precisamos entender o que está sendo pedido.</p>
+<p>Pergunte:</p>
+<ul>
+<li>Qual é o objetivo?</li>
+<li>Quais informações eu tenho?</li>
+<li>O que preciso descobrir?</li>
+<li>Quais informações precisam ser fornecidas?</li>
+<li>Existe alguma regra que deve ser respeitada?</li>
+</ul>
+<p>Essas perguntas ajudam a transformar uma descrição em algo que podemos trabalhar.</p>
+<h2>Entrada, processamento e saída</h2>
+<p>Uma forma simples de organizar um problema é identificar:</p>
+<p><strong>ENTRADA → PROCESSAMENTO → SAÍDA</strong></p>
+<p>Considere o problema:</p>
+<blockquote>
+<p>Calcular o dobro de um número.</p>
+</blockquote>
+<h3>Entrada</h3>
+<p>Um número.</p>
+<h3>Processamento</h3>
+<p>Multiplicar o número por 2.</p>
+<h3>Saída</h3>
+<p>O dobro do número.</p>
+<p>Agora o problema está mais organizado.</p>
+<h2>Segundo: decompor</h2>
+<p>Um problema pode ser dividido em partes menores.</p>
+<p>Imagine o problema:</p>
+<blockquote>
+<p>Calcular o preço final de um produto com desconto.</p>
+</blockquote>
+<p>Podemos dividir em:</p>
+<ol>
+<li>receber o preço;</li>
+<li>receber o percentual de desconto;</li>
+<li>calcular o valor do desconto;</li>
+<li>calcular o preço final;</li>
+<li>apresentar o resultado.</li>
+</ol>
+<p>A decomposição torna o problema mais fácil de compreender.</p>
+<h2>Terceiro: organizar os passos</h2>
+<p>Depois de identificar as partes, precisamos colocá-las em uma ordem lógica.</p>
+<p>Considere:</p>
+<ol>
+<li>calcular o desconto;</li>
+<li>apresentar o preço final;</li>
+<li>receber o preço;</li>
+<li>receber o desconto.</li>
+</ol>
+<p>Essa sequência não funciona porque tentamos calcular antes de possuir os dados necessários.</p>
+<p>Uma ordem melhor é:</p>
+<ol>
+<li>receber o preço;</li>
+<li>receber o desconto;</li>
+<li>calcular o desconto;</li>
+<li>calcular o preço final;</li>
+<li>apresentar o resultado.</li>
+</ol>
+<h2>Quarto: verificar se os passos são suficientes</h2>
+<p>Depois de criar o algoritmo, precisamos perguntar:</p>
+<blockquote>
+<p>Com esses passos consigo resolver o problema?</p>
+</blockquote>
+<p>Se a resposta for não, precisamos voltar e melhorar a solução.</p>
+<p>Construir algoritmos não é simplesmente escrever uma sequência uma única vez.</p>
+<p>É um processo de análise e melhoria.</p>
+<h2>Exemplo completo</h2>
+<p>Problema:</p>
+<blockquote>
+<p>Calcular o dobro de um número.</p>
+</blockquote>
+<h3>Compreensão</h3>
+<p>Precisamos de um número e queremos produzir o seu dobro.</p>
+<h3>Decomposição</h3>
+<ol>
+<li>obter o número;</li>
+<li>multiplicar por 2;</li>
+<li>apresentar o resultado.</li>
+</ol>
+<h3>Algoritmo</h3>
+<p><strong>Início</strong></p>
+<ol>
+<li>receber um número;</li>
+<li>multiplicar o número por 2;</li>
+<li>apresentar o resultado.</li>
+</ol>
+<p><strong>Fim</strong></p>
+<p>Observe que ainda não precisamos de uma linguagem de programação.</p>
+<p>A solução já existe.</p>
+<h2>Do problema ao algoritmo</h2>
+<p>Podemos resumir o processo:</p>
+<p><strong>PROBLEMA</strong></p>
+<p>↓</p>
+<p><strong>COMPREENDER</strong></p>
+<p>↓</p>
+<p><strong>IDENTIFICAR DADOS</strong></p>
+<p>↓</p>
+<p><strong>DECOMPOR</strong></p>
+<p>↓</p>
+<p><strong>ORGANIZAR PASSOS</strong></p>
+<p>↓</p>
+<p><strong>TESTAR</strong></p>
+<p>↓</p>
+<p><strong>ALGORITMO</strong></p>
+<p>Essa sequência será usada durante todo o curso.</p>
+<h2>Testando uma solução</h2>
+<p>Imagine que o número recebido seja 5.</p>
+<p>Executamos:</p>
+<ol>
+<li>receber 5;</li>
+<li>calcular 5 vezes 2;</li>
+<li>apresentar 10.</li>
+</ol>
+<p>O resultado esperado foi produzido.</p>
+<p>Agora podemos considerar a solução válida para esse caso.</p>
+<h2>Testar casos diferentes</h2>
+<p>Um único teste não é suficiente para todos os problemas.</p>
+<p>No exemplo do dobro, podemos testar:</p>
+<ul>
+<li>5 → 10;</li>
+<li>10 → 20;</li>
+<li>0 → 0;</li>
+<li>3 → 6.</li>
+</ul>
+<p>Testar diferentes situações ajuda a encontrar problemas na solução.</p>
+<h2>Quando a solução parece difícil</h2>
+<p>Quando um problema parece grande demais, não tente resolver tudo de uma vez.</p>
+<p>Pergunte:</p>
+<blockquote>
+<p>Qual é a menor parte que consigo resolver primeiro?</p>
+</blockquote>
+<p>Depois:</p>
+<blockquote>
+<p>Qual é a próxima parte?</p>
+</blockquote>
+<p>Esse processo de decomposição será uma das principais ferramentas do pensamento algorítmico.</p>
+<h2>Atividade 1 — Entrada, processamento e saída</h2>
+<p>Para cada problema, identifique a entrada, o processamento e a saída:</p>
+<ol>
+<li>calcular a área de um retângulo;</li>
+<li>calcular a média de duas notas;</li>
+<li>converter horas em minutos.</li>
+</ol>
+<h2>Atividade 2 — Organize os passos</h2>
+<p>Organize os passos abaixo para calcular a média de duas notas:</p>
+<ul>
+<li>apresentar a média;</li>
+<li>receber a primeira nota;</li>
+<li>calcular a média;</li>
+<li>receber a segunda nota.</li>
+</ul>
+<h2>Atividade 3 — Encontre o problema</h2>
+<p>Um algoritmo apresenta o resultado antes de receber os dados.</p>
+<p>Explique por que existe um problema nessa solução.</p>
+<h2>Desafio</h2>
+<p>Crie um algoritmo para calcular o preço final de um produto depois de um desconto.</p>
+<p>Defina:</p>
+<ul>
+<li>quais são as entradas;</li>
+<li>quais são os processamentos;</li>
+<li>qual é a saída;</li>
+<li>quais são os passos na ordem correta.</li>
+</ul>
+<p>Não escreva código.</p>
+<h2>Síntese</h2>
+<p>Transformar um problema em algoritmo envolve:</p>
+<ol>
+<li>compreender;</li>
+<li>identificar os dados;</li>
+<li>decompor;</li>
+<li>organizar;</li>
+<li>testar;</li>
+<li>validar.</li>
+</ol>
+<p>Na próxima aula, vamos começar a expressar esses algoritmos usando Sophia.</p>
+
+
+        <div class="course-navigation">
+            <a class="button secondary" href="aula-01-o-que-e-um-algoritmo.html">
+    ← Aula anterior
+</a>
+
+            <a class="button primary" href="aula-03-expressando-algoritmos-com-sophia.html">
+    Próxima aula →
+</a>
+
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+        Curso de Algoritmos I com Sophia
+    </div>
+</footer>
+
+</body>
+</html>

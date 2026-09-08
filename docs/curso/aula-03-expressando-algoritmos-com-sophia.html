@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aula 03 — Expressando algoritmos com Sophia — Sophia</title>
+
+    <meta name="description"
+          content="Aula 03 — Expressando algoritmos com Sophia — Curso de Algoritmos I com Sophia.">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="curso.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container nav">
+        <a href="../index.html" class="logo">Sophia</a>
+
+        <nav>
+            <a href="../linguagem.html">A Sophia</a>
+            <a href="../curso.html">Curso</a>
+            <a href="../comecar.html">Comece agora</a>
+            <a href="../exemplos.html">Exemplos</a>
+            <a href="https://sophia-playground.salmonwave-d0191ecb.brazilsouth.azurecontainerapps.io"
+               target="_blank" rel="noopener">
+                Playground
+            </a>
+            <a href="../ide.html">IDE</a>
+            <a href="https://github.com/andersonfonseka/sophia"
+               target="_blank" rel="noopener">
+                GitHub
+            </a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<section class="section">
+    <div class="container course-content">
+
+        <div class="version">Curso de Algoritmos I</div>
+
+        <h1>Aula 03 — Expressando algoritmos com Sophia</h1>
+
+        <h2>Do algoritmo para a linguagem</h2>
+<p>Nas aulas anteriores, aprendemos a pensar em soluções antes de escrever código.</p>
+<p>Agora vamos dar o próximo passo:</p>
+<p><strong>expressar o algoritmo em Sophia.</strong></p>
+<p>Sophia foi criada para tornar essa expressão clara e próxima da forma como pensamos a solução.</p>
+<h2>A estrutura básica</h2>
+<p>Um programa Sophia possui uma estrutura que delimita o programa e seu início e fim.</p>
+<pre><code class="language-sophia">PROGRAMA &quot;Saudacao&quot;
+INICIO
+    ESCREVA &quot;Olá&quot;
+FIM
+</code></pre>
+<p>Podemos ler esse programa de forma direta:</p>
+<ul>
+<li><code>PROGRAMA</code> identifica o programa;</li>
+<li><code>INICIO</code> indica o começo da execução;</li>
+<li><code>ESCREVA</code> apresenta uma informação;</li>
+<li><code>FIM</code> encerra o programa.</li>
+</ul>
+<h2>O código deve expressar a solução</h2>
+<p>Considere o algoritmo:</p>
+<ol>
+<li>iniciar;</li>
+<li>apresentar uma mensagem;</li>
+<li>terminar.</li>
+</ol>
+<p>Em Sophia:</p>
+<pre><code class="language-sophia">PROGRAMA &quot;Saudacao&quot;
+INICIO
+    ESCREVA &quot;Olá&quot;
+FIM
+</code></pre>
+<p>A estrutura do código acompanha a estrutura do algoritmo.</p>
+<h2>Escrevendo informações</h2>
+<p>O comando <code>ESCREVA</code> apresenta uma informação.</p>
+<p>Exemplo:</p>
+<pre><code class="language-sophia">PROGRAMA &quot;Mensagem&quot;
+INICIO
+    ESCREVA &quot;Bem-vindo ao curso de Algoritmos I&quot;
+FIM
+</code></pre>
+<p>A intenção do programa fica explícita.</p>
+<h2>Lendo dados</h2>
+<p>Quando precisamos receber uma informação, usamos <code>LEIA</code>.</p>
+<p>Exemplo:</p>
+<pre><code class="language-sophia">PROGRAMA &quot;Nome&quot;
+INICIO
+    TEXTO nome RECEBE &quot;&quot;
+    LEIA &quot;Escreva seu nome &quot; nome
+    ESCREVA nome
+FIM
+</code></pre>
+<p>O programa:</p>
+<ol>
+<li>declara uma variavel chamada <code>nome</code>;</li>
+<li>informa que ele é do tipo <code>TEXTO</code>;</li>
+<li>toda a variavel deve ser iniciado com um valor, nesse caso, nome RECEBE &quot;&quot;;</li>
+<li>lê o valor, toda leitura segue o formato LEIA [TEXTO INFORMATIVO] nome_da_variavel;</li>
+<li>apresenta o valor.</li>
+</ol>
+<h2>Dados fazem parte do problema</h2>
+<p>Antes de escrever o programa, precisamos identificar quais informações o problema utiliza.</p>
+<p>Se queremos calcular o dobro de um número, precisamos de um número.</p>
+<p>Podemos expressar isso em Sophia:</p>
+<pre><code class="language-sophia">PROGRAMA &quot;Dobro&quot;
+INICIO
+    NUMERO num recebe 0
+    LEIA &quot;Digite um numero &quot; num
+    ESCREVA num VEZES 2
+FIM
+</code></pre>
+<p>Observe que o programa segue o algoritmo:</p>
+<ol>
+<li>receber um número;</li>
+<li>multiplicar por 2;</li>
+<li>apresentar o resultado.</li>
+</ol>
+<h2>Código expressivo</h2>
+<p>O código deve permitir que outra pessoa compreenda a solução.</p>
+<p>Compare:</p>
+<pre><code class="language-sophia">PROGRAMA &quot;Dobro&quot;
+INICIO
+    NUMERO num recebe 0
+    LEIA &quot;Digite um numero &quot; num
+    ESCREVA num VEZES 2
+FIM
+</code></pre>
+<p>com uma solução que escondesse a intenção em uma sequência difícil de interpretar.</p>
+<p>A primeira solução é mais clara porque os nomes e as estruturas ajudam a revelar o que está acontecendo.</p>
+<h2>A linguagem não substitui o algoritmo</h2>
+<p>Aprender os comandos de Sophia não elimina a necessidade de pensar.</p>
+<p>Se o problema não foi compreendido, conhecer a sintaxe não resolve a situação.</p>
+<p>A sequência continua sendo:</p>
+<p><strong>PROBLEMA → ALGORITMO → SOPHIA</strong></p>
+<p>Sophia é a forma de expressar a solução.</p>
+<h2>Um primeiro programa completo</h2>
+<p>Problema:</p>
+<blockquote>
+<p>Receber um número e apresentar seu dobro.</p>
+</blockquote>
+<p>Algoritmo:</p>
+<ol>
+<li>receber um número;</li>
+<li>multiplicar o número por 2;</li>
+<li>apresentar o resultado.</li>
+</ol>
+<p>Sophia:</p>
+<pre><code class="language-sophia">PROGRAMA &quot;Dobro&quot;
+INICIO
+    NUMERO num recebe 0
+    LEIA &quot;Digite um numero &quot; num
+    ESCREVA num VEZES 2
+FIM
+</code></pre>
+<h2>Testando</h2>
+<p>Se o usuário fornecer:</p>
+<pre><code class="language-text">7
+</code></pre>
+<p>o programa deverá produzir:</p>
+<pre><code class="language-text">14
+</code></pre>
+<p>Agora podemos comparar:</p>
+<p><strong>Problema:</strong> calcular o dobro.</p>
+<p><strong>Algoritmo:</strong> receber → multiplicar → apresentar.</p>
+<p><strong>Programa:</strong> expressa esses passos em Sophia.</p>
+<h2>Atividade 1 — Leia o programa</h2>
+<p>Observe:</p>
+<pre><code class="language-sophia">PROGRAMA &quot;Soma&quot;
+
+INICIO
+    NUMERO primeiro RECEBE 0
+    NUMERO segundo RECEBE 0
+    LEIA &quot;Digite o primeiro valor &quot; primeiro
+    LEIA &quot;Digite o segundo valor &quot; segundo
+    ESCREVA primeiro MAIS segundo
+FIM
+</code></pre>
+<p>Responda:</p>
+<ol>
+<li>quais as variáveis foram criadas?</li>
+<li>qual é o tipo dessas variveis?</li>
+<li>quais valores são lidos?</li>
+<li>qual resultado é apresentado?</li>
+</ol>
+<h2>Atividade 2 — Traduza um algoritmo</h2>
+<p>Transforme o algoritmo abaixo em Sophia:</p>
+<ol>
+<li>receber um número;</li>
+<li>multiplicar por 3;</li>
+<li>apresentar o resultado.</li>
+</ol>
+<h2>Atividade 3 — Teste mentalmente</h2>
+<p>Considere o programa do dobro.</p>
+<p>Execute-o para:</p>
+<ul>
+<li>2;</li>
+<li>5;</li>
+<li>
+<ol start="10">
+<li></li>
+</ol>
+</li>
+</ul>
+<p>Registre os resultados.</p>
+<h2>Desafio</h2>
+<p>Crie um programa Sophia que receba duas notas e apresente a soma das duas notas.</p>
+<p>Antes de escrever o código:</p>
+<ol>
+<li>identifique as entradas;</li>
+<li>descreva o processamento;</li>
+<li>defina a saída;</li>
+<li>escreva o programa.</li>
+</ol>
+<h2>Síntese</h2>
+<p>Nesta aula aprendemos que:</p>
+<ul>
+<li>Sophia expressa algoritmos;</li>
+<li><code>PROGRAMA</code>, <code>INICIO</code> e <code>FIM</code> estruturam o programa;</li>
+<li><code>DADOS</code> declara os dados utilizados;</li>
+<li><code>LEIA</code> recebe informações;</li>
+<li><code>ESCREVA</code> apresenta informações;</li>
+<li>o algoritmo continua sendo a base da solução.</li>
+</ul>
+<p>Na próxima aula, vamos usar Sophia para tomar decisões.</p>
+
+
+        <div class="course-navigation">
+            <a class="button secondary" href="aula-02-como-transformar-um-problema-em-algoritmo.html">
+    ← Aula anterior
+</a>
+
+            <a class="button primary" href="aula-04-decisoes-com-sophia.html">
+    Próxima aula →
+</a>
+
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+        Curso de Algoritmos I com Sophia
+    </div>
+</footer>
+
+</body>
+</html>

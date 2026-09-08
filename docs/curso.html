@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Curso de Algoritmos I — Sophia</title>
+
+    <meta
+        name="description"
+        content="Curso de Algoritmos I com Sophia. Aprenda a pensar algoritmicamente, resolver problemas e expressar soluções em uma linguagem de programação em português."
+    >
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .course-status {
+            margin: 24px 0 38px;
+            padding: 22px 26px;
+            border: 1px solid #d9e2f2;
+            border-radius: 12px;
+            background: #f7f9fc;
+        }
+
+        .course-status strong {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .course-status p {
+            margin: 0;
+        }
+
+        .available {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+    </style>
+<!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZQHJ5NRBP1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-ZQHJ5NRBP1');
+    </script>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="container nav">
+
+        <a href="index.html" class="logo">
+            Sophia
+        </a>
+
+        <nav>
+            <a href="linguagem.html">A Sophia</a>
+            <a href="curso.html">Curso</a>
+            <a href="comecar.html">Comece agora</a>
+            <a href="exemplos.html">Exemplos</a>
+            <a href="https://sophia-playground.salmonwave-d0191ecb.brazilsouth.azurecontainerapps.io"
+               target="_blank"
+               onclick="gtag('event', 'playground_click', {version: '1.0.0'});">
+                Playground
+            </a>
+            <a href="ide.html">IDE</a>
+            <a href="https://github.com/andersonfonseka/sophia"
+               target="_blank"
+               onclick="gtag('event', 'github_click', {version: '0.1.0'});">
+                GitHub
+            </a>
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main>
+
+<section class="hero">
+
+    <div class="container hero-content">
+
+        <div>
+
+            <div class="version">
+                Curso de Algoritmos I
+            </div>
+
+            <h1>
+                Aprenda a pensar algoritmicamente.
+            </h1>
+
+            <p class="hero-text">
+                Um curso para compreender problemas, construir soluções,
+                expressar algoritmos e aprender programação utilizando
+                a linguagem Sophia.
+            </p>
+
+            <div class="buttons">
+
+                <a class="button primary"
+                   href="curso/prologo-algoritmos-na-era-da-ia.html"
+                   onclick="gtag('event', 'course_start');">
+                    Começar pelas aulas disponíveis
+                </a>
+
+                <a class="button secondary"
+                   href="https://sophia-playground.salmonwave-d0191ecb.brazilsouth.azurecontainerapps.io"
+                   target="_blank"
+                   onclick="gtag('event', 'playground_from_course');">
+                    Experimentar Sophia
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="code-card">
+
+<pre><code>problema
+    ↓
+compreensão
+    ↓
+decomposição
+    ↓
+solução
+    ↓
+algoritmo
+    ↓
+Sophia
+    ↓
+execução
+    ↓
+teste
+    ↓
+validação</code></pre>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="container">
+
+        <h2>Por que aprender algoritmos na era da IA?</h2>
+
+        <p>
+            A inteligência artificial já consegue produzir código.
+            Isso não elimina a necessidade de aprender algoritmos.
+        </p>
+
+        <p>
+            Para utilizar código produzido por uma IA de forma responsável,
+            ainda é necessário compreender o problema, definir o que deve
+            ser resolvido, avaliar a solução e validar o resultado.
+        </p>
+
+        <p>
+            Este curso começa antes do código. Ele começa pelo problema
+            e pelo raciocínio necessário para transformá-lo em uma solução.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="section alternate">
+
+    <div class="container">
+
+        <h2>O que você vai aprender</h2>
+
+        <div class="features">
+
+            <div class="feature">
+                <h3>Pensamento algorítmico</h3>
+                <p>
+                    Aprender a decompor problemas e organizar soluções
+                    passo a passo.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Programação com Sophia</h3>
+                <p>
+                    Expressar algoritmos utilizando uma linguagem
+                    de programação em português.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Estruturas fundamentais</h3>
+                <p>
+                    Trabalhar com dados, operações, decisões,
+                    repetição, funções e listas.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Validação</h3>
+                <p>
+                    Testar algoritmos, acompanhar sua execução,
+                    identificar erros e verificar resultados.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section" id="curso">
+
+    <div class="container">
+
+        <h2>Trilha do curso</h2>
+
+        <div class="course-status">
+            <strong>Curso em construção</strong>
+            <p>
+                As primeiras aulas já estão disponíveis. Novos conteúdos
+                serão publicados progressivamente.
+            </p>
+        </div>
+
+        <p>
+            O curso foi organizado para levar o estudante do raciocínio
+            algorítmico até a construção de programas completos.
+        </p>
+
+
+        <h3>Prólogo — Algoritmos na era da IA</h3>
+
+        <div class="feature">
+            <h4>Prólogo — Por que aprender algoritmos na era da IA?</h4>
+            <p>
+                O papel do pensamento humano quando a inteligência artificial
+                consegue gerar código.
+            </p>
+            <a href="curso/prologo-algoritmos-na-era-da-ia.html">
+                Começar pelo prólogo
+            </a>
+        </div>
+
+
+        <h3>01 — Pensamento algorítmico</h3>
+
+        <div class="features">
+
+            <div class="feature">
+                <h4>Aula 01 — O que é um algoritmo?</h4>
+                <p>
+                    Compreenda algoritmo como uma sequência organizada
+                    de passos para resolver um problema.
+                </p>
+                <a href="curso/aula-01-o-que-e-um-algoritmo.html">
+                    Estudar aula
+                </a>
+                <span class="available">Disponível agora</span>
+            </div>
+
+            <div class="feature">
+                <h4>Aula 02 — Como transformar um problema em algoritmo?</h4>
+                <p>
+                    Aprenda a compreender um problema, decompor sua solução
+                    e organizar os passos necessários.
+                </p>
+                <a href="curso/aula-02-como-transformar-um-problema-em-algoritmo.html">
+                    Estudar aula
+                </a>
+                <span class="available">Disponível agora</span>
+            </div>
+
+        </div>
+
+
+        <h3>02 — Conhecendo Sophia</h3>
+
+        <div class="feature">
+
+            <h4>Aula 03 — Expressando algoritmos com Sophia</h4>
+
+            <p>
+                Conheça a estrutura básica de um programa e veja como
+                um algoritmo pode ser expresso em Sophia.
+            </p>
+
+            <a href="curso/aula-03-expressando-algoritmos-com-sophia.html">
+                Estudar aula
+            </a>
+            <span class="available">Disponível agora</span>
+
+        </div>
+
+
+        <h3>03 — Decisão</h3>
+
+        <div class="feature">
+
+            <h4>Aula 04 — Tomando decisões com Sophia</h4>
+
+            <p>
+                Aprenda a utilizar condições para fazer o algoritmo
+                seguir caminhos diferentes.
+            </p>
+
+            <a href="curso/aula-04-decisoes-com-sophia.html">
+                Estudar aula
+            </a>
+            <span class="available">Disponível agora</span>
+
+        </div>
+
+
+        <h3>04 — Dados, variáveis e expressões</h3>
+
+        <div class="features">
+
+            <div class="feature">
+                <h4>Aula 05 — Dados e tipos</h4>
+                <p>
+                    Conheça os tipos de dados utilizados para representar
+                    diferentes informações.
+                </p>
+                <span>Em breve</span>
+            </div>
+
+            <div class="feature">
+                <h4>Aula 06 — Variáveis e atribuição</h4>
+                <p>
+                    Aprenda a armazenar e atualizar valores durante
+                    a execução de um algoritmo.
+                </p>
+                <span>Em breve</span>
+            </div>
+
+            <div class="feature">
+                <h4>Aula 07 — Entrada e saída</h4>
+                <p>
+                    Trabalhe com entrada de dados e apresentação
+                    de resultados.
+                </p>
+                <span>Em breve</span>
+            </div>
+
+        </div>
+
+
+        <h3>05 — Matemática e expressões</h3>
+
+        <div class="features">
+
+            <div class="feature">
+                <h4>Aula 08 — Operadores matemáticos</h4>
+                <p>Construa expressões utilizando operações matemáticas.</p>
+                <span>Em breve</span>
+            </div>
+
+            <div class="feature">
+                <h4>Aula 09 — Construindo expressões</h4>
+                <p>Combine valores e operadores para representar cálculos.</p>
+                <span>Em breve</span>
+            </div>
+
+            <div class="feature">
+                <h4>Aula 10 — Problemas matemáticos</h4>
+                <p>Transforme problemas matemáticos em algoritmos.</p>
+                <span>Em breve</span>
+            </div>
+
+        </div>
+
+
+        <h3>06 — Lógica e comparações</h3>
+
+        <div class="features">
+
+            <div class="feature">
+                <h4>Aula 11 — Comparações</h4>
+                <p>Construa perguntas utilizando relações entre valores.</p>
+                <span>Em breve</span>
+            </div>
+
+            <div class="feature">
+                <h4>Aula 12 — Expressões lógicas</h4>
+                <p>Combine condições utilizando lógica.</p>
+                <span>Em breve</span>
+            </div>
+
+        </div>
+
+
+        <h3>07 — Decisões</h3>
+
+        <div class="features">
+
+            <div class="feature">
+                <h4>Aula 13 — Decisões encadeadas</h4>
+                <p>Construa algoritmos com diferentes possibilidades de decisão.</p>
+                <span>Em breve</span>
+            </div>
+
+            <div class="feature">
+                <h4>Aula 14 — Pensando em decisões</h4>
+                <p>Aprenda a modelar decisões antes de escrever o código.</p>
+                <span>Em breve</span>
+            </div>
+
+        </div>
+
+
+        <h3>08 — Repetição</h3>
+
+        <div class="features">
+
+            <div class="feature">
+                <h4>Aula 15 — Por que repetir?</h4>
+                <p>Entenda a necessidade de repetir passos de um algoritmo.</p>
+                <span>Em breve</span>
+            </div>
+
+            <div class="feature">
+                <h4>Aula 16 — ENQUANTO</h4>
+                <p>Repita enquanto uma condição for verdadeira.</p>
+                <span>Em breve</span>
+            </div>
+
+            <div class="feature">
+                <h4>Aula 17 — PARA</h4>
+                <p>Repita utilizando uma sequência controlada de valores.</p>
+                <span>Em breve</span>
+            </div>
+
+            <div class="feature">
+                <h4>Aula 18 — Escolhendo entre ENQUANTO e PARA</h4>
+                <p>
+                    Compare as duas estruturas de repetição e aprenda
+                    quando cada uma é adequada.
+                </p>
+                <span>Em breve</span>
+            </div>
+
+            <div class="feature">
+                <h4>Aula 19 — Loops e erros de repetição</h4>
+                <p>Identifique condições que podem produzir repetições incorretas.</p>
+                <span>Em breve</span>
+            </div>
+
+        </div>
+
+
+        <h3>09 — Funções e modularização</h3>
+
+        <div class="features">
+
+            <div class="feature">
+                <h4>Aula 20 — Por que criar funções?</h4>
+                <p>Entenda como dividir uma solução em partes menores.</p>
+                <span>Em breve</span>
+            </div>
+
+            <div class="feature">
+                <h4>Aula 21 — Funções em Sophia</h4>
+                <p>Expresse funções utilizando a linguagem Sophia.</p>
+                <span>Em breve</span>
+            </div>
+
+            <div class="feature">
+                <h4>Aula 22 — Modularizando soluções</h4>
+                <p>Construa soluções compostas por partes reutilizáveis.</p>
+                <span>Em breve</span>
+            </div>
+
+        </div>
+
+
+        <h3>10 — Listas e estruturas de dados</h3>
+
+        <div class="features">
+
+            <div class="feature">
+                <h4>Aula 23 — Por que precisamos de coleções?</h4>
+                <p>Entenda problemas que envolvem vários valores.</p>
+                <span>Em breve</span>
+            </div>
+
+            <div class="feature">
+                <h4>Aula 24 — Listas</h4>
+                <p>Armazene e acesse conjuntos de valores.</p>
+                <span>Em breve</span>
+            </div>
+
+            <div class="feature">
+                <h4>Aula 25 — Repetição + listas</h4>
+                <p>Combine listas e repetição para processar coleções.</p>
+                <span>Em breve</span>
+            </div>
+
+        </div>
+
+
+        <h3>11 — Modelagem de dados</h3>
+
+        <div class="feature">
+            <h4>Aula 26 — Estruturas com DADOS</h4>
+            <p>
+                Explore a modelagem de informações utilizando os recursos
+                de dados da Sophia.
+            </p>
+            <span>Em breve</span>
+        </div>
+
+
+        <h3>12 — Resolução de problemas</h3>
+
+        <div class="features">
+
+            <div class="feature">
+                <h4>Aula 27 — Algoritmos completos</h4>
+                <p>Combine os conhecimentos desenvolvidos ao longo do curso.</p>
+                <span>Em breve</span>
+            </div>
+
+            <div class="feature">
+                <h4>Aula 28 — Estratégias para resolver problemas</h4>
+                <p>Desenvolva estratégias para enfrentar novos problemas.</p>
+                <span>Em breve</span>
+            </div>
+
+            <div class="feature">
+                <h4>Aula 29 — Depuração</h4>
+                <p>Aprenda a localizar e corrigir erros em algoritmos.</p>
+                <span>Em breve</span>
+            </div>
+
+        </div>
+
+
+        <h3>13 — Sophia + IA</h3>
+
+        <div class="feature">
+            <h4>Aula 30 — Usando IA para programar</h4>
+            <p>
+                Utilize inteligência artificial como ferramenta sem abandonar
+                o raciocínio, a especificação e a validação humana.
+            </p>
+            <span>Em breve</span>
+        </div>
+
+
+        <h3>14 — Projeto final</h3>
+
+        <div class="feature">
+            <h4>Aula 31 — Do problema ao programa</h4>
+            <p>
+                Desenvolva um projeto completo passando pelo caminho
+                do problema até a execução e validação.
+            </p>
+            <span>Em breve</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section alternate">
+
+    <div class="container">
+
+        <h2>Como estudar</h2>
+
+        <p>
+            Cada aula parte de um problema, apresenta o conceito,
+            mostra sua expressão em Sophia e propõe atividades para
+            construir e validar a solução.
+        </p>
+
+        <div class="features">
+
+            <div class="feature">
+                <h3>1. Compreender</h3>
+                <p>Entenda o problema antes de pensar no código.</p>
+            </div>
+
+            <div class="feature">
+                <h3>2. Construir</h3>
+                <p>Organize os passos necessários para resolver o problema.</p>
+            </div>
+
+            <div class="feature">
+                <h3>3. Expressar</h3>
+                <p>Transforme a solução em um programa Sophia.</p>
+            </div>
+
+            <div class="feature">
+                <h3>4. Validar</h3>
+                <p>Execute, teste e verifique se o algoritmo realmente funciona.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="container">
+
+        <h2>O curso começa aqui</h2>
+
+        <p>
+            Você não precisa esperar o curso inteiro ficar pronto.
+            Comece pelo prólogo e avance pelas quatro primeiras aulas.
+            Novos conteúdos serão incorporados à trilha conforme forem publicados.
+        </p>
+
+        <div class="buttons">
+            <a class="button primary"
+               href="curso/prologo-algoritmos-na-era-da-ia.html">
+                Começar pelo prólogo
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="container">
+
+        <h2>O objetivo final</h2>
+
+        <p>
+            O aluno não termina o curso apenas sabendo programar em Sophia.
+        </p>
+
+        <p>
+            <strong>
+                Ele termina o curso sabendo pensar algoritmicamente.
+            </strong>
+        </p>
+
+        <div class="buttons">
+
+            <a class="button primary"
+               href="https://sophia-playground.salmonwave-d0191ecb.brazilsouth.azurecontainerapps.io"
+               target="_blank"
+               onclick="gtag('event', 'playground_from_course_end');">
+                Experimentar Sophia
+            </a>
+
+            <a class="button secondary"
+               href="exemplos.html">
+                Ver exemplos
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <div class="container">
+
+        <strong>Sophia Programming Language</strong>
+
+        <p>
+            Sophia 1.0.0 · Curso de Algoritmos I
+        </p>
+
+        <p>
+            Uma linguagem de programação educacional em português.
+        </p>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
