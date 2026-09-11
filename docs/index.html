@@ -107,13 +107,17 @@
 
         <div class="code-card">
 
-<pre><code>numero idade recebe 20
+<pre><code>PROGRAMA "Idade"
 
-se idade maior ou igual a 18
-    escreva "Maior de idade"
-senao
-    escreva "Menor de idade"
-fim</code></pre>
+INICIO
+    NUMERO idade RECEBE 20
+
+    SE idade MAIOR OU IGUAL A 18
+        ESCREVA "Maior de idade"
+    SENAO
+        ESCREVA "Menor de idade"
+    FIM
+FIM</code></pre>
 
         </div>
 
@@ -221,6 +225,33 @@ fim</code></pre>
 
     <div class="container">
 
+        <h2>Curso de Algoritmos I</h2>
+
+        <p>
+            As <strong>oito primeiras aulas</strong> já estão disponíveis.
+            O curso conduz o estudante do pensamento algorítmico à construção,
+            expressão e validação de soluções com Sophia.
+        </p>
+
+        <div class="buttons">
+
+            <a class="button primary"
+               href="curso.html"
+               onclick="gtag('event', 'course_click', {source: 'home_available'});">
+                Ver o curso
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="container">
+
         <h2>Ela não pretende substituir outras linguagens</h2>
 
         <p>
@@ -247,12 +278,16 @@ fim</code></pre>
 
         <div class="terminal">
 
-<pre><code>sophia&gt; numero i recebe 0
+<pre><code>PROGRAMA "Contagem"
 
-sophia&gt; enquanto i menor ou igual a 3
-... escreva i
-... i recebe i mais 1
-... fim
+INICIO
+    NUMERO i RECEBE 0
+
+    ENQUANTO i MENOR OU IGUAL A 3
+        ESCREVA i
+        i RECEBE i MAIS 1
+    FIM
+FIM
 
 0
 1

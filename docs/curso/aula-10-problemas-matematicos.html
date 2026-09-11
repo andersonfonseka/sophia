@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aula 10 — Problemas matemáticos — Sophia</title>
+
+    <meta name="description"
+          content="Aula 10 — Problemas matemáticos — Curso de Algoritmos I com Sophia.">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="curso.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container nav">
+        <a href="../index.html" class="logo">Sophia</a>
+
+        <nav>
+            <a href="../linguagem.html">A Sophia</a>
+            <a href="../curso.html">Curso</a>
+            <a href="../comecar.html">Comece agora</a>
+            <a href="../exemplos.html">Exemplos</a>
+            <a href="https://sophia-playground.salmonwave-d0191ecb.brazilsouth.azurecontainerapps.io"
+               target="_blank" rel="noopener">
+                Playground
+            </a>
+            <a href="../ide.html">IDE</a>
+            <a href="https://github.com/andersonfonseka/sophia"
+               target="_blank" rel="noopener">
+                GitHub
+            </a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<section class="section">
+    <div class="container course-content">
+
+        <div class="version">Curso de Algoritmos I</div>
+
+        <h1>Aula 10 — Problemas matemáticos</h1>
+
+        <h2>Da situação para o cálculo</h2>
+<p>Um problema matemático apresentado em texto não mostra diretamente o programa que devemos escrever.</p>
+<p>Precisamos transformar a situação em uma solução.</p>
+<p>O caminho é:</p>
+<pre><code class="language-text">PROBLEMA
+    ↓
+ENTRADAS
+    ↓
+PROCESSAMENTO
+    ↓
+SAÍDA
+    ↓
+ALGORITMO
+    ↓
+PROGRAMA
+    ↓
+TESTES
+</code></pre>
+<h2>Exemplo: média</h2>
+<p>Problema:</p>
+<blockquote>
+<p>Um aluno recebeu as notas 7 e 9. Qual é a média?</p>
+</blockquote>
+<h3>Entradas</h3>
+<p>Temos:</p>
+<ul>
+<li>primeira nota;</li>
+<li>segunda nota.</li>
+</ul>
+<h3>Processamento</h3>
+<p>A média é calculada pela soma das notas dividida pela quantidade de notas.</p>
+<pre><code class="language-text">nota1 MAIS nota2 DIVIDIDO POR 2
+</code></pre>
+<h3>Saída</h3>
+<p>A média.</p>
+<h3>Programa</h3>
+<pre><code class="language-sophia">PROGRAMA &quot;Media&quot;
+
+INICIO
+    NUMERO nota1 RECEBE 0
+    NUMERO nota2 RECEBE 0
+    NUMERO soma RECEBE 0
+    NUMERO media RECEBE 0
+
+    nota1 RECEBE 7
+    nota2 RECEBE 9
+    soma RECEBE nota1 MAIS nota2
+    media RECEBE soma DIVIDIDO POR 2
+    ESCREVA media
+FIM
+</code></pre>
+<h2>Atenção à expressão</h2>
+<p>Observe:</p>
+<pre><code class="language-text">nota1 MAIS nota2 DIVIDIDO POR 2
+</code></pre>
+<p>A precedência das operações precisa ser considerada.</p>
+<p>Se a intenção é somar as duas notas antes de dividir por 2, a solução precisa representar essa relação de forma compatível com a sintaxe disponível na Sophia.</p>
+<p>Como a Sophia não utiliza parênteses, a construção da expressão deve respeitar os recursos e a precedência definidos pela linguagem.</p>
+<p>Esse é um ponto importante:</p>
+<blockquote>
+<p>Nem toda fórmula matemática pode ser simplesmente copiada para qualquer linguagem de programação.</p>
+</blockquote>
+<p>Precisamos aprender a expressar a solução na linguagem que estamos utilizando.</p>
+<h2>Exemplo: área de um retângulo</h2>
+<p>Problema:</p>
+<blockquote>
+<p>Calcular a área de um retângulo sabendo sua base e sua altura.</p>
+</blockquote>
+<p>A fórmula é:</p>
+<pre><code class="language-text">base VEZES altura
+</code></pre>
+<p>Programa:</p>
+<pre><code class="language-sophia">PROGRAMA &quot;AreaRetangulo&quot;
+
+INICIO
+    NUMERO base RECEBE 0
+    NUMERO altura RECEBE 0
+    NUMERO area RECEBE 0
+
+    base RECEBE 8
+    altura RECEBE 5
+    area RECEBE base VEZES altura
+    ESCREVA area
+FIM
+</code></pre>
+<p>Resultado:</p>
+<pre><code class="language-text">40
+</code></pre>
+<h2>Exemplo: perímetro</h2>
+<p>O perímetro de um retângulo pode ser calculado somando seus quatro lados.</p>
+<p>Para um retângulo com base 8 e altura 5:</p>
+<pre><code class="language-text">8 MAIS 8 MAIS 5 MAIS 5
+</code></pre>
+<p>Programa:</p>
+<pre><code class="language-sophia">PROGRAMA &quot;Perimetro&quot;
+
+INICIO
+    NUMERO base RECEBE 0
+    NUMERO altura RECEBE 0
+    NUMERO perimetro RECEBE 0
+
+    base RECEBE 8
+    altura RECEBE 5
+    perimetro RECEBE base MAIS base MAIS altura MAIS altura
+    ESCREVA perimetro
+FIM
+</code></pre>
+<h2>Exemplo: desconto</h2>
+<p>Problema:</p>
+<blockquote>
+<p>Um produto custa 200 reais e recebe um desconto de 20 reais. Qual é o preço final?</p>
+</blockquote>
+<p>Entradas:</p>
+<ul>
+<li>preço;</li>
+<li>desconto.</li>
+</ul>
+<p>Processamento:</p>
+<pre><code class="language-text">preco MENOS desconto
+</code></pre>
+<p>Programa:</p>
+<pre><code class="language-sophia">PROGRAMA &quot;Desconto&quot;
+
+INICIO
+    NUMERO preco RECEBE 0
+    NUMERO desconto RECEBE 0
+    NUMERO final RECEBE 0
+
+    preco RECEBE 200
+    desconto RECEBE 20
+    final RECEBE preco MENOS desconto
+    ESCREVA final
+FIM
+</code></pre>
+<h2>Exemplo: conversão</h2>
+<p>Problema:</p>
+<blockquote>
+<p>Uma distância de 5 quilômetros corresponde a quantos metros?</p>
+</blockquote>
+<p>Sabemos que:</p>
+<pre><code class="language-text">1 quilometro = 1000 metros
+</code></pre>
+<p>Portanto:</p>
+<pre><code class="language-text">quilometros VEZES 1000
+</code></pre>
+<p>Programa:</p>
+<pre><code class="language-sophia">PROGRAMA &quot;QuilometrosParaMetros&quot;
+
+INICIO
+    NUMERO quilometros RECEBE 0
+    NUMERO metros RECEBE 0
+
+    quilometros RECEBE 5
+    metros RECEBE quilometros VEZES 1000
+    ESCREVA metros
+FIM
+</code></pre>
+<h2>O cálculo deve nascer do problema</h2>
+<p>Não devemos escolher uma operação apenas porque ela existe.</p>
+<p>Primeiro compreendemos a situação.</p>
+<p>Depois perguntamos:</p>
+<blockquote>
+<p>Qual relação entre os dados produz a resposta?</p>
+</blockquote>
+<p>Essa relação é o processamento.</p>
+<h2>Uma técnica para resolver problemas</h2>
+<p>Para qualquer problema matemático simples, escreva:</p>
+<h3>1. Problema</h3>
+<p>O que precisa ser descoberto?</p>
+<h3>2. Entradas</h3>
+<p>Quais informações são necessárias?</p>
+<h3>3. Processamento</h3>
+<p>Qual cálculo transforma as entradas na resposta?</p>
+<h3>4. Saída</h3>
+<p>O que será apresentado?</p>
+<h3>5. Teste</h3>
+<p>Qual resultado esperamos para um conjunto conhecido de valores?</p>
+<h2>Atividade</h2>
+<p>Resolva antes de escrever Sophia:</p>
+<ol>
+<li>calcular a área de um quadrado;</li>
+<li>calcular o dobro de um número;</li>
+<li>calcular o valor de uma compra com três produtos de mesmo preço;</li>
+<li>converter horas em minutos;</li>
+<li>calcular o consumo de um veículo sabendo distância percorrida e combustível utilizado.</li>
+</ol>
+<p>Para cada problema, escreva:</p>
+<pre><code class="language-text">PROBLEMA
+ENTRADAS
+PROCESSAMENTO
+SAÍDA
+TESTE
+</code></pre>
+<h2>Desafio</h2>
+<p>Uma pessoa deseja calcular o custo de uma viagem.</p>
+<p>Ela sabe:</p>
+<ul>
+<li>a distância da viagem;</li>
+<li>o consumo do veículo em quilômetros por litro;</li>
+<li>o preço do litro do combustível.</li>
+</ul>
+<p>Descubra:</p>
+<ol>
+<li>quais são as entradas;</li>
+<li>qual cálculo determina a quantidade de combustível;</li>
+<li>qual cálculo determina o custo;</li>
+<li>qual é a saída;</li>
+<li>como testar a solução.</li>
+</ol>
+<p>Depois transforme sua solução em um programa Sophia.</p>
+<h2>Síntese</h2>
+<p>Resolver um problema matemático com programação não significa apenas fazer uma conta.</p>
+<p>É necessário:</p>
+<ul>
+<li>compreender a situação;</li>
+<li>identificar os dados;</li>
+<li>descobrir a relação entre eles;</li>
+<li>construir o processamento;</li>
+<li>definir a saída;</li>
+<li>escrever o algoritmo;</li>
+<li>implementar;</li>
+<li>testar.</li>
+</ul>
+<p>O cálculo é apenas uma parte da solução.</p>
+
+
+        <div class="course-navigation">
+            <a class="button secondary" href="aula-09-construindo-expressoes.html">
+    ← Aula anterior
+</a>
+
+            <a class="button primary" href="aula-11-comparacoes.html">
+    Próxima aula →
+</a>
+
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+        Curso de Algoritmos I com Sophia
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aula 12 — Expressões lógicas — Sophia</title>
+
+    <meta name="description"
+          content="Aula 12 — Expressões lógicas — Curso de Algoritmos I com Sophia.">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="curso.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container nav">
+        <a href="../index.html" class="logo">Sophia</a>
+
+        <nav>
+            <a href="../linguagem.html">A Sophia</a>
+            <a href="../curso.html">Curso</a>
+            <a href="../comecar.html">Comece agora</a>
+            <a href="../exemplos.html">Exemplos</a>
+            <a href="https://sophia-playground.salmonwave-d0191ecb.brazilsouth.azurecontainerapps.io"
+               target="_blank" rel="noopener">
+                Playground
+            </a>
+            <a href="../ide.html">IDE</a>
+            <a href="https://github.com/andersonfonseka/sophia"
+               target="_blank" rel="noopener">
+                GitHub
+            </a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<section class="section">
+    <div class="container course-content">
+
+        <div class="version">Curso de Algoritmos I</div>
+
+        <h1>Aula 12 — Expressões lógicas</h1>
+
+        <h2>Uma condição pode ter mais de uma parte</h2>
+<p>Alguns problemas não podem ser resolvidos com uma única pergunta.</p>
+<p>Por exemplo:</p>
+<blockquote>
+<p>Uma pessoa pode participar se tiver pelo menos 18 anos e possuir inscrição.</p>
+</blockquote>
+<p>Agora precisamos verificar duas condições:</p>
+<pre><code class="language-text">idade MAIOR OU IGUAL A 18
+</code></pre>
+<p>e</p>
+<pre><code class="language-text">inscricao IGUAL A ...
+</code></pre>
+<p>Precisamos combinar essas condições.</p>
+<p>É aí que entram as expressões lógicas.</p>
+<h2>E, OU e NAO</h2>
+<p>Sophia possui três operadores lógicos fundamentais:</p>
+<pre><code class="language-text">E
+OU
+NAO
+</code></pre>
+<p>Eles permitem combinar ou negar condições.</p>
+<h2>Operador E</h2>
+<p><code>E</code> exige que as duas condições sejam verdadeiras.</p>
+<p>Imagine:</p>
+<blockquote>
+<p>Para entrar, a pessoa precisa ter 18 anos ou mais e possuir autorização.</p>
+</blockquote>
+<p>As duas regras precisam ser atendidas.</p>
+<p>Conceitualmente:</p>
+<p>| Condição 1 | Condição 2 | E |
+|---|---|---|
+| verdadeiro | verdadeiro | verdadeiro |
+| verdadeiro | falso | falso |
+| falso | verdadeiro | falso |
+| falso | falso | falso |</p>
+<p>O <code>E</code> representa:</p>
+<blockquote>
+<p>uma condição e outra condição.</p>
+</blockquote>
+<h2>Exemplo com E</h2>
+<p>Considere um limite de idade e uma autorização representada por um valor lógico.</p>
+<pre><code class="language-sophia">PROGRAMA &quot;Entrada&quot;
+
+INICIO
+    NUMERO idade RECEBE 0
+    LOGICO autorizado RECEBE FALSO
+
+    idade RECEBE 20
+
+    SE idade MAIOR OU IGUAL A 18 E autorizado
+        ESCREVA &quot;Entrada permitida&quot;
+    SENAO
+        ESCREVA &quot;Entrada negada&quot;
+    FIM
+FIM
+</code></pre>
+<p>O algoritmo só permite a entrada quando as duas condições forem atendidas.</p>
+<h2>Operador OU</h2>
+<p><code>OU</code> permite que pelo menos uma das condições seja verdadeira.</p>
+<p>Exemplo:</p>
+<blockquote>
+<p>O cliente recebe o benefício se for estudante ou aposentado.</p>
+</blockquote>
+<p>Conceitualmente:</p>
+<p>| Condição 1 | Condição 2 | OU |
+|---|---|---|
+| verdadeiro | verdadeiro | verdadeiro |
+| verdadeiro | falso | verdadeiro |
+| falso | verdadeiro | verdadeiro |
+| falso | falso | falso |</p>
+<p>A ideia é:</p>
+<blockquote>
+<p>uma condição ou outra condição.</p>
+</blockquote>
+<h2>Exemplo com OU</h2>
+<pre><code class="language-sophia">PROGRAMA &quot;Beneficio&quot;
+
+INICIO
+    LOGICO estudante RECEBE FALSO
+    LOGICO aposentado RECEBE FALSO
+
+    SE estudante OU aposentado
+        ESCREVA &quot;Beneficio concedido&quot;
+    SENAO
+        ESCREVA &quot;Beneficio nao concedido&quot;
+    FIM
+FIM
+</code></pre>
+<p>Basta uma das condições ser verdadeira.</p>
+<h2>Operador NAO</h2>
+<p><code>NAO</code> inverte uma condição lógica.</p>
+<p>Se uma condição é verdadeira, sua negação é falsa.</p>
+<p>Se uma condição é falsa, sua negação é verdadeira.</p>
+<p>Conceitualmente:</p>
+<p>| Condição | NAO condição |
+|---|---|
+| verdadeiro | falso |
+| falso | verdadeiro |</p>
+<p>Exemplo:</p>
+<pre><code class="language-sophia">PROGRAMA &quot;Bloqueio&quot;
+
+INICIO
+    LOGICO bloqueado RECEBE FALSO
+
+    SE NAO bloqueado
+        ESCREVA &quot;Acesso permitido&quot;
+    SENAO
+        ESCREVA &quot;Acesso bloqueado&quot;
+    FIM
+FIM
+</code></pre>
+<h2>Pensando em lógica antes de escrever</h2>
+<p>Antes de utilizar <code>E</code> ou <code>OU</code>, escreva a regra em linguagem natural.</p>
+<p>Por exemplo:</p>
+<blockquote>
+<p>O desconto será concedido se o cliente for estudante e a compra for maior que 100 reais.</p>
+</blockquote>
+<p>As duas condições são necessárias:</p>
+<pre><code class="language-text">estudante
+E
+compra MAIOR QUE 100
+</code></pre>
+<p>Agora:</p>
+<blockquote>
+<p>O desconto será concedido se o cliente for estudante ou funcionário.</p>
+</blockquote>
+<p>Somente uma das condições já é suficiente:</p>
+<pre><code class="language-text">estudante
+OU
+funcionario
+</code></pre>
+<p>Essa diferença é fundamental.</p>
+<h2>Mais de duas condições</h2>
+<p>Uma expressão lógica pode combinar várias condições.</p>
+<p>Exemplo:</p>
+<blockquote>
+<p>Para participar, o aluno precisa ter nota maior ou igual a 6 e frequência maior ou igual a 75.</p>
+</blockquote>
+<p>A regra pode ser representada por:</p>
+<pre><code class="language-text">nota MAIOR OU IGUAL A 6 E frequencia MAIOR OU IGUAL A 75
+</code></pre>
+<p>Programa:</p>
+<pre><code class="language-sophia">PROGRAMA &quot;Participacao&quot;
+
+INICIO
+    NUMERO nota RECEBE 8
+    NUMERO frequencia RECEBE 80
+
+    SE nota MAIOR OU IGUAL A 6 E frequencia MAIOR OU IGUAL A 75
+        ESCREVA &quot;Participa&quot;
+    SENAO
+        ESCREVA &quot;Nao participa&quot;
+    FIM
+FIM
+</code></pre>
+<h2>Precedência lógica</h2>
+<p>Quando uma expressão possui diferentes operadores lógicos, a ordem de avaliação importa.</p>
+<p>Como princípio de leitura:</p>
+<ul>
+<li><code>NAO</code> atua sobre uma condição;</li>
+<li><code>E</code> combina condições que precisam ser verdadeiras;</li>
+<li><code>OU</code> combina alternativas.</li>
+</ul>
+<p>Por isso, expressões lógicas devem ser construídas com clareza.</p>
+<p>A Sophia não utiliza parênteses em sua sintaxe. Portanto, não devemos introduzir parênteses como se fossem parte da linguagem.</p>
+<h2>Tabela-verdade como ferramenta de raciocínio</h2>
+<p>A tabela-verdade ajuda a verificar se uma regra foi representada corretamente.</p>
+<p>Para:</p>
+<pre><code class="language-text">A E B
+</code></pre>
+<p>as duas condições precisam ser verdadeiras.</p>
+<p>Para:</p>
+<pre><code class="language-text">A OU B
+</code></pre>
+<p>pelo menos uma precisa ser verdadeira.</p>
+<p>Para:</p>
+<pre><code class="language-text">NAO A
+</code></pre>
+<p>o resultado é o oposto de <code>A</code>.</p>
+<h2>Erros comuns</h2>
+<h3>Usar E quando a regra pede OU</h3>
+<p>Compare:</p>
+<blockquote>
+<p>precisa ser estudante e funcionário</p>
+</blockquote>
+<p>com:</p>
+<blockquote>
+<p>precisa ser estudante ou funcionário.</p>
+</blockquote>
+<p>São regras diferentes.</p>
+<h3>Usar OU quando as duas condições são obrigatórias</h3>
+<p>Se ambas são necessárias, <code>OU</code> produz uma regra mais permissiva do que a desejada.</p>
+<h3>Negar a condição errada</h3>
+<p><code>NAO</code> muda o resultado lógico de uma condição. Por isso, precisamos saber exatamente o que está sendo negado.</p>
+<h2>Atividade</h2>
+<p>Diga se cada situação exige <code>E</code>, <code>OU</code> ou <code>NAO</code>:</p>
+<ol>
+<li>idade maior ou igual a 18 e autorização;</li>
+<li>estudante ou funcionário;</li>
+<li>não estar bloqueado;</li>
+<li>nota maior ou igual a 6 e frequência maior ou igual a 75;</li>
+<li>aluno ou professor.</li>
+</ol>
+<p>Depois escreva as expressões correspondentes.</p>
+<h2>Desafio</h2>
+<p>Uma biblioteca permite uma condição especial para usuários que:</p>
+<ul>
+<li>tenham idade maior ou igual a 60;</li>
+<li>ou sejam estudantes.</li>
+</ul>
+<p>Modele o problema usando <code>OU</code>.</p>
+<p>Depois crie outra regra:</p>
+<blockquote>
+<p>Para retirar um livro reservado, o usuário precisa ser estudante e estar autorizado.</p>
+</blockquote>
+<p>Modele usando <code>E</code>.</p>
+<p>Finalmente, explique como <code>NAO</code> poderia ser utilizado para representar a regra inversa.</p>
+<h2>Síntese</h2>
+<p>Expressões lógicas permitem transformar regras mais complexas em condições.</p>
+<p>Os três operadores fundamentais são:</p>
+<pre><code class="language-text">E
+OU
+NAO
+</code></pre>
+<p>Lembre:</p>
+<ul>
+<li><code>E</code> exige todas as condições;</li>
+<li><code>OU</code> aceita pelo menos uma condição;</li>
+<li><code>NAO</code> inverte uma condição.</li>
+</ul>
+<p>Mais importante do que decorar os operadores é saber <strong>traduzir corretamente a regra do problema para uma expressão lógica</strong>.</p>
+
+
+        <div class="course-navigation">
+            <a class="button secondary" href="aula-11-comparacoes.html">
+    ← Aula anterior
+</a>
+
+            
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+        Curso de Algoritmos I com Sophia
+    </div>
+</footer>
+
+</body>
+</html>

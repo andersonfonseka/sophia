@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aula 09 — Construindo expressões — Sophia</title>
+
+    <meta name="description"
+          content="Aula 09 — Construindo expressões — Curso de Algoritmos I com Sophia.">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="curso.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container nav">
+        <a href="../index.html" class="logo">Sophia</a>
+
+        <nav>
+            <a href="../linguagem.html">A Sophia</a>
+            <a href="../curso.html">Curso</a>
+            <a href="../comecar.html">Comece agora</a>
+            <a href="../exemplos.html">Exemplos</a>
+            <a href="https://sophia-playground.salmonwave-d0191ecb.brazilsouth.azurecontainerapps.io"
+               target="_blank" rel="noopener">
+                Playground
+            </a>
+            <a href="../ide.html">IDE</a>
+            <a href="https://github.com/andersonfonseka/sophia"
+               target="_blank" rel="noopener">
+                GitHub
+            </a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<section class="section">
+    <div class="container course-content">
+
+        <div class="version">Curso de Algoritmos I</div>
+
+        <h1>Aula 09 — Construindo expressões</h1>
+
+        <h2>Um cálculo também é uma solução</h2>
+<p>Quando resolvemos um problema, muitas vezes precisamos transformar informações em um cálculo.</p>
+<p>Por exemplo:</p>
+<blockquote>
+<p>Uma pessoa comprou 3 produtos de 10 reais. Qual foi o valor da compra?</p>
+</blockquote>
+<p>Antes de escrever o programa, podemos identificar:</p>
+<ul>
+<li>entrada: quantidade de produtos e preço;</li>
+<li>processamento: multiplicar quantidade pelo preço;</li>
+<li>saída: valor da compra.</li>
+</ul>
+<p>A expressão matemática é:</p>
+<pre><code class="language-text">quantidade VEZES preco
+</code></pre>
+<p>O algoritmo precisa representar essa relação.</p>
+<h2>O que é uma expressão?</h2>
+<p>Uma expressão é uma combinação de valores, variáveis e operadores que produz um resultado.</p>
+<p>Exemplos:</p>
+<pre><code class="language-text">10 MAIS 5
+20 MENOS 7
+4 VEZES 3
+20 DIVIDIDO POR 4
+17 RESTO DE 5
+</code></pre>
+<p>Também podemos utilizar variáveis:</p>
+<pre><code class="language-text">quantidade VEZES preco
+</code></pre>
+<p>O resultado da expressão depende dos valores armazenados nas variáveis.</p>
+<h2>Operadores de Sophia</h2>
+<p>| Operação | Sophia |
+|---|---|
+| adição | MAIS |
+| subtração | MENOS |
+| multiplicação | VEZES |
+| divisão | DIVIDIDO POR |
+| resto da divisão | RESTO DE |</p>
+<p><code>VEZ</code> também faz parte do vocabulário da Sophia e pode aparecer em expressões conforme a construção prevista pela linguagem.</p>
+<h2>Expressões com variáveis</h2>
+<p>Considere o problema:</p>
+<blockquote>
+<p>Calcular o valor de uma compra sabendo a quantidade e o preço de cada unidade.</p>
+</blockquote>
+<p>Podemos declarar os dados:</p>
+<pre><code class="language-sophia">PROGRAMA &quot;Compra&quot;
+
+INICIO
+    NUMERO quantidade RECEBE 0
+    NUMERO preco RECEBE 0
+    NUMERO total RECEBE 0
+
+    quantidade RECEBE 3
+    preco RECEBE 10
+    total RECEBE quantidade VEZES preco
+    ESCREVA total
+FIM
+</code></pre>
+<p>O programa calcula:</p>
+<pre><code class="language-text">3 VEZES 10
+</code></pre>
+<p>e armazena o resultado em <code>total</code>.</p>
+<h2>Mais de uma operação</h2>
+<p>Uma expressão pode combinar operações.</p>
+<p>Por exemplo:</p>
+<pre><code class="language-text">10 MAIS 5 VEZES 2
+</code></pre>
+<p>A multiplicação deve ser realizada antes da adição.</p>
+<p>Assim:</p>
+<pre><code class="language-text">5 VEZES 2
+</code></pre>
+<p>resulta em 10.</p>
+<p>Depois:</p>
+<pre><code class="language-text">10 MAIS 10
+</code></pre>
+<p>resulta em 20.</p>
+<h2>Precedência</h2>
+<p>Quando uma expressão possui várias operações, precisamos saber qual operação será realizada primeiro.</p>
+<p>A ideia fundamental é:</p>
+<ol>
+<li>multiplicação e divisão;</li>
+<li>adição e subtração.</li>
+</ol>
+<p>Por exemplo:</p>
+<pre><code class="language-text">8 MAIS 4 VEZES 2
+</code></pre>
+<p>Primeiro:</p>
+<pre><code class="language-text">4 VEZES 2
+</code></pre>
+<p>Depois:</p>
+<pre><code class="language-text">8 MAIS 8
+</code></pre>
+<p>Resultado:</p>
+<pre><code class="language-text">16
+</code></pre>
+<p>Não devemos simplesmente calcular da esquerda para a direita sem considerar a precedência.</p>
+<h2>O papel do algoritmo</h2>
+<p>O objetivo não é decorar uma regra matemática isolada.</p>
+<p>Precisamos ser capazes de olhar para um problema e perguntar:</p>
+<blockquote>
+<p>Qual cálculo representa exatamente o que o problema está pedindo?</p>
+</blockquote>
+<p>Essa pergunta transforma matemática em raciocínio algorítmico.</p>
+<h2>Traduzindo uma fórmula</h2>
+<p>Considere:</p>
+<blockquote>
+<p>Um produto custa 25 reais e foram compradas 4 unidades.</p>
+</blockquote>
+<p>Dados:</p>
+<ul>
+<li>quantidade = 4;</li>
+<li>preço = 25.</li>
+</ul>
+<p>Processamento:</p>
+<pre><code class="language-text">quantidade VEZES preco
+</code></pre>
+<p>Programa:</p>
+<pre><code class="language-sophia">PROGRAMA &quot;TotalCompra&quot;
+
+INICIO
+    NUMERO quantidade RECEBE 0
+    NUMERO preco RECEBE 0
+    NUMERO total RECEBE 0
+
+    quantidade RECEBE 4
+    preco RECEBE 25
+    total RECEBE quantidade VEZES preco
+    ESCREVA total
+FIM
+</code></pre>
+<h2>Rastreamento</h2>
+<p>Para validar uma expressão, podemos acompanhar os valores.</p>
+<p>| Passo | quantidade | preco | total |
+|---|---:|---:|---:|
+| início | — | — | — |
+| quantidade RECEBE 4 | 4 | — | — |
+| preco RECEBE 25 | 4 | 25 | — |
+| total RECEBE quantidade VEZES preco | 4 | 25 | 100 |</p>
+<p>O resultado esperado é:</p>
+<pre><code class="language-text">100
+</code></pre>
+<h2>Erros comuns</h2>
+<h3>Ignorar a precedência</h3>
+<p>Não basta escrever uma expressão que parece correta. É necessário saber como ela será avaliada.</p>
+<h3>Criar cálculos que não representam o problema</h3>
+<p>Um programa pode executar sem erro e ainda produzir uma resposta errada.</p>
+<h3>Não testar valores diferentes</h3>
+<p>Uma expressão deve ser validada com exemplos conhecidos.</p>
+<h2>Atividade</h2>
+<p>Escreva as expressões de Sophia para:</p>
+<ol>
+<li>somar 15 e 8;</li>
+<li>calcular o dobro de 12;</li>
+<li>calcular a metade de 30;</li>
+<li>descobrir o resto de 17 por 5;</li>
+<li>calcular o preço de 6 produtos que custam 9 reais cada.</li>
+</ol>
+<h2>Desafio</h2>
+<p>Uma loja vende camisetas por 35 reais.</p>
+<p>Um cliente compra 4 camisetas.</p>
+<p>Depois, recebe um desconto de 10 reais.</p>
+<p>Determine:</p>
+<ul>
+<li>as entradas;</li>
+<li>o processamento;</li>
+<li>a saída;</li>
+<li>a expressão que representa o cálculo.</li>
+</ul>
+<p>Depois escreva o programa em Sophia e teste o resultado.</p>
+<h2>Síntese</h2>
+<p>Uma expressão representa um cálculo dentro de um algoritmo.</p>
+<p>Para construir boas expressões:</p>
+<ul>
+<li>identifique os dados;</li>
+<li>escolha os operadores corretos;</li>
+<li>respeite a precedência;</li>
+<li>acompanhe os valores;</li>
+<li>teste o resultado.</li>
+</ul>
+<p>O mais importante não é apenas escrever a expressão.</p>
+<p>É saber <strong>por que aquela expressão representa o problema</strong>.</p>
+
+
+        <div class="course-navigation">
+            <a class="button secondary" href="aula-08-transformando-problemas-em-calculos.html">
+    ← Aula anterior
+</a>
+
+            <a class="button primary" href="aula-10-problemas-matematicos.html">
+    Próxima aula →
+</a>
+
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+        Curso de Algoritmos I com Sophia
+    </div>
+</footer>
+
+</body>
+</html>
